@@ -12,7 +12,7 @@ The raw outputs behind the numbers in [`../README.md`](../README.md) and [`../do
 | `litert_v4_int4_perrow30.jsonl` | The same file with a new engine per row, first 30 rows (LiteRT-LM issue #3165 check) |
 | `compare_gguf_vs_litert_shared.json` | `convert/parity/compare.py` output: accuracy per file, agreement, paired counts (GGUF as the reference) |
 | `check_vision.txt` | `convert/parity/check_vision.py`: per-token cosine of the exported vision graphs vs the original model, 6 screenshots |
-| `hf_bf16_v4.jsonl` | The unquantized reference: merged v4 in Transformers bf16 (Mac MPS), as the published AndroidControl numbers were made (`convert/parity/run_hf.py`) |
+| `hf_bf16_v4.jsonl` | The unquantized reference: merged v4 in Transformers bf16 (Mac MPS, one row at a time), with the published AndroidControl run's prompt rules (`convert/parity/run_hf.py`) |
 | `litert_v4_int8.jsonl`, `litert_v4_f16.jsonl` | The int8 and fp16 decoder files on the Mac (LiteRT-LM 0.19.1 Python, GPU) |
 | `litert_phone_int4.jsonl`, `litert_phone_int8.jsonl` | The same 180 rows on the phone through the app's `PARITY` hook (QDC session 2, device b3ba6e19, 11.5 GB RAM) |
 | `compare_all_vs_bf16.json` | Every run above against bf16 |
