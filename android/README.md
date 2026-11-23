@@ -61,7 +61,8 @@ JSONs, run.json files, `tasks_2026-11-23.md`).
 ```sh
 cd android
 ./gradlew :app:testDebugUnitTest :app:assembleDebug     # JDK 21, Android SDK in local.properties
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb install -r app/build/outputs/apk/debug/app-debug.apk   # test build: has the adb hooks (EXEC acts without the guard)
+# For real use install the release build (no hooks, no verbose logs): app/build/outputs/apk/release/app-release.apk
 adb shell am start -n org.experimentalmachines.mobileagent/.MainActivity   # creates its folders first
 ```
 

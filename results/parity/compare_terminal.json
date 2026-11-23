@@ -38,6 +38,29 @@
     "right_only_in_ref": 2,
     "right_only_here": 3
    }
+  },
+  "terminal_litert_v4_int8.jsonl": {
+   "all": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.683,
+    "step_acc": 0.683
+   },
+   "terminal": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.683,
+    "step_acc": 0.683
+   },
+   "median_s": 2.983,
+   "vs_ref": {
+    "same_action": 0.917,
+    "same_intent_text": 0.883,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 731.5743297847458,
+    "right_only_in_ref": 0,
+    "right_only_here": 2
+   }
   }
  }
 }

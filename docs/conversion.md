@@ -88,7 +88,7 @@ bash convert/convert_v4.sh          # src template vision float quant pack; FORM
 | Set | 120 high-level and 60 low-level steps from 165 official test episodes, chosen by a fixed hash from `experimentalmachines/MobileAgent-SFT-v1` @ `f88a8432`. Ground truth checked against the frozen benchmark file |
 | Prompt and image | v4's prompt exactly as the offline benchmark built it, and the screenshot resized as in training (576 × 1280) |
 | Score | The offline benchmark's rule: click inside the target box or within 0.14 of the screen, text F1 ≥ 0.5 |
-| Runs | All on an Apple M5 Mac. **bf16** = the merged v4 model in Transformers (MPS), how the published AndroidControl numbers were produced. **GGUF** = Q4_K_M + mmproj Q8_0 in llama.cpp `cd959bae9`, the file our AndroidWorld / MobileWorld runs and the earlier phone benchmark used. **LiteRT** = the files above, LiteRT-LM 0.19.1 Python, Mac GPU (WebGPU) |
+| Runs | All on an Apple M5 Mac. **bf16** = the merged v4 model in Transformers (MPS), with the published AndroidControl run's prompt rules (that run used CUDA, batches of 32, 256 max tokens). **GGUF** = Q4_K_M + mmproj Q8_0 in llama.cpp `cd959bae9`, the file our AndroidWorld / MobileWorld runs and the earlier phone benchmark used. **LiteRT** = the files above, LiteRT-LM 0.19.1 Python, Mac GPU (WebGPU) |
 
 **Accuracy against ground truth**
 
@@ -106,8 +106,9 @@ bash convert/convert_v4.sh          # src template vision float quant pack; FORM
 | Click distance, 90th percentile | 5 | 118 | 3 | 3 |
 | Steps right only in bf16 / only in this file | 1 / 6 | 4 / 9 | 3 / 5 | 4 / 6 |
 
-- **What this rules out:** at n = 180 the 95% interval of a paired difference is about ±4.4 points. "No difference
-  detected" is the claim, not "the same accuracy".
+- **What this rules out:** differences from bf16 with 95% intervals: GGUF +2.8 points (−0.1 to +5.6), int4 +2.8
+  (−1.1 to +6.7), int8 +1.1 (−2.0 to +4.2), int8 on the phone +1.1 (−2.0 to +4.2). "No difference detected" is the
+  claim, not "the same accuracy".
 - **Closeness to the original model:** the int4 file strays further from it than the GGUF does. Its actions match
   bf16 less often, and its clicks land further away. That none of this shows in accuracy on 180 steps doesn't mean it
   never matters.
@@ -129,19 +130,20 @@ thinking on, greedy, one engine for all rows, PNGs as on the Mac.
 - **The phone GPU computes what the Mac computes:** the phone's int4 run gives the same action as the Mac's int4 run on
   98.3% of rows (intent text 96.7%). So the vision encoder runs correctly on this Adreno GPU, which answers the open
   question of the vision check above.
-- **int8 is the file to use:** it is as close to the original model as the GGUF, and on the phone it was not slower
-  than int4 (it ran second, on a hotter phone). The app's default is int8. int4 stays as the 0.7 GB smaller option.
+- **int8 is the file to use:** it is as close to the original model as the GGUF. Speed against int4 is not settled:
+  the int4 run slowed from 2.6 s to 4.2 s per row as the phone heated, and int8 ran after it. The app's default is
+  int8. int4 stays as the 0.7 GB smaller option.
 - **fp16 is not worth it:** no closer than int8 (same action 0.906 on the Mac), and 1.7 GB larger.
 
 ### Terminal steps ("task complete")
 
 60 high-level steps whose ground truth is `status complete` (separate set, `build_set.py --terminal 60`):
 
-| | GGUF | LiteRT int4 |
-|---|---|---|
-| Right (`status complete`) | 0.650 | 0.667 |
-| Same action as GGUF | — | 0.883 |
-| Right only in this file | 2 | 3 |
+| | GGUF | LiteRT int4 | LiteRT int8 |
+|---|---|---|---|
+| Right (`status complete`) | 0.650 | 0.667 | 0.683 |
+| Same action as GGUF | — | 0.883 | 0.917 |
+| Right only in GGUF / only in this file | — | 2 / 3 | 0 / 2 |
 
 ### One engine across conversations (LiteRT-LM issue #3165)
 

@@ -16,7 +16,7 @@ The raw outputs behind the numbers in [`../README.md`](../README.md) and [`../do
 | `litert_v4_int8.jsonl`, `litert_v4_f16.jsonl` | The int8 and fp16 decoder files on the Mac (LiteRT-LM 0.19.1 Python, GPU) |
 | `litert_phone_int4.jsonl`, `litert_phone_int8.jsonl` | The same 180 rows on the phone through the app's `PARITY` hook (QDC session 2, device b3ba6e19, 11.5 GB RAM) |
 | `compare_all_vs_bf16.json` | Every run above against bf16 |
-| `set_terminal_rows.jsonl`, `terminal_*.jsonl`, `compare_terminal.json` | 60 terminal steps (ground truth `status complete`), GGUF and LiteRT int4 on the Mac |
+| `set_terminal_rows.jsonl`, `terminal_*.jsonl`, `compare_terminal.json` | 60 terminal steps (ground truth `status complete`): GGUF, LiteRT int4 and int8 on the Mac |
 
 ## phone/: the app on the QDC phone
 

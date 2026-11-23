@@ -16,3 +16,6 @@ android/.idea/
 *.aab
 .DS_Store
 logs/*.log
+__pycache__/
+*.pyc
+logs/

@@ -17,8 +17,9 @@ import org.experimentalmachines.mobileagent.model.LlmRuntime
 /**
  * Test hooks over adb, in debug builds only (this file and its manifest entry live in the debug source set). The
  * receiver needs DUMP, which adb's shell holds; some privileged system apps hold it too, and it can be granted with
- * `pm grant`, so a debug build is a test build. The hooks cannot switch the safety guard off: there is no `confirm`
- * override, and a guard question still needs ALLOW / SKIP. Every command (`-a org.experimentalmachines.mobileagent.<NAME>`):
+ * `pm grant`, so a debug build is a test build, not for daily use. RUN_GOAL keeps the user's guard setting (no
+ * `confirm` override) and its guard questions still need ALLOW / SKIP, but EXEC runs one action with no guard check
+ * and ALLOW answers the guard: whoever can send these broadcasts can act without the guard. Every command (`-a org.experimentalmachines.mobileagent.<NAME>`):
  *
  *   RUN_GOAL --es goal "Open the Clock app" [--ei max_steps 3] [--ez engine_per_step false]
  *            [--ez enter true|false] [--ez verbose_logs true|false]

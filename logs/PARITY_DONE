@@ -1,1 +1,0 @@
-PARITY runs done 16:13:55. The phone is free. The app now uses the int8 file (model.json points to it; the int4 sidecar is saved as model_int4.json.bak). Results: int8 on the phone matches bf16 on 90.6% of steps (click p90 2 units), median 3.63 s per row; int4 84.4% (p90 103), 4.07 s.

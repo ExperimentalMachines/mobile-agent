@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""The unquantized reference on the parity set: the merged v4 model in Transformers (bf16), as the published
-AndroidControl numbers were produced (eval/androidcontrol/generate.py: processor chat template with
-enable_thinking=True, greedy, max 512 new tokens), here one row at a time on the Mac (MPS) or CPU.
+"""The unquantized reference on the parity set: the merged v4 model in Transformers (bf16) with the same prompt rules
+as the published AndroidControl run (eval/androidcontrol/generate.py: processor chat template, enable_thinking=True,
+greedy). Differences from that run: Apple MPS instead of CUDA, one row at a time instead of batches of 32, and at most
+512 new tokens instead of 256 (replies here are 20-30 tokens).
 
   .venv-dec/bin/python run_hf.py --set SET --model MODEL_DIR --out OUT.jsonl [--device mps] [--dtype bf16]
 Output rows as run.py: id, content (after </think>), reasoning (inside <think>), seconds. A re-run skips done rows.
