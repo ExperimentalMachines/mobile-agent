@@ -1,0 +1,55 @@
+{
+ "n_common": 180,
+ "files": {
+  "gguf_v4.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.856,
+    "step_acc": 0.8
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.825,
+    "step_acc": 0.758
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.917,
+    "step_acc": 0.883
+   },
+   "median_s": 2.136
+  },
+  "litert_v4_int4_shared.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.85,
+    "step_acc": 0.8
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.817,
+    "step_acc": 0.75
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.917,
+    "step_acc": 0.9
+   },
+   "median_s": 6.745,
+   "vs_ref": {
+    "same_action": 0.822,
+    "same_intent_text": 0.606,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 75.0,
+    "right_only_in_ref": 8,
+    "right_only_here": 8
+   }
+  }
+ }
+}

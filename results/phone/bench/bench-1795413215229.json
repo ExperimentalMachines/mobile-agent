@@ -1,0 +1,65 @@
+{
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int4_g1280x576_ctx4096.litertlm",
+    "modelBytes": 2072561915,
+    "backends": "text GPU, vision GPU",
+    "loadMs": 4094,
+    "newEnginePerCall": false,
+    "image": "bench.png",
+    "imageSize": "1440x3200",
+    "modelInput": "576x1280",
+    "resizeMs": 202,
+    "pngEncodeMs": 169,
+    "pngBytes": 529138,
+    "goal": "Open the Clock app",
+    "calls": [
+        {
+            "i": 1,
+            "engineMs": null,
+            "totalMs": 6159,
+            "firstPieceMs": 2179,
+            "lastPieceMs": 2570,
+            "ttftMs": 1144,
+            "prefillTokens": 1325,
+            "prefillTokensPerS": 491.9811997252511,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 30.28312984326563,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 802
+            }
+        },
+        {
+            "i": 2,
+            "engineMs": null,
+            "totalMs": 5904,
+            "firstPieceMs": 2015,
+            "lastPieceMs": 2401,
+            "ttftMs": 1106,
+            "prefillTokens": 1325,
+            "prefillTokensPerS": 500.0338271940637,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 43.97822597294354,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 765
+            }
+        }
+    ],
+    "medianTotalMs": 6031,
+    "medianTtftMs": 1125,
+    "medianPrefillTokensPerS": 496.0075134596574,
+    "medianDecodeTokensPerS": 37.13067790810459,
+    "medianEngineMs": null
+}

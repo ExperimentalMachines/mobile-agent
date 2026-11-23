@@ -1,0 +1,180 @@
+{"id": "high_0004a63c94", "content": "{\"action_type\":\"click\",\"point_2d\":[375,883]}", "reasoning": "Click on the Gmail icon at the bottom of the screen", "seconds": 18.957, "engine_load_s": null}
+{"id": "high_000addb9c7", "content": "{\"action_type\":\"input_text\",\"text\":\"Amsterdam\"}", "reasoning": "Type Amsterdam in the search bar.", "seconds": 18.512, "engine_load_s": null}
+{"id": "high_00170ceb41", "content": "{\"action_type\":\"click\",\"point_2d\":[392,862]}", "reasoning": "click on the pin option", "seconds": 15.626, "engine_load_s": null}
+{"id": "high_00194ce619", "content": "{\"action_type\":\"click\",\"point_2d\":[761,617]}", "reasoning": "Click on the Positive option", "seconds": 16.769, "engine_load_s": null}
+{"id": "high_0022b9d8e4", "content": "{\"action_type\":\"click\",\"point_2d\":[156,380]}", "reasoning": "Select seconds unit", "seconds": 15.669, "engine_load_s": null}
+{"id": "high_0036ba3466", "content": "{\"action_type\":\"click\",\"point_2d\":[920,899]}", "reasoning": "Tap on the search icon at the bottom right corner of the screen", "seconds": 29.234, "engine_load_s": null}
+{"id": "high_003e007b80", "content": "{\"action_type\":\"click\",\"point_2d\":[274,152]}", "reasoning": "Click on the sleep option", "seconds": 23.776, "engine_load_s": null}
+{"id": "high_00413c6791", "content": "{\"action_type\":\"click\",\"point_2d\":[500,382]}", "reasoning": "Click on the moon info notification.", "seconds": 24.03, "engine_load_s": null}
+{"id": "high_004a52e0d2", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "Go back to the previous page", "seconds": 17.863, "engine_load_s": null}
+{"id": "high_0051218505", "content": "{\"action_type\":\"click\",\"point_2d\":[726,87]}", "reasoning": "Click on the Calendar icon at the top of the screen.", "seconds": 23.32, "engine_load_s": null}
+{"id": "high_00526f0c1d", "content": "{\"action_type\":\"click\",\"point_2d\":[500,264]}", "reasoning": "Click on the Push notification settings option", "seconds": 19.891, "engine_load_s": null}
+{"id": "high_005f5b53e6", "content": "{\"action_type\":\"click\",\"point_2d\":[308,946]}", "reasoning": "Click on the search icon at the bottom of the screen", "seconds": 19.963, "engine_load_s": null}
+{"id": "high_006cb4d30d", "content": "{\"action_type\":\"click\",\"point_2d\":[500,500]}", "reasoning": "Click on the Enfield Duisburg article", "seconds": 21.897, "engine_load_s": null}
+{"id": "high_0070a1c93e", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to read the article", "seconds": 19.584, "engine_load_s": null}
+{"id": "high_0076c9e42d", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "Go back to the previous screen", "seconds": 18.312, "engine_load_s": null}
+{"id": "high_007c13742f", "content": "{\"action_type\":\"click\",\"point_2d\":[499,930]}", "reasoning": "Click on the Go to checkout option on the screen.", "seconds": 10.329, "engine_load_s": null}
+{"id": "high_008a387cde", "content": "{\"action_type\":\"click\",\"point_2d\":[500,928]}", "reasoning": "Click on the tick icon", "seconds": 11.386, "engine_load_s": null}
+{"id": "high_008aec1572", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Lunar Phase\"}", "reasoning": "Open the Lunar Phase app.", "seconds": 10.825, "engine_load_s": null}
+{"id": "high_008af98b7c", "content": "{\"action_type\":\"click\",\"point_2d\":[500,222]}", "reasoning": "Click on the first suggestion.", "seconds": 10.099, "engine_load_s": null}
+{"id": "high_008e038d79", "content": "{\"action_type\":\"click\",\"point_2d\":[500,943]}", "reasoning": "Click on the search icon at the bottom of the screen", "seconds": 9.226, "engine_load_s": null}
+{"id": "high_00a11565a0", "content": "{\"action_type\":\"click\",\"point_2d\":[500,575]}", "reasoning": "Click on the pop on screen option", "seconds": 7.804, "engine_load_s": null}
+{"id": "high_00a6197649", "content": "{\"action_type\":\"click\",\"point_2d\":[194,373]}", "reasoning": "Click on the Month option", "seconds": 8.659, "engine_load_s": null}
+{"id": "high_00a770dbe3", "content": "{\"action_type\":\"click\",\"point_2d\":[500,268]}", "reasoning": "click on the first search result", "seconds": 8.638, "engine_load_s": null}
+{"id": "high_00a8e2a282", "content": "{\"action_type\":\"click\",\"point_2d\":[731,449]}", "reasoning": "Click on the Settings option to view the notification option.", "seconds": 8.377, "engine_load_s": null}
+{"id": "high_00a955603f", "content": "{\"action_type\":\"click\",\"point_2d\":[743,84]}", "reasoning": "Click on the audio icon at the top of the screen.", "seconds": 8.229, "engine_load_s": null}
+{"id": "high_00ab9c5d0e", "content": "{\"action_type\":\"click\",\"point_2d\":[500,548]}", "reasoning": "Click on the Reviews tab to view the reviews", "seconds": 7.937, "engine_load_s": null}
+{"id": "high_00abc41fff", "content": "{\"action_type\":\"click\",\"point_2d\":[153,943]}", "reasoning": "Click on the Start button at the bottom left corner of the screen", "seconds": 8.016, "engine_load_s": null}
+{"id": "high_00acae53ae", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Crafts DIY\"}", "reasoning": "Open the Crafts DIY app", "seconds": 7.595, "engine_load_s": null}
+{"id": "high_00accfa243", "content": "{\"action_type\":\"click\",\"point_2d\":[727,347]}", "reasoning": "Click on the lap button", "seconds": 7.558, "engine_load_s": null}
+{"id": "high_00b366a93d", "content": "{\"action_type\":\"click\",\"point_2d\":[187,762]}", "reasoning": "Click on the directions option", "seconds": 7.317, "engine_load_s": null}
+{"id": "high_00c0298308", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Fox News\"}", "reasoning": "Open the Fox News app", "seconds": 6.983, "engine_load_s": null}
+{"id": "high_00c1921923", "content": "{\"action_type\":\"click\",\"point_2d\":[531,138]}", "reasoning": "Click on Choose destination on the screen.", "seconds": 6.744, "engine_load_s": null}
+{"id": "high_00c6a4bfa3", "content": "{\"action_type\":\"click\",\"point_2d\":[166,210]}", "reasoning": "Click on the Brand option", "seconds": 6.044, "engine_load_s": null}
+{"id": "high_00c7f88fac", "content": "{\"action_type\":\"click\",\"point_2d\":[920,899]}", "reasoning": "Click on the search icon", "seconds": 6.269, "engine_load_s": null}
+{"id": "high_00c8db4efb", "content": "{\"action_type\":\"click\",\"point_2d\":[184,625]}", "reasoning": "Click on the Care option", "seconds": 6.273, "engine_load_s": null}
+{"id": "high_00d044009a", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the Shotgun origami on the right side of the screen.", "seconds": 6.192, "engine_load_s": null}
+{"id": "high_00dbc2cc30", "content": "{\"action_type\":\"click\",\"point_2d\":[920,899]}", "reasoning": "Click on the search icon at the bottom right corner of the screen", "seconds": 6.309, "engine_load_s": null}
+{"id": "high_00dec86948", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Euronews\"}", "reasoning": "Open the Euronews app", "seconds": 6.226, "engine_load_s": null}
+{"id": "high_00e779cabb", "content": "{\"action_type\":\"click\",\"point_2d\":[500,197]}", "reasoning": "Click on the Mercury option to view the movement of the Mercury planet.", "seconds": 6.284, "engine_load_s": null}
+{"id": "high_00eabf3f18", "content": "{\"action_type\":\"input_text\",\"text\":\"podcasts\"}", "reasoning": "Type podcasts in the search bar", "seconds": 6.056, "engine_load_s": null}
+{"id": "high_00f40b5eb1", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the first podcasts to listen.", "seconds": 6.098, "engine_load_s": null}
+{"id": "high_00f97e7df3", "content": "{\"action_type\":\"click\",\"point_2d\":[123,883]}", "reasoning": "Click on the Gmail app icon to share the moon phase with my wife.", "seconds": 6.317, "engine_load_s": null}
+{"id": "high_00fb434c49", "content": "{\"action_type\":\"click\",\"point_2d\":[548,160]}", "reasoning": "Click on the Search bar", "seconds": 5.993, "engine_load_s": null}
+{"id": "high_010e6a1ca7", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Artsy\"}", "reasoning": "Open the Artsy app", "seconds": 5.985, "engine_load_s": null}
+{"id": "high_010ffd0416", "content": "{\"action_type\":\"input_text\",\"text\":\"Knoxville\"}", "reasoning": "Search for Knoxville", "seconds": 5.959, "engine_load_s": null}
+{"id": "high_0110ef2e56", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up", "seconds": 5.813, "engine_load_s": null}
+{"id": "high_0114df1326", "content": "{\"action_type\":\"click\",\"point_2d\":[931,87]}", "reasoning": "Click on the Settings icon at the top right corner", "seconds": 5.894, "engine_load_s": null}
+{"id": "high_011921da90", "content": "{\"action_type\":\"click\",\"point_2d\":[920,899]}", "reasoning": "Click on the search icon at the bottom right corner of the screen", "seconds": 6.986, "engine_load_s": null}
+{"id": "high_011e10695e", "content": "{\"action_type\":\"input_text\",\"text\":\"Creamy Coffee and Cookie\"}", "reasoning": "Type Creamy Coffee and Cookie in the search bar", "seconds": 6.098, "engine_load_s": null}
+{"id": "high_01217b363b", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll up on the screen.", "seconds": 5.786, "engine_load_s": null}
+{"id": "high_0122d76e86", "content": "{\"action_type\":\"click\",\"point_2d\":[500,930]}", "reasoning": "Click on the search flights tab.", "seconds": 6.174, "engine_load_s": null}
+{"id": "high_01249de52e", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to view the podcasts category", "seconds": 5.969, "engine_load_s": null}
+{"id": "high_01284d44c7", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to view the comparison", "seconds": 6.598, "engine_load_s": null}
+{"id": "high_012d92a946", "content": "{\"action_type\":\"click\",\"point_2d\":[500,185]}", "reasoning": "Click on the Discover magazine", "seconds": 6.586, "engine_load_s": null}
+{"id": "high_0131c8a3a4", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Flipboard\"}", "reasoning": "Open the Flipboard app", "seconds": 5.79, "engine_load_s": null}
+{"id": "high_013382edf9", "content": "{\"action_type\":\"click\",\"point_2d\":[750,505]}", "reasoning": "Click on the Art and Literature", "seconds": 5.912, "engine_load_s": null}
+{"id": "high_01399dd6ce", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll up", "seconds": 5.939, "engine_load_s": null}
+{"id": "high_01399fccfc", "content": "{\"action_type\":\"input_text\",\"text\":\"Italian pasta salad\"}", "reasoning": "Search for Italian pasta salad", "seconds": 5.813, "engine_load_s": null}
+{"id": "high_013a756bce", "content": "{\"action_type\":\"click\",\"point_2d\":[920,904]}", "reasoning": "Click on the search icon at the bottom right corner of the screen", "seconds": 6.183, "engine_load_s": null}
+{"id": "high_013aa34fce", "content": "{\"action_type\":\"click\",\"point_2d\":[260,378]}", "reasoning": "click on the first art work", "seconds": 5.824, "engine_load_s": null}
+{"id": "high_013f7bf180", "content": "{\"action_type\":\"click\",\"point_2d\":[500,439]}", "reasoning": "Select the Check In Date Jan. 24, 2024", "seconds": 6.252, "engine_load_s": null}
+{"id": "high_01509dc4c1", "content": "{\"action_type\":\"click\",\"point_2d\":[500,156]}", "reasoning": "Click on the first suggested location", "seconds": 6.18, "engine_load_s": null}
+{"id": "high_015595edf0", "content": "{\"action_type\":\"click\",\"point_2d\":[500,262]}", "reasoning": "Click on the News & Politics option.", "seconds": 5.908, "engine_load_s": null}
+{"id": "high_015d9fd0b3", "content": "{\"action_type\":\"click\",\"point_2d\":[920,904]}", "reasoning": "Click on the search icon at the bottom right corner of the screen.", "seconds": 6.467, "engine_load_s": null}
+{"id": "high_01625d83e3", "content": "{\"action_type\":\"click\",\"point_2d\":[123,883]}", "reasoning": "Select the Gmail option", "seconds": 6.023, "engine_load_s": null}
+{"id": "high_0166eb4320", "content": "{\"action_type\":\"click\",\"point_2d\":[500,680]}", "reasoning": "Click on the More option.", "seconds": 6.152, "engine_load_s": null}
+{"id": "high_016b63cb07", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.367, "engine_load_s": null}
+{"id": "high_017a396aa8", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to view the menu", "seconds": 6.006, "engine_load_s": null}
+{"id": "high_01862b9573", "content": "{\"action_type\":\"click\",\"point_2d\":[578,87]}", "reasoning": "Click on the Calendar icon at the top of the screen.", "seconds": 6.203, "engine_load_s": null}
+{"id": "high_018987ad09", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "scroll down", "seconds": 6.18, "engine_load_s": null}
+{"id": "high_018f3a8b4e", "content": "{\"action_type\":\"click\",\"point_2d\":[500,80]}", "reasoning": "click on the search bar at the top of the screen", "seconds": 6.025, "engine_load_s": null}
+{"id": "high_019e2f7075", "content": "{\"action_type\":\"click\",\"point_2d\":[500,562]}", "reasoning": "Select the Tonne unit", "seconds": 5.967, "engine_load_s": null}
+{"id": "high_01a2abea57", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "swipe up for hindi", "seconds": 6.004, "engine_load_s": null}
+{"id": "high_01aaa4f21f", "content": "{\"action_type\":\"click\",\"point_2d\":[824,91]}", "reasoning": "Click on the send icon", "seconds": 6.831, "engine_load_s": null}
+{"id": "high_01abd10ddd", "content": "{\"action_type\":\"input_text\",\"text\":\"Travel\"}", "reasoning": "Search for Travel", "seconds": 6.381, "engine_load_s": null}
+{"id": "high_01b0c26733", "content": "{\"action_type\":\"click\",\"point_2d\":[500,200]}", "reasoning": "Click on the article headline.", "seconds": 6.188, "engine_load_s": null}
+{"id": "high_01b6a2d5f1", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the New moon.", "seconds": 5.91, "engine_load_s": null}
+{"id": "high_01b87e06e9", "content": "{\"action_type\":\"click\",\"point_2d\":[500,594]}", "reasoning": "Click on the create new playlist option", "seconds": 5.889, "engine_load_s": null}
+{"id": "high_01b965d2c0", "content": "{\"action_type\":\"open_app\",\"app_name\":\"File Manager\"}", "reasoning": "Open the file manager app", "seconds": 6.368, "engine_load_s": null}
+{"id": "high_01ba1db7b7", "content": "{\"action_type\":\"click\",\"point_2d\":[259,335]}", "reasoning": "Click on the Minerva teaches the art of Sculpture to learn more about sculpture art.", "seconds": 6.225, "engine_load_s": null}
+{"id": "high_01c3d193ac", "content": "{\"action_type\":\"open_app\",\"app_name\":\"TOI\"}", "reasoning": "Open The Times Of India App", "seconds": 6.026, "engine_load_s": null}
+{"id": "high_01d7e49867", "content": "{\"action_type\":\"wait\"}", "reasoning": "Tap on the start button.", "seconds": 5.923, "engine_load_s": null}
+{"id": "high_01df9cfb63", "content": "{\"action_type\":\"click\",\"point_2d\":[920,899]}", "reasoning": "Click on the search icon at the bottom right corner of the screen", "seconds": 6.344, "engine_load_s": null}
+{"id": "high_01e3a6cbbf", "content": "{\"action_type\":\"input_text\",\"text\":\"John F. Kennedy International Airport\"}", "reasoning": "Type John F. Kennedy International Airport in the search bar", "seconds": 6.211, "engine_load_s": null}
+{"id": "high_01e8e3972f", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the search icon at the bottom right corner", "seconds": 5.896, "engine_load_s": null}
+{"id": "high_01e9ef6ffe", "content": "{\"action_type\":\"click\",\"point_2d\":[951,87]}", "reasoning": "Click on the three dots at the top right corner of the screen", "seconds": 6.342, "engine_load_s": null}
+{"id": "high_01ed73af12", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Guardian\"}", "reasoning": "Open the Guardian app", "seconds": 6.771, "engine_load_s": null}
+{"id": "high_01edbb726c", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the gmail tab", "seconds": 5.998, "engine_load_s": null}
+{"id": "high_01eebe186d", "content": "{\"action_type\":\"click\",\"point_2d\":[451,132]}", "reasoning": "select the first suggestion", "seconds": 6.702, "engine_load_s": null}
+{"id": "high_01f09a8c9f", "content": "{\"action_type\":\"click\",\"point_2d\":[500,930]}", "reasoning": "Click on the Next button at the bottom of the screen", "seconds": 6.543, "engine_load_s": null}
+{"id": "high_01f99a4db8", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "Go back to the Sections.", "seconds": 6.347, "engine_load_s": null}
+{"id": "high_020670ef41", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to see product description", "seconds": 6.017, "engine_load_s": null}
+{"id": "high_0225a1f4c8", "content": "{\"action_type\":\"click\",\"point_2d\":[123,883]}", "reasoning": "Click on the Gmail icon", "seconds": 6.432, "engine_load_s": null}
+{"id": "high_0234b571aa", "content": "{\"action_type\":\"open_app\",\"app_name\":\"The Hindu\"}", "reasoning": "Open The Hindu News app", "seconds": 6.261, "engine_load_s": null}
+{"id": "high_023e4c0826", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the art of the fighter jets to view all details about this art.", "seconds": 6.421, "engine_load_s": null}
+{"id": "high_02462fd1ed", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "Go back", "seconds": 6.066, "engine_load_s": null}
+{"id": "high_0259e85b02", "content": "{\"action_type\":\"click\",\"point_2d\":[928,782]}", "reasoning": "Click on the share icon", "seconds": 6.236, "engine_load_s": null}
+{"id": "high_02657b2783", "content": "{\"action_type\":\"click\",\"point_2d\":[500,227]}", "reasoning": "Click on the first option.", "seconds": 6.498, "engine_load_s": null}
+{"id": "high_0267504368", "content": "{\"action_type\":\"click\",\"point_2d\":[727,347]}", "reasoning": "Click on the reset button.", "seconds": 6.145, "engine_load_s": null}
+{"id": "high_026d34c1ef", "content": "{\"action_type\":\"input_text\",\"text\":\"Glasglow\"}", "reasoning": "Search for Glasglow station", "seconds": 6.203, "engine_load_s": null}
+{"id": "high_027b5f7967", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to view the Mass section", "seconds": 6.671, "engine_load_s": null}
+{"id": "high_0281c214ab", "content": "{\"action_type\":\"click\",\"point_2d\":[931,930]}", "reasoning": "Click on the share icon at the bottom right corner of the screen", "seconds": 6.613, "engine_load_s": null}
+{"id": "high_028b360990", "content": "{\"action_type\":\"click\",\"point_2d\":[256,260]}", "reasoning": "Click on the Blank Canvas option", "seconds": 6.261, "engine_load_s": null}
+{"id": "high_028b5d9a5f", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll up on the screen to read the article.", "seconds": 6.608, "engine_load_s": null}
+{"id": "high_029b2cefcd", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.61, "engine_load_s": null}
+{"id": "high_029f63ed08", "content": "{\"action_type\":\"click\",\"point_2d\":[500,910]}", "reasoning": "Click on the tab continue at the bottom.", "seconds": 6.324, "engine_load_s": null}
+{"id": "high_02a3b4937b", "content": "{\"action_type\":\"open_app\",\"app_name\":\"SideChef\"}", "reasoning": "Open the side chef app", "seconds": 6.582, "engine_load_s": null}
+{"id": "high_02a6bcf3a3", "content": "{\"action_type\":\"click\",\"point_2d\":[750,245]}", "reasoning": "Click on the Select destination", "seconds": 6.192, "engine_load_s": null}
+{"id": "high_02a7264134", "content": "{\"action_type\":\"click\",\"point_2d\":[844,80]}", "reasoning": "Click on the search icon at the top of the screen.", "seconds": 6.481, "engine_load_s": null}
+{"id": "high_02b4376c79", "content": "{\"action_type\":\"click\",\"point_2d\":[500,886]}", "reasoning": "Click on the playback speed", "seconds": 6.771, "engine_load_s": null}
+{"id": "high_02baec10af", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the start at the bottom of the screen", "seconds": 6.772, "engine_load_s": null}
+{"id": "high_02c6052880", "content": "{\"action_type\":\"click\",\"point_2d\":[578,185]}", "reasoning": "select the first search result", "seconds": 6.556, "engine_load_s": null}
+{"id": "high_02ca9f2e32", "content": "{\"action_type\":\"click\",\"point_2d\":[642,587]}", "reasoning": "Select the arrival date 10 august", "seconds": 6.478, "engine_load_s": null}
+{"id": "high_02d05ff5bc", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the Add to Playlist button.", "seconds": 6.36, "engine_load_s": null}
+{"id": "high_02d0ba9a5c", "content": "{\"action_type\":\"click\",\"point_2d\":[500,862]}", "reasoning": "Click on the Random Mix button", "seconds": 6.876, "engine_load_s": null}
+{"id": "high_02d17067b0", "content": "{\"action_type\":\"click\",\"point_2d\":[172,222]}", "reasoning": "Click on size", "seconds": 7.105, "engine_load_s": null}
+{"id": "high_02d179074c", "content": "{\"action_type\":\"open_app\",\"app_name\":\"OneDrive\"}", "reasoning": "Open the OneDrive app", "seconds": 7.739, "engine_load_s": null}
+{"id": "high_02e9c97198", "content": "{\"action_type\":\"click\",\"point_2d\":[500,146]}", "reasoning": "Click on the search bar at the top of the screen.", "seconds": 8.301, "engine_load_s": null}
+{"id": "high_02ebe85bd1", "content": "{\"action_type\":\"click\",\"point_2d\":[502,91]}", "reasoning": "click on the search bar at the top of the screen", "seconds": 7.634, "engine_load_s": null}
+{"id": "high_02f782880c", "content": "{\"action_type\":\"click\",\"point_2d\":[401,89]}", "reasoning": "Click on the search bar at the top of the screen", "seconds": 9.349, "engine_load_s": null}
+{"id": "low_00014dc759", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "Go back to the previous page", "seconds": 8.552, "engine_load_s": null}
+{"id": "low_0003c3edd4", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the Berlin,Germany location", "seconds": 8.589, "engine_load_s": null}
+{"id": "low_00165071e2", "content": "{\"action_type\":\"click\",\"point_2d\":[156,610]}", "reasoning": "Select Pound unit", "seconds": 8.477, "engine_load_s": null}
+{"id": "low_00170d1862", "content": "{\"action_type\":\"click\",\"point_2d\":[500,943]}", "reasoning": "Click on the Search icon at the bottom of the screen", "seconds": 8.017, "engine_load_s": null}
+{"id": "low_00199a05dc", "content": "{\"action_type\":\"click\",\"point_2d\":[500,158]}", "reasoning": "Click on the first result", "seconds": 7.956, "engine_load_s": null}
+{"id": "low_001a35770b", "content": "{\"action_type\":\"input_text\",\"text\":\"men shoes\"}", "reasoning": "Type men shoes in the search bar", "seconds": 7.976, "engine_load_s": null}
+{"id": "low_001ff2e51e", "content": "{\"action_type\":\"click\",\"point_2d\":[931,216]}", "reasoning": "Click on the three dots icon at the right corner of the screen", "seconds": 7.641, "engine_load_s": null}
+{"id": "low_002d6e3b17", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to read more", "seconds": 7.875, "engine_load_s": null}
+{"id": "low_0032c6255d", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "swipe up for reviews", "seconds": 7.624, "engine_load_s": null}
+{"id": "low_0038795e4d", "content": "{\"action_type\":\"click\",\"point_2d\":[500,516]}", "reasoning": "Tap on the first hotel present on the screen.", "seconds": 7.449, "engine_load_s": null}
+{"id": "low_00409114a2", "content": "{\"action_type\":\"click\",\"point_2d\":[539,492]}", "reasoning": "Click on the disabled button under new moon alert.", "seconds": 6.745, "engine_load_s": null}
+{"id": "low_004b699599", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Guardian\"}", "reasoning": "Open the Guardian App", "seconds": 6.299, "engine_load_s": null}
+{"id": "low_004ee6387b", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the Start Workout button at the top of the screen", "seconds": 6.05, "engine_load_s": null}
+{"id": "low_0064ae7004", "content": "{\"action_type\":\"click\",\"point_2d\":[893,630]}", "reasoning": "Click on the directions icon", "seconds": 7.009, "engine_load_s": null}
+{"id": "low_0069e6cdab", "content": "{\"action_type\":\"click\",\"point_2d\":[500,816]}", "reasoning": "Click on the + icon at the bottom of the screen.", "seconds": 7.34, "engine_load_s": null}
+{"id": "low_006e67f080", "content": "{\"action_type\":\"input_text\",\"text\":\"Daniel Richter\"}", "reasoning": "Type Daniel Richter in the search box.", "seconds": 7.215, "engine_load_s": null}
+{"id": "low_006f2043d8", "content": "{\"action_type\":\"click\",\"point_2d\":[824,91]}", "reasoning": "Click on the send icon at the top.", "seconds": 7.283, "engine_load_s": null}
+{"id": "low_00779be9bb", "content": "{\"action_type\":\"click\",\"point_2d\":[784,462]}", "reasoning": "Click on the 23.", "seconds": 6.967, "engine_load_s": null}
+{"id": "low_007915dda6", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the search key at the bottom right of the keyboard", "seconds": 6.475, "engine_load_s": null}
+{"id": "low_007d5fd750", "content": "{\"action_type\":\"scroll\",\"direction\":\"left\"}", "reasoning": "Swipe up to View details about the Apartment", "seconds": 6.099, "engine_load_s": null}
+{"id": "low_0080d4ff1e", "content": "{\"action_type\":\"open_app\",\"app_name\":\"My Moon Phase\"}", "reasoning": "Open the My Moon Phase App", "seconds": 6.002, "engine_load_s": null}
+{"id": "low_00887a61b3", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the Add to Cart button", "seconds": 6.376, "engine_load_s": null}
+{"id": "low_0088af7755", "content": "{\"action_type\":\"click\",\"point_2d\":[500,148]}", "reasoning": "Click on the search box", "seconds": 6.21, "engine_load_s": null}
+{"id": "low_008b92f19f", "content": "{\"action_type\":\"input_text\",\"text\":\"gregoryvanloon65@gmail.com\"}", "reasoning": "Enter gregoryvanloon65@gmail.com in the \"To\" text field.", "seconds": 6.872, "engine_load_s": null}
+{"id": "low_00a823d05b", "content": "{\"action_type\":\"click\",\"point_2d\":[920,570]}", "reasoning": "Click on 23 at the right side of the screen below 16", "seconds": 6.728, "engine_load_s": null}
+{"id": "low_00acc83ee0", "content": "{\"action_type\":\"click\",\"point_2d\":[300,943]}", "reasoning": "Click on the share icon", "seconds": 6.349, "engine_load_s": null}
+{"id": "low_00c52c28f3", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll down to see the example sentences", "seconds": 6.506, "engine_load_s": null}
+{"id": "low_00cdb15d40", "content": "{\"action_type\":\"click\",\"point_2d\":[500,222]}", "reasoning": "Click on the first search result.", "seconds": 6.587, "engine_load_s": null}
+{"id": "low_00ce649aa4", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Earth\"}", "reasoning": "Open the Google Earth app", "seconds": 6.205, "engine_load_s": null}
+{"id": "low_00d747881d", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll down to view the review section of these shoes.", "seconds": 6.84, "engine_load_s": null}
+{"id": "low_00d79a9123", "content": "{\"action_type\":\"input_text\",\"text\":\"natalie.larson1998@gmail.com\"}", "reasoning": "Type id-natalie.larson1998@gmail.com", "seconds": 7.088, "engine_load_s": null}
+{"id": "low_00e3dac38f", "content": "{\"action_type\":\"click\",\"point_2d\":[674,727]}", "reasoning": "click on the add to cart button", "seconds": 7.029, "engine_load_s": null}
+{"id": "low_00e92d38de", "content": "{\"action_type\":\"click\",\"point_2d\":[500,917]}", "reasoning": "Click on the Recorder button", "seconds": 6.842, "engine_load_s": null}
+{"id": "low_00f1afd0ee", "content": "{\"action_type\":\"click\",\"point_2d\":[605,421]}", "reasoning": "Select the Art & Culture category", "seconds": 7.177, "engine_load_s": null}
+{"id": "low_00f80f606c", "content": "{\"action_type\":\"click\",\"point_2d\":[606,864]}", "reasoning": "Click on the Board", "seconds": 7.093, "engine_load_s": null}
+{"id": "low_00fd223cac", "content": "{\"action_type\":\"click\",\"point_2d\":[362,758]}", "reasoning": "Select the L size", "seconds": 6.949, "engine_load_s": null}
+{"id": "low_00fd296e7c", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "go back", "seconds": 7.118, "engine_load_s": null}
+{"id": "low_0103210da3", "content": "{\"action_type\":\"click\",\"point_2d\":[500,450]}", "reasoning": "Click on the first news", "seconds": 7.051, "engine_load_s": null}
+{"id": "low_0105822f0c", "content": "{\"action_type\":\"click\",\"point_2d\":[941,947]}", "reasoning": "click on 3 dot icon", "seconds": 7.311, "engine_load_s": null}
+{"id": "low_01062efd68", "content": "{\"action_type\":\"input_text\",\"text\":\"mike.waggoner@hotwater.com\"}", "reasoning": "enter the email I'd mike.waggoner@hotwater.com", "seconds": 7.621, "engine_load_s": null}
+{"id": "low_0119e0f3fb", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on first lesson.", "seconds": 7.102, "engine_load_s": null}
+{"id": "low_011cf597f9", "content": "{\"action_type\":\"click\",\"point_2d\":[267,795]}", "reasoning": "Tap on the Fuel magazine", "seconds": 7.394, "engine_load_s": null}
+{"id": "low_012597a2a6", "content": "{\"action_type\":\"click\",\"point_2d\":[875,943]}", "reasoning": "Click on the sections at the bottom right corner", "seconds": 7.297, "engine_load_s": null}
+{"id": "low_013073603e", "content": "{\"action_type\":\"click\",\"point_2d\":[500,284]}", "reasoning": "Click on the first result", "seconds": 7.489, "engine_load_s": null}
+{"id": "low_0138c373ed", "content": "{\"action_type\":\"click\",\"point_2d\":[500,202]}", "reasoning": "Click on the first search result to read the news", "seconds": 7.808, "engine_load_s": null}
+{"id": "low_0139593485", "content": "{\"action_type\":\"scroll\",\"direction\":\"left\"}", "reasoning": "draw the line", "seconds": 7.563, "engine_load_s": null}
+{"id": "low_0140314baa", "content": "{\"action_type\":\"click\",\"point_2d\":[308,946]}", "reasoning": "Click on the search icon at the bottom of the screen", "seconds": 7.632, "engine_load_s": null}
+{"id": "low_0141a18d22", "content": "{\"action_type\":\"wait\"}", "reasoning": "Learn about the sun.", "seconds": 7.369, "engine_load_s": null}
+{"id": "low_01429656f3", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Gostor\"}", "reasoning": "Open Gostor.", "seconds": 7.417, "engine_load_s": null}
+{"id": "low_0143b130fb", "content": "{\"action_type\":\"open_app\",\"app_name\":\"DeviantArt\"}", "reasoning": "Open the DeviantArt app.", "seconds": 7.966, "engine_load_s": null}
+{"id": "low_014473476d", "content": "{\"action_type\":\"input_text\",\"text\":\"Readers Digest\"}", "reasoning": "Type Readers Digest in the search bar", "seconds": 7.913, "engine_load_s": null}
+{"id": "low_01471e0495", "content": "{\"action_type\":\"click\",\"point_2d\":[500,265]}", "reasoning": "Click on the first suggestion.", "seconds": 7.83, "engine_load_s": null}
+{"id": "low_014caa6784", "content": "{\"action_type\":\"click\",\"point_2d\":[531,144]}", "reasoning": "Click on the destination textbox", "seconds": 8.072, "engine_load_s": null}
+{"id": "low_0155f9a55c", "content": "{\"action_type\":\"click\",\"point_2d\":[499,144]}", "reasoning": "Type Sports news", "seconds": 7.88, "engine_load_s": null}
+{"id": "low_0166bb88ab", "content": "{\"action_type\":\"click\",\"point_2d\":[761,706]}", "reasoning": "Click on the North Korea's Kim shows off banned article", "seconds": 8.39, "engine_load_s": null}
+{"id": "low_0166dfb642", "content": "{\"action_type\":\"click\",\"point_2d\":[500,932]}", "reasoning": "Click on the Done button to save this alert.", "seconds": 8.311, "engine_load_s": null}
+{"id": "low_016f890f86", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Keep Notes\"}", "reasoning": "Open the keep notes app", "seconds": 7.705, "engine_load_s": null}
+{"id": "low_0175536289", "content": "{\"action_type\":\"click\",\"point_2d\":[613,799]}", "reasoning": "Click on the Choose template", "seconds": 8.061, "engine_load_s": null}
+{"id": "low_01771c8239", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the directions icon", "seconds": 7.932, "engine_load_s": null}
+{"id": "low_017fdfca7b", "content": "{\"action_type\":\"click\",\"point_2d\":[726,450]}", "reasoning": "Click on the Settings option to view the notification option.", "seconds": 8.453, "engine_load_s": null}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mobile Agent</string>
+    <string name="a11y_label">Mobile Agent</string>
+    <string name="a11y_description">Mobile Agent takes a screenshot, decides one step with a model that runs on this phone, and taps, types or scrolls for you until your goal is done. Nothing leaves the phone. It asks before steps that install apps, grant permissions, handle passwords or payments, or delete things.</string>
+    <string name="channel_run">Agent runs</string>
+</resources>

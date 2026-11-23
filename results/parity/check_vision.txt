@@ -1,0 +1,7 @@
+VISION {"cos_min": 1.0, "cos_mean": 1.0, "rel_maxdiff": 3e-05, "id": "high_0004a63c94", "ref_tokens": 720, "got_tokens": 720, "grid_thw": [[1, 80, 36]]}
+VISION {"cos_min": 1.0, "cos_mean": 1.0, "rel_maxdiff": 1.6e-05, "id": "high_000addb9c7", "ref_tokens": 720, "got_tokens": 720, "grid_thw": [[1, 80, 36]]}
+VISION {"cos_min": 0.9999999, "cos_mean": 1.0, "rel_maxdiff": 9.5e-05, "id": "high_00170ceb41", "ref_tokens": 720, "got_tokens": 720, "grid_thw": [[1, 80, 36]]}
+VISION {"cos_min": 1.0, "cos_mean": 1.0, "rel_maxdiff": 5.1e-05, "id": "high_00194ce619", "ref_tokens": 720, "got_tokens": 720, "grid_thw": [[1, 80, 36]]}
+VISION {"cos_min": 0.9999999, "cos_mean": 1.0, "rel_maxdiff": 0.000106, "id": "high_0022b9d8e4", "ref_tokens": 720, "got_tokens": 720, "grid_thw": [[1, 80, 36]]}
+VISION {"cos_min": 1.0, "cos_mean": 1.0, "rel_maxdiff": 7e-06, "id": "high_0036ba3466", "ref_tokens": 720, "got_tokens": 720, "grid_thw": [[1, 80, 36]]}
+VISION_WORST_COS 0.9999999 PASS

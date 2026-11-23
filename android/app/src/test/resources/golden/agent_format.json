@@ -1,0 +1,846 @@
+{
+ "source_sha256": "8b5e26d04e5e0eafec46865efcfb02c488acdda5f8cefa7a5dc7866b18df877b",
+ "system_v1": "You are a phone-use agent operating an Android phone to complete the user's goal.\nEach turn you see the goal, your previous steps, and the current screenshot. Reply with ONE next action as JSON.\nCoordinates are integers normalized to 0-1000 (x from left, y from top) of the screenshot.\nActions:\n{\"action_type\":\"click\",\"point_2d\":[x,y]}\n{\"action_type\":\"long_press\",\"point_2d\":[x,y]}\n{\"action_type\":\"input_text\",\"text\":\"...\"}  (types into the focused field)\n{\"action_type\":\"scroll\",\"direction\":\"up|down|left|right\"}  (down = reveal content below)\n{\"action_type\":\"open_app\",\"app_name\":\"...\"}\n{\"action_type\":\"navigate_back\"}\n{\"action_type\":\"navigate_home\"}\n{\"action_type\":\"keyboard_enter\"}\n{\"action_type\":\"wait\"}\n{\"action_type\":\"answer\",\"text\":\"...\"}  (reply to a question about the screen)\n{\"action_type\":\"status\",\"goal_status\":\"complete|infeasible\"}  (finish the task)",
+ "system_v4": "You are a phone-use agent operating an Android phone to complete the user's goal.\nEach turn you see the goal, the installed apps, your previous steps, and the current screenshot. Reply with ONE next action as JSON.\nCoordinates are integers normalized to 0-1000 (x from left, y from top) of the screenshot.\nActions:\n{\"action_type\":\"click\",\"point_2d\":[x,y]}\n{\"action_type\":\"long_press\",\"point_2d\":[x,y]}\n{\"action_type\":\"input_text\",\"text\":\"...\"}  (types into the focused field)\n{\"action_type\":\"scroll\",\"direction\":\"up|down|left|right\"}  (down = reveal content below)\n{\"action_type\":\"open_app\",\"app_name\":\"...\"}  (app_name must be one of the installed apps)\n{\"action_type\":\"navigate_back\"}\n{\"action_type\":\"navigate_home\"}\n{\"action_type\":\"keyboard_enter\"}\n{\"action_type\":\"wait\"}\n{\"action_type\":\"answer\",\"text\":\"...\"}  (if the goal asks a question: the final reply, as short as possible and in the requested format; ends the task)\n{\"action_type\":\"status\",\"goal_status\":\"complete|infeasible\"}  (finish a goal that asks for no information; never use it instead of answering a question)",
+ "history_steps": 8,
+ "user_text": [
+  {
+   "goal": "Open the Clock app",
+   "history": [],
+   "apps": [
+    "Calendar",
+    "Camera",
+    "Chrome",
+    "Clock",
+    "Contacts",
+    "Files",
+    "Gallery",
+    "Settings",
+    "日本 App"
+   ],
+   "step_instruction": null,
+   "expected": "Goal: Open the Clock app\nInstalled apps: Calendar, Camera, Chrome, Clock, Contacts, Files, Gallery, Settings, 日本 App\nPrevious steps:\nNone\nWhat is the next action?"
+  },
+  {
+   "goal": "Open the Clock app",
+   "history": [
+    [
+     "Step 1: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ],
+    [
+     "",
+     "{\"action_type\":\"click\",\"point_2d\":[512,140]}"
+    ],
+    [
+     "(invalid output)",
+     "Sure, I will tap the button {\"act"
+    ]
+   ],
+   "apps": [
+    "Calendar",
+    "Camera",
+    "Chrome",
+    "Clock",
+    "Contacts",
+    "Files",
+    "Gallery",
+    "Settings",
+    "日本 App"
+   ],
+   "step_instruction": null,
+   "expected": "Goal: Open the Clock app\nInstalled apps: Calendar, Camera, Chrome, Clock, Contacts, Files, Gallery, Settings, 日本 App\nPrevious steps:\n1. Step 1: do the thing → café -> {\"action_type\":\"open_app\",\"app_name\":\"Clock\"}\n2. {\"action_type\":\"click\",\"point_2d\":[512,140]}\n3. (invalid output) -> Sure, I will tap the button {\"act\nWhat is the next action?"
+  },
+  {
+   "goal": "Set an alarm for 7:30 am",
+   "history": [
+    [
+     "Step 1: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ],
+    [
+     "Step 2: do the thing → café",
+     "{\"action_type\":\"click\",\"point_2d\":[512,140]}"
+    ],
+    [
+     "Step 3: do the thing → café",
+     "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    ],
+    [
+     "Step 4: do the thing → café",
+     "{\"action_type\":\"input_text\",\"text\":\"7:30 \\\"am\\\"\"}"
+    ],
+    [
+     "",
+     "{\"action_type\":\"navigate_back\"}"
+    ],
+    [
+     "Step 6: do the thing → café",
+     "{\"action_type\":\"wait\"}"
+    ],
+    [
+     "Step 7: do the thing → café",
+     "{\"action_type\":\"long_press\",\"point_2d\":[10,990]}"
+    ],
+    [
+     "Step 8: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ],
+    [
+     "Step 9: do the thing → café",
+     "{\"action_type\":\"click\",\"point_2d\":[512,140]}"
+    ],
+    [
+     "Step 10: do the thing → café",
+     "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    ],
+    [
+     "Step 11: do the thing → café",
+     "{\"action_type\":\"input_text\",\"text\":\"7:30 \\\"am\\\"\"}"
+    ],
+    [
+     "Step 12: do the thing → café",
+     "{\"action_type\":\"navigate_back\"}"
+    ]
+   ],
+   "apps": [
+    "Calendar",
+    "Camera",
+    "Chrome",
+    "Clock",
+    "Contacts",
+    "Files",
+    "Gallery",
+    "Settings",
+    "日本 App"
+   ],
+   "step_instruction": null,
+   "expected": "Goal: Set an alarm for 7:30 am\nInstalled apps: Calendar, Camera, Chrome, Clock, Contacts, Files, Gallery, Settings, 日本 App\nPrevious steps:\n5. {\"action_type\":\"navigate_back\"}\n6. Step 6: do the thing → café -> {\"action_type\":\"wait\"}\n7. Step 7: do the thing → café -> {\"action_type\":\"long_press\",\"point_2d\":[10,990]}\n8. Step 8: do the thing → café -> {\"action_type\":\"open_app\",\"app_name\":\"Clock\"}\n9. Step 9: do the thing → café -> {\"action_type\":\"click\",\"point_2d\":[512,140]}\n10. Step 10: do the thing → café -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n11. Step 11: do the thing → café -> {\"action_type\":\"input_text\",\"text\":\"7:30 \\\"am\\\"\"}\n12. Step 12: do the thing → café -> {\"action_type\":\"navigate_back\"}\nWhat is the next action?"
+  },
+  {
+   "goal": "Open the Clock app",
+   "history": [
+    [
+     "Step 1: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ],
+    [
+     "Step 2: do the thing → café",
+     "{\"action_type\":\"click\",\"point_2d\":[512,140]}"
+    ]
+   ],
+   "apps": null,
+   "step_instruction": null,
+   "expected": "Goal: Open the Clock app\nPrevious steps:\n1. Step 1: do the thing → café -> {\"action_type\":\"open_app\",\"app_name\":\"Clock\"}\n2. Step 2: do the thing → café -> {\"action_type\":\"click\",\"point_2d\":[512,140]}\nWhat is the next action?"
+  },
+  {
+   "goal": "Reply \"ok\" to\nAlice — café",
+   "history": [
+    [
+     "Step 1: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ],
+    [
+     "Step 2: do the thing → café",
+     "{\"action_type\":\"click\",\"point_2d\":[512,140]}"
+    ],
+    [
+     "Step 3: do the thing → café",
+     "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    ],
+    [
+     "Step 4: do the thing → café",
+     "{\"action_type\":\"input_text\",\"text\":\"7:30 \\\"am\\\"\"}"
+    ],
+    [
+     "Step 5: do the thing → café",
+     "{\"action_type\":\"navigate_back\"}"
+    ],
+    [
+     "Step 6: do the thing → café",
+     "{\"action_type\":\"wait\"}"
+    ],
+    [
+     "Step 7: do the thing → café",
+     "{\"action_type\":\"long_press\",\"point_2d\":[10,990]}"
+    ],
+    [
+     "Step 8: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ]
+   ],
+   "apps": [
+    "Calendar",
+    "Camera",
+    "Chrome",
+    "Clock",
+    "Contacts",
+    "Files",
+    "Gallery",
+    "Settings",
+    "日本 App"
+   ],
+   "step_instruction": null,
+   "expected": "Goal: Reply \"ok\" to\nAlice — café\nInstalled apps: Calendar, Camera, Chrome, Clock, Contacts, Files, Gallery, Settings, 日本 App\nPrevious steps:\n1. Step 1: do the thing → café -> {\"action_type\":\"open_app\",\"app_name\":\"Clock\"}\n2. Step 2: do the thing → café -> {\"action_type\":\"click\",\"point_2d\":[512,140]}\n3. Step 3: do the thing → café -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Step 4: do the thing → café -> {\"action_type\":\"input_text\",\"text\":\"7:30 \\\"am\\\"\"}\n5. Step 5: do the thing → café -> {\"action_type\":\"navigate_back\"}\n6. Step 6: do the thing → café -> {\"action_type\":\"wait\"}\n7. Step 7: do the thing → café -> {\"action_type\":\"long_press\",\"point_2d\":[10,990]}\n8. Step 8: do the thing → café -> {\"action_type\":\"open_app\",\"app_name\":\"Clock\"}\nWhat is the next action?"
+  },
+  {
+   "goal": "Open the Clock app",
+   "history": [
+    [
+     "Step 1: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ],
+    [
+     "Step 2: do the thing → café",
+     "{\"action_type\":\"click\",\"point_2d\":[512,140]}"
+    ],
+    [
+     "Step 3: do the thing → café",
+     "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+    ],
+    [
+     "Step 4: do the thing → café",
+     "{\"action_type\":\"input_text\",\"text\":\"7:30 \\\"am\\\"\"}"
+    ],
+    [
+     "Step 5: do the thing → café",
+     "{\"action_type\":\"navigate_back\"}"
+    ],
+    [
+     "Step 6: do the thing → café",
+     "{\"action_type\":\"wait\"}"
+    ],
+    [
+     "Step 7: do the thing → café",
+     "{\"action_type\":\"long_press\",\"point_2d\":[10,990]}"
+    ],
+    [
+     "Step 8: do the thing → café",
+     "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+    ],
+    [
+     "Step 9: do the thing → café",
+     "{\"action_type\":\"click\",\"point_2d\":[512,140]}"
+    ]
+   ],
+   "apps": [],
+   "step_instruction": "tap the clock icon",
+   "expected": "Goal: Open the Clock app\nInstalled apps: \nPrevious steps:\n2. Step 2: do the thing → café -> {\"action_type\":\"click\",\"point_2d\":[512,140]}\n3. Step 3: do the thing → café -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Step 4: do the thing → café -> {\"action_type\":\"input_text\",\"text\":\"7:30 \\\"am\\\"\"}\n5. Step 5: do the thing → café -> {\"action_type\":\"navigate_back\"}\n6. Step 6: do the thing → café -> {\"action_type\":\"wait\"}\n7. Step 7: do the thing → café -> {\"action_type\":\"long_press\",\"point_2d\":[10,990]}\n8. Step 8: do the thing → café -> {\"action_type\":\"open_app\",\"app_name\":\"Clock\"}\n9. Step 9: do the thing → café -> {\"action_type\":\"click\",\"point_2d\":[512,140]}\nCurrent step hint: tap the clock icon\nWhat is the next action?"
+  }
+ ],
+ "parse": [
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[500,300]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[500,300]}",
+   "lenient_point": [
+    500.0,
+    300.0
+   ],
+   "strict": "{\"action_type\":\"click\",\"point_2d\":[500,300]}",
+   "strict_point": [
+    500.0,
+    300.0
+   ]
+  },
+  {
+   "text": "<think>Open the clock</think>{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+   "lenient": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+   "strict": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+  },
+  {
+   "text": "Open the clock</think>\n{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+   "lenient": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+   "strict": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}"
+  },
+  {
+   "text": "<think>Still thinking {\"action_type\":\"click\",\"point_2d\":[1,2]}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[500.7,300.2]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[500,300]}",
+   "lenient_point": [
+    500.7,
+    300.2
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[-5,1200]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[0,1000]}",
+   "lenient_point": [
+    0.0,
+    1000.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action\":\"type\",\"text\":\"hello\"}",
+   "lenient": "{\"action_type\":\"input_text\",\"text\":\"hello\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"x\":10,\"y\":20}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[10,20]}",
+   "lenient_point": [
+    10.0,
+    20.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"coordinate\":[\"12\",\"34\"]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[12,34]}",
+   "lenient_point": [
+    12.0,
+    34.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point\":\"53\"}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[5,3]}",
+   "lenient_point": [
+    5.0,
+    3.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point\":\"5,3\"}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"scroll\",\"direction\":\"down\"}}",
+   "lenient": "{\"action_type\":\"scroll\",\"direction\":\"down\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"scroll\",\"direction\":\"sideways\"}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"status\"}",
+   "lenient": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"status\",\"goal_status\":\"infeasible\"}",
+   "lenient": "{\"action_type\":\"status\",\"goal_status\":\"infeasible\"}",
+   "strict": "{\"action_type\":\"status\",\"goal_status\":\"infeasible\"}"
+  },
+  {
+   "text": "{\"action_type\":\"status\",\"goal_status\":\"done\"}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"status\",\"goal_status\":null}",
+   "lenient": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"open_app\",\"label\":\"Chrome\"}",
+   "lenient": "{\"action_type\":\"open_app\",\"app_name\":\"Chrome\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"open_app\",\"app_name\":5,\"name\":\"Maps\"}",
+   "lenient": "{\"action_type\":\"open_app\",\"app_name\":\"Maps\"}",
+   "strict": null
+  },
+  {
+   "text": "Sure! {\"foo\": 1} then {\"action_type\":\"navigate_back\"}",
+   "lenient": "{\"action_type\":\"navigate_back\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"answer\",\"text\":\"It's 5 \\\"pm\\\"\\n\"}",
+   "lenient": "{\"action_type\":\"answer\",\"text\":\"It's 5 \\\"pm\\\"\\n\"}",
+   "strict": "{\"action_type\":\"answer\",\"text\":\"It's 5 \\\"pm\\\"\\n\"}"
+  },
+  {
+   "text": "{\"action_type\":\"input_text\",\"text\":\"café ☕ 日本\"}",
+   "lenient": "{\"action_type\":\"input_text\",\"text\":\"café ☕ 日本\"}",
+   "strict": "{\"action_type\":\"input_text\",\"text\":\"café ☕ 日本\"}"
+  },
+  {
+   "text": "{\"action_type\":\"input_text\",\"text\":\"\\u00e9\\ud83d\\ude00\\u0001\"}",
+   "lenient": "{\"action_type\":\"input_text\",\"text\":\"é😀\\u0001\"}",
+   "strict": "{\"action_type\":\"input_text\",\"text\":\"é😀\\u0001\"}"
+  },
+  {
+   "text": "{\"action_type\":\"input_text\",\"text\":\"a\tb\"}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[NaN,5]}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[Infinity,5]}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[true,5]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[1,5]}",
+   "lenient_point": [
+    1.0,
+    5.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[1e2,5]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[100,5]}",
+   "lenient_point": [
+    100.0,
+    5.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[1e400,5]}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[123456789012345678901234567890,5]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[1000,5]}",
+   "lenient_point": [
+    1000.0,
+    5.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[\" 12_5 \",\"9\"]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[125,9]}",
+   "lenient_point": [
+    125.0,
+    9.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"wait\",\"action_type\":\"click\",\"point_2d\":[1,2]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[1,2]}",
+   "lenient_point": [
+    1.0,
+    2.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"\",\"action\":\"navigate_home\"}",
+   "lenient": "{\"action_type\":\"navigate_home\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"keyboard_enter\"} trailing words",
+   "lenient": "{\"action_type\":\"keyboard_enter\"}",
+   "strict": null
+  },
+  {
+   "text": "",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "no json here",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[500,300],\"extra\":1}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[500,300]}",
+   "lenient_point": [
+    500.0,
+    300.0
+   ],
+   "strict": null
+  },
+  {
+   "text": " \n{\"action_type\":\"navigate_home\"}\n ",
+   "lenient": "{\"action_type\":\"navigate_home\"}",
+   "strict": "{\"action_type\":\"navigate_home\"}"
+  },
+  {
+   "text": "{\"action_type\": \"click\", \"point_2d\": [499.5, 0.5]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[499,0]}",
+   "lenient_point": [
+    499.5,
+    0.5
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[]}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[], \"coordinate\":[3,4]}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[3,4]}",
+   "lenient_point": [
+    3.0,
+    4.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":null,\"x\":7,\"y\":8}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[7,8]}",
+   "lenient_point": [
+    7.0,
+    8.0
+   ],
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"long_press\",\"point_2d\":[1000,0]}",
+   "lenient": "{\"action_type\":\"long_press\",\"point_2d\":[1000,0]}",
+   "lenient_point": [
+    1000.0,
+    0.0
+   ],
+   "strict": "{\"action_type\":\"long_press\",\"point_2d\":[1000,0]}",
+   "strict_point": [
+    1000.0,
+    0.0
+   ]
+  },
+  {
+   "text": "{\"a\":{\"action_type\":\"wait\"}}",
+   "lenient": "{\"action_type\":\"wait\"}",
+   "strict": null
+  },
+  {
+   "text": "<think>x</think><think>y</think>{\"action_type\":\"wait\"}",
+   "lenient": "{\"action_type\":\"wait\"}",
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[5]}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":{\"0\":1,\"1\":2}}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"input_text\",\"text\":5}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"swipe\",\"direction\":\"up\"}",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": "{\"action_type\":\"scroll\",\"direction\":\"up\"",
+   "lenient": null,
+   "strict": null
+  },
+  {
+   "text": " {\"action_type\":\"wait\"} ",
+   "lenient": "{\"action_type\":\"wait\"}",
+   "strict": "{\"action_type\":\"wait\"}"
+  },
+  {
+   "text": "{\"action_type\":\"click\",\"point_2d\":[1,2]} {\"action_type\":\"wait\"}",
+   "lenient": "{\"action_type\":\"click\",\"point_2d\":[1,2]}",
+   "lenient_point": [
+    1.0,
+    2.0
+   ],
+   "strict": null
+  }
+ ],
+ "intent": [
+  {
+   "reasoning": "Open the Clock app.",
+   "content": "",
+   "expected": "Open the Clock app."
+  },
+  {
+   "reasoning": "  \n Tap the search bar\nmore lines",
+   "content": "",
+   "expected": "Tap the search bar"
+  },
+  {
+   "reasoning": "",
+   "content": "<think>Scroll down to find it</think>{\"action_type\":\"wait\"}",
+   "expected": "Scroll down to find it"
+  },
+  {
+   "reasoning": "",
+   "content": "no think tags",
+   "expected": ""
+  },
+  {
+   "reasoning": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "content": "",
+   "expected": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+   "reasoning": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+   "content": "",
+   "expected": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+  },
+  {
+   "reasoning": "line1 line2",
+   "content": "",
+   "expected": "line1"
+  },
+  {
+   "reasoning": "  padded ",
+   "content": "",
+   "expected": "padded"
+  },
+  {
+   "reasoning": "   ",
+   "content": "<think> fallback </think>{}",
+   "expected": "fallback"
+  },
+  {
+   "reasoning": "first\r\nsecond",
+   "content": "",
+   "expected": "first"
+  },
+  {
+   "reasoning": "ab",
+   "content": "",
+   "expected": "a"
+  }
+ ],
+ "invalid_history": [
+  {
+   "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "expected": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+   "content": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+   "expected": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+  },
+  {
+   "content": "short",
+   "expected": "short"
+  }
+ ],
+ "smart_resize": [
+  {
+   "h": 3200,
+   "w": 1440,
+   "expected": [
+    1280,
+    576
+   ]
+  },
+  {
+   "h": 2400,
+   "w": 1080,
+   "expected": [
+    1280,
+    576
+   ]
+  },
+  {
+   "h": 2340,
+   "w": 1080,
+   "expected": [
+    1280,
+    576
+   ]
+  },
+  {
+   "h": 1920,
+   "w": 1080,
+   "expected": [
+    1152,
+    640
+   ]
+  },
+  {
+   "h": 2560,
+   "w": 1600,
+   "expected": [
+    1088,
+    672
+   ]
+  },
+  {
+   "h": 100,
+   "w": 100,
+   "expected": [
+    256,
+    256
+   ]
+  },
+  {
+   "h": 200,
+   "w": 50,
+   "expected": [
+    512,
+    128
+   ]
+  },
+  {
+   "h": 1280,
+   "w": 576,
+   "expected": [
+    1280,
+    576
+   ]
+  },
+  {
+   "h": 2992,
+   "w": 1344,
+   "expected": [
+    1312,
+    576
+   ]
+  },
+  {
+   "h": 3120,
+   "w": 1440,
+   "expected": [
+    1280,
+    576
+   ]
+  },
+  {
+   "h": 2412,
+   "w": 1080,
+   "expected": [
+    1312,
+    576
+   ]
+  },
+  {
+   "h": 1600,
+   "w": 720,
+   "expected": [
+    1280,
+    576
+   ]
+  },
+  {
+   "h": 2000,
+   "w": 2000,
+   "expected": [
+    864,
+    864
+   ]
+  },
+  {
+   "h": 800,
+   "w": 480,
+   "expected": [
+    800,
+    480
+   ]
+  }
+ ],
+ "norm_to_px": [
+  {
+   "x": 500,
+   "y": 300,
+   "w": 1440,
+   "h": 3200,
+   "expected": [
+    720,
+    960
+   ]
+  },
+  {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 3200,
+   "expected": [
+    0,
+    0
+   ]
+  },
+  {
+   "x": 1000,
+   "y": 1000,
+   "w": 1440,
+   "h": 3200,
+   "expected": [
+    1439,
+    3199
+   ]
+  },
+  {
+   "x": 499.5,
+   "y": 0.5,
+   "w": 1440,
+   "h": 3200,
+   "expected": [
+    719,
+    2
+   ]
+  },
+  {
+   "x": 250,
+   "y": 750,
+   "w": 1080,
+   "h": 2400,
+   "expected": [
+    270,
+    1799
+   ]
+  },
+  {
+   "x": 2.5,
+   "y": 3.5,
+   "w": 1001,
+   "h": 1001,
+   "expected": [
+    2,
+    4
+   ]
+  },
+  {
+   "x": 0.5,
+   "y": 1.5,
+   "w": 1001,
+   "h": 1001,
+   "expected": [
+    0,
+    2
+   ]
+  },
+  {
+   "x": 333.3,
+   "y": 666.7,
+   "w": 1080,
+   "h": 2340,
+   "expected": [
+    360,
+    1559
+   ]
+  },
+  {
+   "x": 999.9,
+   "y": 0.1,
+   "w": 1440,
+   "h": 3200,
+   "expected": [
+    1439,
+    0
+   ]
+  }
+ ]
+}

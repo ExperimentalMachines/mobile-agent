@@ -1,0 +1,18 @@
+# environments and pinned third-party checkouts (convert/setup_envs.sh, convert/fetch_third_party.sh)
+.venv-*/
+third_party/
+# conversion outputs, model files, parity sets (large; the README says how to rebuild them)
+build/
+*.litertlm
+*.tflite
+*.gguf
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+*.apk
+*.aab
+.DS_Store
+logs/*.log

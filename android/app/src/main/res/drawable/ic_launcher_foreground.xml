@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mobile Agent's placeholder mark: a screen outline with a tap point and its ripple. 108 dp adaptive-icon canvas;
+     everything sits inside the 66 dp safe circle. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:pathData="M45,29H63A8,8 0,0 1,71 37V71A8,8 0,0 1,63 79H45A8,8 0,0 1,37 71V37A8,8 0,0 1,45 29Z"
+        android:strokeWidth="4"
+        android:strokeColor="#F2F1EC"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M59,61m-9,0a9,9 0,1 1,18 0a9,9 0,1 1,-18 0"
+        android:strokeWidth="2"
+        android:strokeColor="#8FA6FF"
+        android:strokeAlpha="0.55"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M59,61m-4.5,0a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0"
+        android:fillColor="#8FA6FF" />
+</vector>

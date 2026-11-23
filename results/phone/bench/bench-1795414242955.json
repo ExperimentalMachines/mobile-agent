@@ -1,0 +1,125 @@
+{
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int4_g1280x576_ctx4096.litertlm",
+    "modelBytes": 2072561915,
+    "backends": "text GPU, vision GPU",
+    "loadMs": 4065,
+    "newEnginePerCall": true,
+    "image": "bench.png",
+    "imageSize": "1440x3200",
+    "modelInput": "576x1280",
+    "resizeMs": 104,
+    "pngEncodeMs": 144,
+    "pngBytes": 529138,
+    "goal": "Open the Clock app",
+    "calls": [
+        {
+            "i": 1,
+            "engineMs": null,
+            "totalMs": 2331,
+            "firstPieceMs": 1934,
+            "lastPieceMs": 2327,
+            "ttftMs": 1099,
+            "prefillTokens": 1310,
+            "prefillTokensPerS": 1216.6621182388021,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 43.20369623902297,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 770
+            }
+        },
+        {
+            "i": 2,
+            "engineMs": 4320,
+            "totalMs": 2531,
+            "firstPieceMs": 2139,
+            "lastPieceMs": 2527,
+            "ttftMs": 1132,
+            "prefillTokens": 1310,
+            "prefillTokensPerS": 1190.3787760821838,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 30.85731047590944,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 782
+            }
+        },
+        {
+            "i": 3,
+            "engineMs": 4290,
+            "totalMs": 2548,
+            "firstPieceMs": 2156,
+            "lastPieceMs": 2544,
+            "ttftMs": 1147,
+            "prefillTokens": 1310,
+            "prefillTokensPerS": 1175.6904144358523,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 30.00866947302268,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 767
+            }
+        },
+        {
+            "i": 4,
+            "engineMs": 4249,
+            "totalMs": 2545,
+            "firstPieceMs": 2152,
+            "lastPieceMs": 2541,
+            "ttftMs": 1152,
+            "prefillTokens": 1310,
+            "prefillTokensPerS": 1169.4500701663346,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 30.677833826592806,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 772
+            }
+        },
+        {
+            "i": 5,
+            "engineMs": 4254,
+            "totalMs": 2571,
+            "firstPieceMs": 2177,
+            "lastPieceMs": 2568,
+            "ttftMs": 1151,
+            "prefillTokens": 1310,
+            "prefillTokensPerS": 1171.1434390486552,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 30.290094934896704,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 792
+            }
+        }
+    ],
+    "medianTotalMs": 2545,
+    "medianTtftMs": 1147,
+    "medianPrefillTokensPerS": 1175.6904144358523,
+    "medianDecodeTokensPerS": 30.677833826592806,
+    "medianEngineMs": 4272
+}

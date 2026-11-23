@@ -1,0 +1,30 @@
+{"id": "high_0004a63c94", "content": "{\"action_type\":\"click\",\"point_2d\":[375,883]}", "reasoning": "Click on the Gmail icon at the bottom of the screen", "seconds": 8.68, "engine_load_s": 2.074}
+{"id": "high_000addb9c7", "content": "{\"action_type\":\"input_text\",\"text\":\"Amsterdam\"}", "reasoning": "Type Amsterdam in the search bar.", "seconds": 7.499, "engine_load_s": 2.035}
+{"id": "high_00170ceb41", "content": "{\"action_type\":\"click\",\"point_2d\":[392,862]}", "reasoning": "click on the pin option", "seconds": 7.982, "engine_load_s": 2.11}
+{"id": "high_00194ce619", "content": "{\"action_type\":\"click\",\"point_2d\":[761,617]}", "reasoning": "Click on the Positive option", "seconds": 8.043, "engine_load_s": 2.598}
+{"id": "high_0022b9d8e4", "content": "{\"action_type\":\"click\",\"point_2d\":[156,380]}", "reasoning": "Select seconds unit", "seconds": 7.624, "engine_load_s": 2.087}
+{"id": "high_0036ba3466", "content": "{\"action_type\":\"click\",\"point_2d\":[920,899]}", "reasoning": "Tap on the search icon at the bottom right corner of the screen", "seconds": 8.178, "engine_load_s": 2.208}
+{"id": "high_003e007b80", "content": "{\"action_type\":\"click\",\"point_2d\":[274,152]}", "reasoning": "Click on the sleep option", "seconds": 7.632, "engine_load_s": 2.144}
+{"id": "high_00413c6791", "content": "{\"action_type\":\"click\",\"point_2d\":[500,382]}", "reasoning": "Click on the moon info notification.", "seconds": 7.873, "engine_load_s": 2.0}
+{"id": "high_004a52e0d2", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "Go back to the previous page", "seconds": 7.937, "engine_load_s": 2.147}
+{"id": "high_0051218505", "content": "{\"action_type\":\"click\",\"point_2d\":[726,87]}", "reasoning": "Click on the Calendar icon at the top of the screen.", "seconds": 7.421, "engine_load_s": 2.155}
+{"id": "high_00526f0c1d", "content": "{\"action_type\":\"click\",\"point_2d\":[500,264]}", "reasoning": "Click on the Push notification settings option", "seconds": 7.77, "engine_load_s": 2.062}
+{"id": "high_005f5b53e6", "content": "{\"action_type\":\"click\",\"point_2d\":[308,946]}", "reasoning": "Click on the search icon at the bottom of the screen", "seconds": 8.112, "engine_load_s": 2.041}
+{"id": "high_006cb4d30d", "content": "{\"action_type\":\"click\",\"point_2d\":[500,500]}", "reasoning": "Click on the Enfield Duisburg article", "seconds": 7.938, "engine_load_s": 2.064}
+{"id": "high_0070a1c93e", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to read the article", "seconds": 7.538, "engine_load_s": 2.151}
+{"id": "high_0076c9e42d", "content": "{\"action_type\":\"navigate_back\"}", "reasoning": "Go back to the previous screen", "seconds": 7.373, "engine_load_s": 2.104}
+{"id": "high_007c13742f", "content": "{\"action_type\":\"click\",\"point_2d\":[499,930]}", "reasoning": "Click on the Go to checkout option on the screen.", "seconds": 7.715, "engine_load_s": 2.068}
+{"id": "high_008a387cde", "content": "{\"action_type\":\"click\",\"point_2d\":[500,928]}", "reasoning": "Click on the tick button", "seconds": 7.536, "engine_load_s": 2.075}
+{"id": "high_008aec1572", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Lunar Phase\"}", "reasoning": "Open the Lunar Phase app.", "seconds": 7.503, "engine_load_s": 2.089}
+{"id": "high_008af98b7c", "content": "{\"action_type\":\"click\",\"point_2d\":[500,222]}", "reasoning": "Click on the first suggestion.", "seconds": 7.899, "engine_load_s": 2.093}
+{"id": "high_008e038d79", "content": "{\"action_type\":\"click\",\"point_2d\":[500,943]}", "reasoning": "Click on the search icon at the bottom of the screen", "seconds": 7.825, "engine_load_s": 2.01}
+{"id": "high_00a11565a0", "content": "{\"action_type\":\"click\",\"point_2d\":[500,575]}", "reasoning": "Click on the pop on screen option", "seconds": 8.754, "engine_load_s": 2.186}
+{"id": "high_00a6197649", "content": "{\"action_type\":\"click\",\"point_2d\":[194,373]}", "reasoning": "Click on the Month option", "seconds": 7.477, "engine_load_s": 2.246}
+{"id": "high_00a770dbe3", "content": "{\"action_type\":\"click\",\"point_2d\":[500,268]}", "reasoning": "click on the first search result", "seconds": 7.858, "engine_load_s": 2.527}
+{"id": "high_00a8e2a282", "content": "{\"action_type\":\"click\",\"point_2d\":[731,449]}", "reasoning": "Click on the Settings option to view the notification option.", "seconds": 7.915, "engine_load_s": 2.003}
+{"id": "high_00a955603f", "content": "{\"action_type\":\"click\",\"point_2d\":[743,84]}", "reasoning": "Click on the audio icon at the top of the screen.", "seconds": 7.712, "engine_load_s": 1.952}
+{"id": "high_00ab9c5d0e", "content": "{\"action_type\":\"click\",\"point_2d\":[500,548]}", "reasoning": "Click on the Reviews tab to view the reviews", "seconds": 8.254, "engine_load_s": 2.315}
+{"id": "high_00abc41fff", "content": "{\"action_type\":\"click\",\"point_2d\":[153,943]}", "reasoning": "Click on the Start button at the bottom left corner of the screen", "seconds": 8.234, "engine_load_s": 2.358}
+{"id": "high_00acae53ae", "content": "{\"action_type\":\"open_app\",\"app_name\":\"Crafts DIY\"}", "reasoning": "Open the Crafts DIY app", "seconds": 8.13, "engine_load_s": 2.332}
+{"id": "high_00accfa243", "content": "{\"action_type\":\"click\",\"point_2d\":[727,347]}", "reasoning": "Click on the lap button", "seconds": 8.297, "engine_load_s": 2.369}
+{"id": "high_00b366a93d", "content": "{\"action_type\":\"click\",\"point_2d\":[187,763]}", "reasoning": "Click on the directions option", "seconds": 8.31, "engine_load_s": 2.469}

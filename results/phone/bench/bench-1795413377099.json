@@ -1,0 +1,85 @@
+{
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int4_g1280x576_ctx4096.litertlm",
+    "modelBytes": 2072561915,
+    "backends": "text GPU, vision GPU",
+    "loadMs": 4055,
+    "newEnginePerCall": false,
+    "image": "bench.png",
+    "imageSize": "1440x3200",
+    "modelInput": "576x1280",
+    "resizeMs": 99,
+    "pngEncodeMs": 144,
+    "pngBytes": 529138,
+    "goal": "Open the Clock app",
+    "calls": [
+        {
+            "i": 1,
+            "engineMs": null,
+            "totalMs": 5919,
+            "firstPieceMs": 1953,
+            "lastPieceMs": 2343,
+            "ttftMs": 1107,
+            "prefillTokens": 1325,
+            "prefillTokensPerS": 488.60754120131554,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 43.48567224115069,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 776
+            }
+        },
+        {
+            "i": 2,
+            "engineMs": null,
+            "totalMs": 5969,
+            "firstPieceMs": 2059,
+            "lastPieceMs": 2448,
+            "ttftMs": 1098,
+            "prefillTokens": 1325,
+            "prefillTokensPerS": 497.155009073531,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 43.57256326322246,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 765
+            }
+        },
+        {
+            "i": 3,
+            "engineMs": null,
+            "totalMs": 5980,
+            "firstPieceMs": 2052,
+            "lastPieceMs": 2440,
+            "ttftMs": 1099,
+            "prefillTokens": 1325,
+            "prefillTokensPerS": 496.6805768715865,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 43.716632762347174,
+            "pieces": 17,
+            "thought": "Open the Clock app",
+            "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 784
+            }
+        }
+    ],
+    "medianTotalMs": 5969,
+    "medianTtftMs": 1099,
+    "medianPrefillTokensPerS": 496.6805768715865,
+    "medianDecodeTokensPerS": 43.57256326322246,
+    "medianEngineMs": null
+}
