@@ -14,7 +14,7 @@ done. Nothing leaves the phone: the app has no internet permission.
 | Question | Answer |
 |---|---|
 | One file for every phone? | **For CPU and GPU, by design**: LiteRT-LM needs no per-chip build. Tested so far on one phone model only (Snapdragon SM8975, two sessions). NPU builds (one per chip) were not made |
-| Which file? | **int8** decoder (2.76 GB) is the default. int4 (2.07 GB) is smaller but further from the original model. fp16 (4.44 GB) is no better than int8 |
+| Which file? | **int8** decoder (2.76 GB) is the default, published at [LFM3-VL-2B-MobileAgent-v4-LiteRT](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT). int4 (2.07 GB) is smaller but further from the original model. fp16 (4.44 GB) is no better than int8 |
 | As accurate as the benchmarked model? | **No difference detected** on 180 AndroidControl test steps: bf16 original 0.772, GGUF 0.800, int8 on the phone 0.783. int8 on the phone vs bf16: +1.1 points, 95% interval −2.0 to +4.2 |
 | Same decisions as the original model? | int8 on the phone picks the **same action as the bf16 model on 90.6%** of steps (GGUF 89.4%, int4 84.4%). Its clicks land within 2 units of bf16's (90th percentile, 0–1000 grid) |
 | Same screenshots as training? | Yes for screens whose training resize is 1280 × 576 (most 20:9 portrait phones, e.g. 1080 × 2400 and 1440 × 3200). Other shapes get stretched, and the app warns |
@@ -91,6 +91,6 @@ Model-driven tasks, greedy, one model call per step. Full table: [`results/phone
 - **Debug build:** its adb hooks include `EXEC`, which acts without the guard. Use the release build outside testing.
 - **Not exercised on the phone:** the password and delete-alarm guard tests, and redaction. The model never reached
   those screens. Unit tests only.
-- **Model files are not published.** A public upload is the owner's call. The weights are under the LFM Open License
-  v1.0.
+- **Only int8 is published** ([Hugging Face](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT), LFM Open License v1.0). int4 and fp16 are rebuilt with
+  `convert/convert_v4.sh`.
 - **NPU builds** are not made.

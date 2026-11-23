@@ -80,7 +80,8 @@ adb shell pm grant $P android.permission.POST_NOTIFICATIONS
 
 ## Model files
 
-Two files of the same model; **int8 is the default**, int4 the smaller option:
+Two files of the same model; **int8 is the default** and published at [LFM3-VL-2B-MobileAgent-v4-LiteRT](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT)
+(with its `model.json`); int4 is the smaller option, rebuilt with `convert/convert_v4.sh`:
 
 | File | Bytes | sha256 | Same action as the bf16 model (180 parity rows, on the phone) | Click distance p90 | Per row (median) |
 |---|---|---|---|---|---|
@@ -109,7 +110,10 @@ Copy the file into the folder on the phone, then give it to the app's user id (a
 
 ```sh
 D=/sdcard/Android/data/org.experimentalmachines.mobileagent/files/models
-adb shell cp /data/local/tmp/<file>.litertlm $D/          # or: adb shell curl -L -o $D/<file> https://huggingface.co/...
+adb shell curl -L -o $D/model.json https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT/resolve/main/model.json
+adb shell curl -L -o $D/LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm \
+  https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT/resolve/main/LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm
+# or copy a file you pushed: adb shell cp /data/local/tmp/<file>.litertlm $D/
 adb shell stat -c %U /data/media/0/Android/data/org.experimentalmachines.mobileagent      # e.g. u0_a252
 adb shell chown -R u0_a252:ext_data_rw /data/media/0/Android/data/org.experimentalmachines.mobileagent/files/models
 ```

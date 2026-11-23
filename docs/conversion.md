@@ -24,7 +24,7 @@ text decoder's weights.
 | Context | 4,096 tokens. A step uses about 1,300 |
 | Thinking | On by default. The intent arrives in the `thought` channel, the action JSON in the text |
 | Runtime | Tested with LiteRT-LM 0.19.1 only (Python on the Mac, Kotlin on Android). Built with litert-lm-builder 0.18.1 |
-| Licence | The weights inherit the LFM Open License v1.0 from LiquidAI/LFM3-VL-2B. None of the files is published yet |
+| Licence | The weights inherit the LFM Open License v1.0 from LiquidAI/LFM3-VL-2B. The int8 file is published at [LFM3-VL-2B-MobileAgent-v4-LiteRT](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT); int4 and fp16 are not |
 
 ## How it was made
 
