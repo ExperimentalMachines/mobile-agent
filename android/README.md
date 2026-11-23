@@ -240,6 +240,20 @@ notification: Allow / Skip / Stop; no answer in 2 minutes stops the run) when:
 
 ## Known issues
 
+- **HyperOS / MIUI kills the service on swipe-away** (seen on a POCO X8 Pro Max, MT6991, Android 16, 2026-11-23).
+  - The app is killed when its card is swiped away in recents ("SwipeUpClean"). Android then lists the accessibility
+    service under "Crashed services" and does not re-bind it.
+  - **To fix on the phone:** lock the app in recents, allow Autostart, and turn accessibility off and on again.
+  - **To fix over adb:** `settings put secure enabled_accessibility_services ''`, then set it back; also
+    `dumpsys deviceidle whitelist +org.experimentalmachines.mobileagent`.
+  - **Still to do in the app:** detect a dead service and say so.
+- **The Setup checklist refreshes only when the screen resumes**, so a permission granted elsewhere shows "Turn on"
+  until the app is reopened.
+- **The same phone runs the model on its MediaTek GPU:**
+  - int8 file;
+  - first engine load 49 s (GPU kernel cache), then 5.7 s;
+  - no task timings yet.
+
 - **LiteRT-LM #3165** (fixed on main, not in 0.19.1): a new conversation on a used engine can continue from the previous
   conversation's state. The app makes a new engine per run (or per step); within a run, steps share one engine.
 - **Accuracy on the phone** is far from solved: see the task table in `results/phone/tasks_2026-11-23.md`
