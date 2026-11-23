@@ -30,6 +30,13 @@ class Settings(context: Context) {
         val enterAfterTyping: Boolean = true,
         /** The selected sidecar's file name in the models folder ("" = model.json or the first one). */
         val modelSidecar: String = "",
+        /**
+         * Goal, intents, actions and answers in the MOBILEAGENT_STEP / _RESULT logcat lines (logcat is readable over
+         * adb and in bug reports). Default: on in debug builds, off in release builds; adb `LOGS --ez verbose B`.
+         */
+        val verboseLogs: Boolean = BuildConfig.DEBUG,
+        /** Runs kept on the phone (run.json + a small screenshot per step); older ones are deleted after each run. */
+        val keepRuns: Int = DEFAULT_KEEP_RUNS,
     )
 
     private val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
@@ -46,6 +53,8 @@ class Settings(context: Context) {
         showTaps = prefs.getBoolean("show_taps", true),
         enterAfterTyping = prefs.getBoolean("enter_after_typing", true),
         modelSidecar = prefs.getString("model_sidecar", "")!!,
+        verboseLogs = prefs.getBoolean("verbose_logs", BuildConfig.DEBUG),
+        keepRuns = prefs.getInt("keep_runs", DEFAULT_KEEP_RUNS),
     )
 
     fun update(change: (Values) -> Values) {
@@ -59,12 +68,16 @@ class Settings(context: Context) {
             .putBoolean("show_taps", v.showTaps)
             .putBoolean("enter_after_typing", v.enterAfterTyping)
             .putString("model_sidecar", v.modelSidecar)
+            .putBoolean("verbose_logs", v.verboseLogs)
+            .putInt("keep_runs", v.keepRuns.coerceIn(1, KEEP_RUNS_CAP))
             .apply()
-        _values.value = v.copy(maxSteps = v.maxSteps.coerceIn(1, MAX_STEPS_CAP))
+        _values.value = v.copy(maxSteps = v.maxSteps.coerceIn(1, MAX_STEPS_CAP), keepRuns = v.keepRuns.coerceIn(1, KEEP_RUNS_CAP))
     }
 
     companion object {
         const val DEFAULT_MAX_STEPS = 20
         const val MAX_STEPS_CAP = 100
+        const val DEFAULT_KEEP_RUNS = 50
+        const val KEEP_RUNS_CAP = 1000
     }
 }

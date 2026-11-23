@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Modified 2026-11-23 for Mobile Agent: --g accepts HxW. Original: john-rocky/hf-to-litertlm @ a395b496 (Apache-2.0),
+# lfm3vl_work/tools/export_vision.py. See NOTICE.md.
 """export_vision.py --src SRC --out DIR [--g 512] - the LFM3-VL-2B vision encoder and projector (tools/lfm3_vision.py,
 re-written for one fixed G x G picture) converted with litert-torch, in the two forms the published files carry:
 

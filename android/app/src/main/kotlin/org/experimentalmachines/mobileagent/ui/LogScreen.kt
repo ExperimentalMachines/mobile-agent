@@ -20,7 +20,11 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.material3.AlertDialog
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -50,9 +54,33 @@ private fun secs(ms: Long?) = ms?.let { String.format(Locale.US, "%.1f s", it / 
 fun LogScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
     val app = MobileAgentApp.get(LocalContext.current)
     val state by app.controller.state.collectAsState()
-    val runs = remember(state) { app.controller.runs.list() }
+    var version by remember { mutableIntStateOf(0) }
+    val runs = remember(state, version) { app.controller.runs.list() }
+    var confirmDelete by remember { mutableStateOf(false) }
+    if (confirmDelete) {
+        AlertDialog(
+            onDismissRequest = { confirmDelete = false },
+            title = { Text("Delete all runs?") },
+            text = { Text("Deletes every run log and its screenshots from this phone.") },
+            confirmButton = {
+                TextButton(onClick = {
+                    app.controller.runs.deleteAll()
+                    confirmDelete = false
+                    version++
+                }) { Text("Delete") }
+            },
+            dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text("Cancel") } },
+        )
+    }
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        TopBar("Run log", onBack)
+        TopBar("Run log", onBack, trailing = {
+            TextButton(onClick = { confirmDelete = true }, enabled = runs.isNotEmpty() && !app.controller.running) { Text("Delete all") }
+        })
+        Text(
+            "Each run keeps its log (model replies, actions, timings) and a small screenshot per step in this app's storage; " +
+                "the last ${app.settings.current.keepRuns} runs are kept. Typed passwords are redacted.",
+            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
         if (runs.isEmpty()) Text("No runs yet.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         runs.forEach { r ->
             Column(Modifier.fillMaxWidth().clickable { onOpen(r.runId) }.padding(vertical = 6.dp)) {
@@ -92,6 +120,10 @@ fun RunDetailScreen(runId: String, onBack: () -> Unit) {
         }
         Section(r.goal) {
             Text("${r.status} · ${r.steps.size} of ${r.maxSteps} steps" + (r.answer?.let { " · answer: $it" } ?: ""), style = MaterialTheme.typography.bodyMedium)
+            if (r.gridMatches == false) {
+                Text("This screen's size (${r.screenGrid}) differs from the model's grid (${r.imageGrid}): screenshots were stretched.", style = MaterialTheme.typography.bodySmall, color = LocalStatus.current.warn)
+            }
+            Text("${r.installedAppCount} installed apps in the prompt", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             r.error?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error) }
             Text(
                 "${r.model} · ${r.backends} · ${if (r.enginePerStep) "engine per step" else "one engine"}" + (r.loadMs?.let { " · load ${secs(it)}" } ?: ""),

@@ -1,0 +1,60 @@
+{"id": "terminal_0005e654c4", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 23.853, "engine_load_s": null}
+{"id": "terminal_0036d85a55", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.164, "engine_load_s": null}
+{"id": "terminal_003f4c4fa0", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.223, "engine_load_s": null}
+{"id": "terminal_004a850c7b", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.083, "engine_load_s": null}
+{"id": "terminal_00d9f41c99", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.946, "engine_load_s": null}
+{"id": "terminal_0127c0405a", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the New car pdf on the screen.", "seconds": 6.369, "engine_load_s": null}
+{"id": "terminal_013e4b88a9", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.109, "engine_load_s": null}
+{"id": "terminal_01606f448a", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll up.", "seconds": 6.185, "engine_load_s": null}
+{"id": "terminal_0177e785a7", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.438, "engine_load_s": null}
+{"id": "terminal_025236e16d", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.242, "engine_load_s": null}
+{"id": "terminal_0260c5df45", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll up for the recipe", "seconds": 6.883, "engine_load_s": null}
+{"id": "terminal_02631f9088", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.319, "engine_load_s": null}
+{"id": "terminal_0283a5a196", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.105, "engine_load_s": null}
+{"id": "terminal_02b73ecec1", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 5.926, "engine_load_s": null}
+{"id": "terminal_02cf25bdcd", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.278, "engine_load_s": null}
+{"id": "terminal_02ff9e6dea", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "scroll down to view all active", "seconds": 5.974, "engine_load_s": null}
+{"id": "terminal_030de4ed42", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the first news", "seconds": 5.843, "engine_load_s": null}
+{"id": "terminal_0340c3ba94", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.459, "engine_load_s": null}
+{"id": "terminal_03410ba8bc", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.401, "engine_load_s": null}
+{"id": "terminal_036c871c45", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.044, "engine_load_s": null}
+{"id": "terminal_0388a6ec67", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll down to view more paintings.", "seconds": 6.284, "engine_load_s": null}
+{"id": "terminal_03962e2eb2", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.961, "engine_load_s": null}
+{"id": "terminal_039d751415", "content": "{\"action_type\":\"click\",\"point_2d\":[920,904]}", "reasoning": "Click on the search icon", "seconds": 6.755, "engine_load_s": null}
+{"id": "terminal_03ea0e3ae6", "content": "{\"action_type\":\"scroll\",\"direction\":\"up\"}", "reasoning": "Scroll up to view the reviews of this wrench.", "seconds": 6.888, "engine_load_s": null}
+{"id": "terminal_0416c54c09", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.571, "engine_load_s": null}
+{"id": "terminal_042609f426", "content": "{\"action_type\":\"click\",\"point_2d\":[292,600]}", "reasoning": "Click on the first image", "seconds": 6.824, "engine_load_s": null}
+{"id": "terminal_04714e7bcf", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.092, "engine_load_s": null}
+{"id": "terminal_049a4d6459", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll up to read the story.", "seconds": 6.919, "engine_load_s": null}
+{"id": "terminal_04a37dd914", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.067, "engine_load_s": null}
+{"id": "terminal_055085d902", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.569, "engine_load_s": null}
+{"id": "terminal_0550c53302", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click to play", "seconds": 6.439, "engine_load_s": null}
+{"id": "terminal_0558a79a83", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.664, "engine_load_s": null}
+{"id": "terminal_056c4b251e", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.119, "engine_load_s": null}
+{"id": "terminal_05aae8e0d5", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.025, "engine_load_s": null}
+{"id": "terminal_05b6566704", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.059, "engine_load_s": null}
+{"id": "terminal_05e2f54373", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll down to view more fighter jet arts to inspired by it.", "seconds": 6.689, "engine_load_s": null}
+{"id": "terminal_063f90663d", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.721, "engine_load_s": null}
+{"id": "terminal_064ffd4532", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.744, "engine_load_s": null}
+{"id": "terminal_065573e3e9", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Scroll up to read the Article", "seconds": 6.662, "engine_load_s": null}
+{"id": "terminal_066da0f6d7", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.079, "engine_load_s": null}
+{"id": "terminal_0679ae91ea", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.394, "engine_load_s": null}
+{"id": "terminal_069cba2ff5", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.548, "engine_load_s": null}
+{"id": "terminal_07069e852c", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.322, "engine_load_s": null}
+{"id": "terminal_071b6e492d", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.63, "engine_load_s": null}
+{"id": "terminal_0728b5c167", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.721, "engine_load_s": null}
+{"id": "terminal_075db76fcc", "content": "{\"action_type\":\"click\",\"point_2d\":[500,432]}", "reasoning": "Click on the watch again option", "seconds": 6.277, "engine_load_s": null}
+{"id": "terminal_077f917aa6", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.319, "engine_load_s": null}
+{"id": "terminal_078092d976", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.963, "engine_load_s": null}
+{"id": "terminal_078f0596ac", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.173, "engine_load_s": null}
+{"id": "terminal_079d12e468", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.408, "engine_load_s": null}
+{"id": "terminal_07a370d2bf", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on save button in the middle right of the screen.", "seconds": 7.794, "engine_load_s": null}
+{"id": "terminal_0820403c1c", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to view to track the progress of plant", "seconds": 7.761, "engine_load_s": null}
+{"id": "terminal_0839f9552d", "content": "{\"action_type\":\"click\",\"point_2d\":[827,733]}", "reasoning": "Click on the OK button at the bottom right corner of the screen.", "seconds": 7.158, "engine_load_s": null}
+{"id": "terminal_0888c12edd", "content": "{\"action_type\":\"click\",\"point_2d\":[716,638]}", "reasoning": "Click on the new message option", "seconds": 7.636, "engine_load_s": null}
+{"id": "terminal_08ae493483", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.302, "engine_load_s": null}
+{"id": "terminal_08d775b878", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.535, "engine_load_s": null}
+{"id": "terminal_08d7fd5afd", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 7.923, "engine_load_s": null}
+{"id": "terminal_08ded172ce", "content": "{\"action_type\":\"wait\"}", "reasoning": "Click on the Play button", "seconds": 6.843, "engine_load_s": null}
+{"id": "terminal_092b36abff", "content": "{\"action_type\":\"status\",\"goal_status\":\"complete\"}", "reasoning": "The goal has been completed.", "seconds": 6.841, "engine_load_s": null}
+{"id": "terminal_095aa192ad", "content": "{\"action_type\":\"scroll\",\"direction\":\"down\"}", "reasoning": "Swipe up to view sports", "seconds": 6.843, "engine_load_s": null}

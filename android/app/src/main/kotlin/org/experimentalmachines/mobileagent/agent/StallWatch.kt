@@ -4,11 +4,9 @@ import android.os.SystemClock
 import android.util.Log
 
 /**
- * Names the call a stuck agent step is in. Coroutine timeouts cannot end a blocking call (an
- * accessibility tree walk, a binder call) or a hop onto a blocked main thread, and on the
- * Galaxy S26+ and the POCO a step stopped between its action and the next capture with nothing
- * logged. A step marks its phase here; a daemon thread logs every relevant thread's stack once
- * when a phase outlives its limit.
+ * Names the call a stuck agent step is in. Coroutine timeouts cannot end a blocking call (an accessibility tree walk,
+ * a binder call) or a hop onto a blocked main thread, so a step marks its phase here and a daemon thread logs every
+ * relevant thread's stack once when a phase outlives its limit.
  */
 object StallWatch {
     private const val TAG = "MobileAgent"

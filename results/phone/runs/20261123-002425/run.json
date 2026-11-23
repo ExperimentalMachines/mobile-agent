@@ -1,0 +1,581 @@
+{
+    "runId": "20261123-002425",
+    "goal": "Open the Gallery app and open the first album",
+    "model": "MobileAgent v4 (int8, 1280x576, ctx 4096)",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm",
+    "imageGrid": "1280x576",
+    "promptVersion": "v4",
+    "backends": "text GPU, vision GPU",
+    "enginePerStep": false,
+    "enterAfterTyping": true,
+    "loadMs": 5480,
+    "maxSteps": 10,
+    "status": "max_steps",
+    "answer": null,
+    "error": null,
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "installedApps": [
+        "Ambient Service Sample",
+        "AONTest",
+        "APTMM_Camcorder2",
+        "APTMM_ExoPlayer",
+        "APTMM_MediaCodec",
+        "APTMM_MediaPlayer",
+        "APTMM_MediaRecorder",
+        "Calendar",
+        "Cam2test",
+        "CamExtension",
+        "Carrier Test",
+        "CarrierSwitch",
+        "ChannelSoundingTestApp",
+        "Chrome",
+        "Clock",
+        "Connection Manager Test App",
+        "Contacts",
+        "DC Test App",
+        "DcfNearbyClientApp",
+        "Episteme",
+        "FDA",
+        "Files",
+        "FM Radio",
+        "Gallery",
+        "Google",
+        "LibsocHelperTest",
+        "LifeLoggerRefApp",
+        "LocSDKFgServiceTest",
+        "LocSysTest",
+        "LPA Test Application",
+        "LTE Broadcast UI",
+        "LTM Tuning",
+        "MainActivity2",
+        "Messaging",
+        "Multiple PDP Test",
+        "Music",
+        "odp-demo",
+        "Play Store",
+        "Presence",
+        "Proximity Ranging",
+        "QAIOR Screen Understanding Sample App",
+        "QFP Calibration",
+        "QsensorStressAgingTest",
+        "QSensorTest",
+        "QTI Phone",
+        "QtiEmail",
+        "QtiTelephonySettings",
+        "Qualcomm DLT",
+        "Sample Location Attribution",
+        "Settings",
+        "Snapdragon Camera",
+        "SnapdragonSDKTest",
+        "Sound Recorder",
+        "SpectrAEye",
+        "Unified Sensor Test App",
+        "Videos",
+        "Voice Activation",
+        "VoiceAI Usecase",
+        "VTLoopback",
+        "Wfd Client"
+    ],
+    "installedAppCount": 60,
+    "screenGrid": "1280x576",
+    "gridMatches": true,
+    "steps": [
+        {
+            "step": 1,
+            "intent": "Open the Gallery app",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Gallery\"}",
+            "outcome": "opened Gallery",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"open_app\",\"app_name\":\"Gallery\"}",
+                    "thought": "Open the Gallery app",
+                    "modelMs": 3886,
+                    "firstPieceMs": 3217,
+                    "lastPieceMs": 3883,
+                    "bench": {
+                        "ttftMs": 1442,
+                        "prefillTokens": 1314,
+                        "prefillTokensPerS": 949.129256324102,
+                        "decodeTokens": 18,
+                        "decodeTokensPerS": 17.149242181371335,
+                        "marksMs": {
+                            "vision_executor": 1390
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 223,
+            "resizeMs": 73,
+            "pngMs": 264,
+            "engineMs": 5480,
+            "modelMs": 3886,
+            "ttftMs": 1442,
+            "prefillTokens": 1314,
+            "prefillTokensPerS": 949.129256324102,
+            "decodeTokens": 18,
+            "decodeTokensPerS": 17.149242181371335,
+            "actMs": 144,
+            "settleMs": 1102,
+            "stepMs": 9675,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Open the Gallery app -> {\"action_type\":\"open_app\",\"app_name\":\"Gallery\"}"
+        },
+        {
+            "step": 2,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,500]}",
+            "outcome": "tapped (720,1600)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,500]}",
+                    "thought": "Open the first album",
+                    "modelMs": 3512,
+                    "firstPieceMs": 2755,
+                    "lastPieceMs": 3510,
+                    "bench": {
+                        "ttftMs": 1353,
+                        "prefillTokens": 1331,
+                        "prefillTokensPerS": 1013.6154608826988,
+                        "decodeTokens": 21,
+                        "decodeTokensPerS": 24.883824562405888,
+                        "marksMs": {
+                            "vision_executor": 1315
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 254,
+            "resizeMs": 76,
+            "pngMs": 47,
+            "engineMs": null,
+            "modelMs": 3512,
+            "ttftMs": 1353,
+            "prefillTokens": 1331,
+            "prefillTokensPerS": 1013.6154608826988,
+            "decodeTokens": 21,
+            "decodeTokensPerS": 24.883824562405888,
+            "actMs": 161,
+            "settleMs": 1001,
+            "stepMs": 5107,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 1600,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Open the first album -> {\"action_type\":\"click\",\"point_2d\":[500,500]}"
+        },
+        {
+            "step": 3,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3260,
+                    "firstPieceMs": 2856,
+                    "lastPieceMs": 3258,
+                    "bench": {
+                        "ttftMs": 1443,
+                        "prefillTokens": 1353,
+                        "prefillTokensPerS": 965.9570926014582,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 23.425451768573097,
+                        "marksMs": {
+                            "vision_executor": 1318
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 235,
+            "resizeMs": 59,
+            "pngMs": 32,
+            "engineMs": null,
+            "modelMs": 3260,
+            "ttftMs": 1443,
+            "prefillTokens": 1353,
+            "prefillTokensPerS": 965.9570926014582,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 23.425451768573097,
+            "actMs": 1103,
+            "settleMs": 1001,
+            "stepMs": 5726,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 4,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3324,
+                    "firstPieceMs": 2930,
+                    "lastPieceMs": 3322,
+                    "bench": {
+                        "ttftMs": 1525,
+                        "prefillTokens": 1366,
+                        "prefillTokensPerS": 920.0219162690761,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 24.729404111149265,
+                        "marksMs": {
+                            "vision_executor": 1325
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 250,
+            "resizeMs": 50,
+            "pngMs": 32,
+            "engineMs": null,
+            "modelMs": 3324,
+            "ttftMs": 1525,
+            "prefillTokens": 1366,
+            "prefillTokensPerS": 920.0219162690761,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 24.729404111149265,
+            "actMs": 1111,
+            "settleMs": 1002,
+            "stepMs": 5804,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 5,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3232,
+                    "firstPieceMs": 2833,
+                    "lastPieceMs": 3229,
+                    "bench": {
+                        "ttftMs": 1438,
+                        "prefillTokens": 1379,
+                        "prefillTokensPerS": 985.6280450063582,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 25.12100389828576,
+                        "marksMs": {
+                            "vision_executor": 1318
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 248,
+            "resizeMs": 56,
+            "pngMs": 42,
+            "engineMs": null,
+            "modelMs": 3232,
+            "ttftMs": 1438,
+            "prefillTokens": 1379,
+            "prefillTokensPerS": 985.6280450063582,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 25.12100389828576,
+            "actMs": 1108,
+            "settleMs": 1002,
+            "stepMs": 5723,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 6,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3277,
+                    "firstPieceMs": 2876,
+                    "lastPieceMs": 3274,
+                    "bench": {
+                        "ttftMs": 1481,
+                        "prefillTokens": 1392,
+                        "prefillTokensPerS": 965.8604904155113,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 24.601919316275268,
+                        "marksMs": {
+                            "vision_executor": 1312
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 230,
+            "resizeMs": 70,
+            "pngMs": 43,
+            "engineMs": null,
+            "modelMs": 3277,
+            "ttftMs": 1481,
+            "prefillTokens": 1392,
+            "prefillTokensPerS": 965.8604904155113,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 24.601919316275268,
+            "actMs": 1111,
+            "settleMs": 1001,
+            "stepMs": 5759,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 7,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3257,
+                    "firstPieceMs": 2857,
+                    "lastPieceMs": 3254,
+                    "bench": {
+                        "ttftMs": 1465,
+                        "prefillTokens": 1405,
+                        "prefillTokensPerS": 985.4795210853457,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 25.054706586450376,
+                        "marksMs": {
+                            "vision_executor": 1318
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 249,
+            "resizeMs": 61,
+            "pngMs": 34,
+            "engineMs": null,
+            "modelMs": 3257,
+            "ttftMs": 1465,
+            "prefillTokens": 1405,
+            "prefillTokensPerS": 985.4795210853457,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 25.054706586450376,
+            "actMs": 1104,
+            "settleMs": 1001,
+            "stepMs": 5731,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 8,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3270,
+                    "firstPieceMs": 2874,
+                    "lastPieceMs": 3267,
+                    "bench": {
+                        "ttftMs": 1488,
+                        "prefillTokens": 1418,
+                        "prefillTokensPerS": 978.9347592457455,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 25.001437843107624,
+                        "marksMs": {
+                            "vision_executor": 1306
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 245,
+            "resizeMs": 59,
+            "pngMs": 32,
+            "engineMs": null,
+            "modelMs": 3270,
+            "ttftMs": 1488,
+            "prefillTokens": 1418,
+            "prefillTokensPerS": 978.9347592457455,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 25.001437843107624,
+            "actMs": 1106,
+            "settleMs": 1000,
+            "stepMs": 5752,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 9,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3249,
+                    "firstPieceMs": 2845,
+                    "lastPieceMs": 3247,
+                    "bench": {
+                        "ttftMs": 1458,
+                        "prefillTokens": 1431,
+                        "prefillTokensPerS": 1009.7270093378559,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 24.492157162253765,
+                        "marksMs": {
+                            "vision_executor": 1308
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 198,
+            "resizeMs": 68,
+            "pngMs": 34,
+            "engineMs": null,
+            "modelMs": 3249,
+            "ttftMs": 1458,
+            "prefillTokens": 1431,
+            "prefillTokensPerS": 1009.7270093378559,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 24.492157162253765,
+            "actMs": 1105,
+            "settleMs": 1001,
+            "stepMs": 5685,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 10,
+            "intent": "Open the first album",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open the first album",
+                    "modelMs": 3272,
+                    "firstPieceMs": 2875,
+                    "lastPieceMs": 3270,
+                    "bench": {
+                        "ttftMs": 1467,
+                        "prefillTokens": 1425,
+                        "prefillTokensPerS": 998.4482089909246,
+                        "decodeTokens": 12,
+                        "decodeTokensPerS": 24.821538618754268,
+                        "marksMs": {
+                            "vision_executor": 1325
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 252,
+            "resizeMs": 56,
+            "pngMs": 43,
+            "engineMs": null,
+            "modelMs": 3272,
+            "ttftMs": 1467,
+            "prefillTokens": 1425,
+            "prefillTokensPerS": 998.4482089909246,
+            "decodeTokens": 12,
+            "decodeTokensPerS": 24.821538618754268,
+            "actMs": 1093,
+            "settleMs": 1001,
+            "stepMs": 5754,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open the first album -> {\"action_type\":\"wait\"}"
+        }
+    ],
+    "startedAtMs": 1795422265495,
+    "endedAtMs": 1795422332117
+}

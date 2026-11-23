@@ -1,0 +1,17 @@
+FAIL  click  ("outcome":"tapped (0,0)" -> com.android.launcher3/.uioverrides.QuickstepLauncher)
+FAIL  long_press  ("ms":1007 menu: )
+PASS  open_app settings  (com.android.settings/.Settings)
+FAIL  scroll down  (About phone visible: )
+PASS  scroll up  (Network & internet visible: 'Network &amp; inter)
+PASS  scroll right  (content-desc="Clock" -> content-desc="Timer")
+PASS  scroll left  (content-desc="Timer" -> content-desc="Clock")
+PASS  input_text, Enter off  (url_bar 'example.com' focused=true)
+PASS  keyboard_enter  (url_bar 'example.com' focused=false (page loaded))
+PASS  input_text, Enter on  (url_bar 'example.org')
+PASS  navigate_back  (url_bar 'example.com')
+PASS  navigate_home  (com.android.launcher3/.uioverrides.QuickstepLauncher)
+PASS  wait  (1001 ms)
+INFO  open_app 'Clock app': "outcome":"opened Clock" -> com.android.deskclock/.DeskClock
+INFO  open_app 'Calender': "outcome":"opened Calendar" -> com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity
+INFO  open_app 'Sound recorder app': "outcome":"opened Sound Recorder" -> com.android.soundrecorder/.SoundRecorder
+INFO  open_app 'Messages': "outcome":"no app called \" -> com.android.launcher3/.uioverrides.QuickstepLauncher

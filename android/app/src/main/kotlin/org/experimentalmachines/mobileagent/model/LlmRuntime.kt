@@ -77,6 +77,10 @@ class LlmRuntime(private val cacheDir: File) {
 
     val isLoaded: Boolean get() = engine != null
 
+    /** Requests (conversations) the current engine has served since it was created. */
+    @Volatile var requestsSinceLoad = 0
+        private set
+
     /** Creates and initializes an engine (a few seconds); closes the previous one first. Throws on failure. */
     @Synchronized
     fun load(spec: ModelSpec, file: File, textBackend: String, visionBackend: String, benchmark: Boolean = true): Loaded {
@@ -96,6 +100,7 @@ class LlmRuntime(private val cacheDir: File) {
             )
             e.initialize()
             engine = e
+            requestsSinceLoad = 0
         } catch (t: Throwable) {
             val msg = "${t.javaClass.simpleName}: ${t.message}"
             Log.e(TAG, "engine load failed ($textBackend/$visionBackend): $msg", t)
@@ -134,6 +139,7 @@ class LlmRuntime(private val cacheDir: File) {
         val e = engine ?: error("The model is not loaded.")
         val extra = mapOf<String, Any>("enable_thinking" to enableThinking)
         ExperimentalFlags.filterChannelContentFromKvCache = filterThoughtFromKvCache // read when a Conversation is created
+        requestsSinceLoad++
         val conversation = e.createConversation(
             ConversationConfig(
                 systemInstruction = Contents.of(Content.Text(system)),
@@ -184,6 +190,7 @@ class LlmRuntime(private val cacheDir: File) {
     fun render(png: ByteArray, system: String, user: String, enableThinking: Boolean): Pair<String, String> {
         val e = engine ?: error("The model is not loaded.")
         val extra = mapOf<String, Any>("enable_thinking" to enableThinking)
+        requestsSinceLoad++
         val c = e.createConversation(ConversationConfig(systemInstruction = Contents.of(Content.Text(system)), extraContext = extra))
         try {
             val msg = Message.user(Contents.of(Content.ImageBytes(png), Content.Text(user)))

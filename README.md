@@ -3,7 +3,7 @@
 An on-device phone agent: [LFM3-VL-2B-MobileAgent-v4](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4)
 running with Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) on the phone's GPU. You type a goal. The
 app screenshots the screen, asks the model for one action, performs it, and repeats until the model says the task is
-done. Nothing leaves the phone.
+done. Nothing leaves the phone: the app has no internet permission.
 
 - **Name and logo:** working name and placeholder mark. Branding comes once the model has proven fast and good enough.
 - **Research:** the model and every benchmark result:
@@ -13,44 +13,74 @@ done. Nothing leaves the phone.
 
 | Question | Answer |
 |---|---|
-| One file for every phone? | Yes. One `.litertlm` (2.07 GB) runs on the CPU and GPU of any phone. Only an NPU build would need one file per chip (not made) |
-| Same accuracy as the benchmarked model? | Yes. On 180 AndroidControl test steps it scores **0.800**, the same as the GGUF the published numbers came from (8 steps right only in each) |
-| Same screenshot handling as training? | Yes. A fixed 1280 × 576 grid (720 image tokens), what training gave every 20:9 screen. The vision part matches the original model at cosine ≥ 0.9999999 |
-| How fast on a phone? | **2.46 s per model call** (median of 10) on a Snapdragon SM8975 reference phone's GPU. llama.cpp on the same phone model's CPU took 28–39 s per step |
-| Does the agent work on the phone? | Two short tasks done end to end: "Open the Clock app" (2 steps) and "Start the stopwatch" (4 steps) |
+| One file for every phone? | **Yes for CPU and GPU.** One `.litertlm` runs on any phone. NPU builds (one per chip) were not made |
+| Which file? | **int8** decoder (2.76 GB) is the default. int4 (2.07 GB) is smaller but further from the original model. fp16 (4.44 GB) is no better than int8 |
+| As accurate as the benchmarked model? | **No difference detected** on 180 AndroidControl test steps: bf16 original 0.772, GGUF 0.800, int8 on the phone 0.783. At this size the 95% interval of a difference is about ±4.4 points |
+| Same decisions as the original model? | int8 on the phone picks the **same action as the bf16 model on 90.6%** of steps (GGUF 89.4%, int4 84.4%). Its clicks land within 2 units of bf16's (90th percentile, 0–1000 grid) |
+| Same screenshots as training? | Yes for screens whose training resize is 1280 × 576 (most 20:9 portrait phones, e.g. 1080 × 2400 and 1440 × 3200). Other shapes get stretched, and the app warns |
+| How fast on a phone? | **About 2.5–3.6 s per model call** on the GPU of a Snapdragon SM8975 reference phone, depending on file and heat (table below) |
+| Does the agent finish real tasks? | **Rarely so far: 3 of 11 on the phone**, plus 1 of 7 earlier on int4. Every action works when executed directly; the misses are the model's decisions (table below) |
 
-## Speed on the phone
+## Speed
 
-Snapdragon SM8975 reference phone (Qualcomm Device Cloud), Android 17, LiteRT-LM 0.19.1. A 1440 × 3200 screenshot
-resized to 576 × 1280, 1,310 prompt tokens.
+Snapdragon SM8975 reference phone (Qualcomm Device Cloud, two sessions), Android 17, LiteRT-LM 0.19.1. A screenshot
+resized to 576 × 1280 and a prompt of about 1,300 tokens.
 
-| Setting | Model call (median) | First token | Prefill | Decode |
-|---|---|---|---|---|
-| GPU (text and vision), one engine | **2.46 s** | 1.10 s | 1,213 tok/s | 43.3 tok/s |
-| CPU (text and vision) | 10.8–14.0 s (2 calls) | 6.8–7.3 s | ~189 tok/s | ~13 tok/s |
-| llama.cpp CPU, same phone model, earlier benchmark | 27.7–39.2 s per step | — | — | — |
+| What | File | Phone | n | Model call | Notes |
+|---|---|---|---|---|---|
+| BENCH, cold phone | int4 | 15.5 GB | 10 | **2.46 s** median | First token 1.10 s after the 0.8 s vision encoding; decode 43 tok/s |
+| 180 parity rows | int4 | 11.5 GB | 180 | 4.07 s median | Thermal status 0 → 2 |
+| 180 parity rows | int8 | 11.5 GB | 180 | 3.63 s median | Ran right after the int4 rows; thermal status 1 → 3 |
+| BENCH, warm phone | int8 | 11.5 GB | 10 | 3.53 s median | Clocks throttled: GPU capped at 636 of 1,450 MHz; decode 24 tok/s |
+| BENCH, CPU only | int4 | 15.5 GB | 2 | 10.8 s, 14.0 s | |
+| llama.cpp CPU (earlier benchmark) | GGUF Q4_K_M | 11.5 GB | 5 | 36.9 s on the phone | Same phone model, different day; about 1,080 prompt tokens |
 
-- **Image encoding:** about 0.8 s of each GPU call.
-- **Engine load:** 4.3 s with a warm cache (8.7 s on the first load after install).
-- **A step outside the model:** screenshot about 0.2 s and resize about 0.1–0.4 s. Then the app waits for the screen to
-  settle (at least 1 s).
-- **LiteRT-LM default turned off:** `filterChannelContentFromKvCache` added about 3.5 s to every call, so the app sets
-  it to `false`.
+- **Like-for-like comparison (CPU vs CPU):** LiteRT-LM took 10.8–14.0 s per call, llama.cpp 25.6–36.9 s.
+- **Not a controlled comparison:** the GPU numbers come from a different runtime and processor and from different
+  sessions. int8 vs int4 and the effect of heat are not separated.
+- **A full agent step adds about 2–3 s:** screenshot, resize, action, and waiting for the screen to settle.
+- **LiteRT-LM default turned off:** `filterChannelContentFromKvCache` added about 3.5 s to every call, so the app turns
+  it off.
+
+## Agent on the phone
+
+Model-driven tasks, greedy, one model call per step. Full table: [`results/phone/tasks_2026-11-23.md`](results/phone/tasks_2026-11-23.md).
+
+| Task | int8, phone `b3ba6e19` | Cause of a miss |
+|---|---|---|
+| Alarm for 7:30 AM | success (9 steps) | int4 on the other phone made 7:30 PM |
+| Chrome search (typing) | success (4 steps) | From a loaded page it loops on `wait` |
+| Settings → About phone (scrolling) | success (4 steps) | — |
+| 5-minute timer | fail | Sets 5 seconds |
+| New contact | fail | Keeps tapping "Add an account" (the guard asks every time) |
+| "What Android version?" / "Model name?" | fail | Answers at step 1 without looking ("Android 10", "Snapdragon") |
+| Settings, then Home | fail | Reaches Home at step 2, never says done |
+| Message draft | fail, unsafe then | Tapped **Send** without a guard question. Nothing was sent (no SIM). Fixed: the guard now reads the app under a tap, not the keyboard |
+| Gallery album | fail | `wait` loop |
+| Sound Recorder list | unclear | — |
+
+- **What the misses show:** they are the model's known weaknesses from the research benchmarks: `wait` loops, ending
+  too early or too late, and answering without looking. They are not runtime errors.
+- **What would help:** the loop guards (G1/G2) that the research repo tested. Here they only log; they do not re-ask.
 
 ## Layout
 
 | Folder | What |
 |---|---|
-| [`android/`](android/) | The app: permissions, controls, safety guard, logs, adb hooks ([README](android/README.md)) |
-| [`convert/`](convert/) | Model conversion to `.litertlm` and the parity checks |
-| [`docs/conversion.md`](docs/conversion.md) | How the file was made and checked, with every number |
+| [`android/`](android/) | The app: permissions, controls, safety guard, privacy, logs, debug-only adb hooks ([README](android/README.md)) |
+| [`convert/`](convert/) | Model conversion to `.litertlm`, pinned environments, parity tools |
+| [`docs/conversion.md`](docs/conversion.md) | How the files were made and checked, with every number |
+| [`results/`](results/) | Raw outputs behind the numbers |
+| [`reviews/`](reviews/) | Adversarial review 1: prompt, report, and what was done about each finding |
 
 ## Open items
 
-- **Not yet run on a real phone:** typing, scrolling, long press, Back/Home and `answer`, plus a longer task set. Each
-  has unit tests.
-- **Permission prompts on Android 17:** they hide their content from accessibility services. The app asks the user
-  through the notification instead of tapping them.
-- **Model file not published:** the `.litertlm` is not on Hugging Face yet. On the test phone, the Hugging Face CDN
-  dropped downloads after ~2.5 MB, so the file went over adb.
-- **NPU builds:** not made. A per-chip build would be the next speed step once LiteRT supports LFM3 on the NPU.
+- **Task success** is the main gap. Next: turn on the loop guards, add a longer task set, and run AndroidWorld-style
+  tasks on the phone.
+- **Guard limits:** labels are English only, and apps drawn without accessibility nodes get a question before every
+  tap.
+- **Not exercised on the phone:** the password and delete-alarm guard tests, and redaction. The model never reached
+  those screens. Unit tests only.
+- **Model files are not published.** A public upload is the owner's call. The weights are under the LFM Open License
+  v1.0.
+- **NPU builds** are not made.

@@ -1,0 +1,776 @@
+{
+    "runId": "20261122-230408",
+    "goal": "Set an alarm for 7:30 AM",
+    "model": "MobileAgent v4 (int4, 1280x576, ctx 4096)",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int4_g1280x576_ctx4096.litertlm",
+    "imageGrid": "1280x576",
+    "promptVersion": "v4",
+    "backends": "text GPU, vision GPU",
+    "enginePerStep": false,
+    "enterAfterTyping": true,
+    "loadMs": 4130,
+    "maxSteps": 15,
+    "status": "max_steps",
+    "answer": null,
+    "error": null,
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "installedApps": [
+        "Ambient Service Sample",
+        "AONTest",
+        "APTMM_Camcorder2",
+        "APTMM_ExoPlayer",
+        "APTMM_MediaCodec",
+        "APTMM_MediaPlayer",
+        "APTMM_MediaRecorder",
+        "Calendar",
+        "Cam2test",
+        "CamExtension",
+        "Carrier Test",
+        "CarrierSwitch",
+        "ChannelSoundingTestApp",
+        "Chrome",
+        "Clock",
+        "Connection Manager Test App",
+        "Contacts",
+        "DC Test App",
+        "DcfNearbyClientApp",
+        "Episteme",
+        "FDA",
+        "Files",
+        "FM Radio",
+        "Gallery",
+        "Google",
+        "LibsocHelperTest",
+        "LifeLoggerRefApp",
+        "LocSDKFgServiceTest",
+        "LocSysTest",
+        "LPA Test Application",
+        "LTE Broadcast UI",
+        "LTM Tuning",
+        "MainActivity2",
+        "Messaging",
+        "Multiple PDP Test",
+        "Music",
+        "odp-demo",
+        "Play Store",
+        "Presence",
+        "Proximity Ranging",
+        "QAIOR Screen Understanding Sample App",
+        "QFP Calibration",
+        "QsensorStressAgingTest",
+        "QSensorTest",
+        "QTI Phone",
+        "QtiEmail",
+        "QtiTelephonySettings",
+        "Qualcomm DLT",
+        "Sample Location Attribution",
+        "Settings",
+        "Snapdragon Camera",
+        "SnapdragonSDKTest",
+        "Sound Recorder",
+        "SpectrAEye",
+        "Unified Sensor Test App",
+        "Videos",
+        "Voice Activation",
+        "VoiceAI Usecase",
+        "VTLoopback",
+        "Wfd Client"
+    ],
+    "steps": [
+        {
+            "step": 1,
+            "intent": "Open the Clock app",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+            "outcome": "opened Clock",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"open_app\",\"app_name\":\"Clock\"}",
+                    "thought": "Open the Clock app",
+                    "modelMs": 2677,
+                    "firstPieceMs": 2275,
+                    "lastPieceMs": 2670,
+                    "bench": {
+                        "ttftMs": 1217,
+                        "prefillTokens": 1314,
+                        "prefillTokensPerS": 1109.4519119859842,
+                        "decodeTokens": 19,
+                        "decodeTokensPerS": 30.37449553238491,
+                        "marksMs": {
+                            "vision_executor": 810
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 253,
+            "resizeMs": 47,
+            "pngMs": 172,
+            "engineMs": 4130,
+            "modelMs": 2677,
+            "ttftMs": 1217,
+            "prefillTokens": 1314,
+            "prefillTokensPerS": 1109.4519119859842,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 30.37449553238491,
+            "actMs": 149,
+            "settleMs": 5047,
+            "stepMs": 10413,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 2,
+            "intent": "Click on the 7 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+            "outcome": "tapped (279,1951)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+                    "thought": "Click on the 7 button",
+                    "modelMs": 2576,
+                    "firstPieceMs": 2059,
+                    "lastPieceMs": 2573,
+                    "bench": {
+                        "ttftMs": 1217,
+                        "prefillTokens": 1332,
+                        "prefillTokensPerS": 1116.405522749833,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 40.88989983259906,
+                        "marksMs": {
+                            "vision_executor": 792
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 248,
+            "resizeMs": 50,
+            "pngMs": 42,
+            "engineMs": null,
+            "modelMs": 2576,
+            "ttftMs": 1217,
+            "prefillTokens": 1332,
+            "prefillTokensPerS": 1116.405522749833,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 40.88989983259906,
+            "actMs": 176,
+            "settleMs": 5053,
+            "stepMs": 8201,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 279,
+            "tapY": 1951,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 3,
+            "intent": "Click on the 3 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+            "outcome": "tapped (1160,921)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+                    "thought": "Click on the 3 button",
+                    "modelMs": 2600,
+                    "firstPieceMs": 2097,
+                    "lastPieceMs": 2598,
+                    "bench": {
+                        "ttftMs": 1279,
+                        "prefillTokens": 1356,
+                        "prefillTokensPerS": 1080.2735638885465,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.9597482871187,
+                        "marksMs": {
+                            "vision_executor": 775
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 256,
+            "resizeMs": 55,
+            "pngMs": 47,
+            "engineMs": null,
+            "modelMs": 2600,
+            "ttftMs": 1279,
+            "prefillTokens": 1356,
+            "prefillTokensPerS": 1080.2735638885465,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.9597482871187,
+            "actMs": 182,
+            "settleMs": 5054,
+            "stepMs": 8252,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 1160,
+            "tapY": 921,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 4,
+            "intent": "Click on the 0 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+            "outcome": "tapped (720,2460)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+                    "thought": "Click on the 0 button",
+                    "modelMs": 2702,
+                    "firstPieceMs": 2198,
+                    "lastPieceMs": 2700,
+                    "bench": {
+                        "ttftMs": 1363,
+                        "prefillTokens": 1380,
+                        "prefillTokensPerS": 1030.0560126023145,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.55191120282866,
+                        "marksMs": {
+                            "vision_executor": 776
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 297,
+            "resizeMs": 57,
+            "pngMs": 48,
+            "engineMs": null,
+            "modelMs": 2702,
+            "ttftMs": 1363,
+            "prefillTokens": 1380,
+            "prefillTokensPerS": 1030.0560126023145,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.55191120282866,
+            "actMs": 153,
+            "settleMs": 5056,
+            "stepMs": 8359,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 2460,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 5,
+            "intent": "Click on the 7 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+            "outcome": "tapped (279,1951)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+                    "thought": "Click on the 7 button",
+                    "modelMs": 2708,
+                    "firstPieceMs": 2199,
+                    "lastPieceMs": 2706,
+                    "bench": {
+                        "ttftMs": 1372,
+                        "prefillTokens": 1404,
+                        "prefillTokensPerS": 1041.105613288277,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.39385171325364,
+                        "marksMs": {
+                            "vision_executor": 778
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 249,
+            "resizeMs": 60,
+            "pngMs": 48,
+            "engineMs": null,
+            "modelMs": 2708,
+            "ttftMs": 1372,
+            "prefillTokens": 1404,
+            "prefillTokensPerS": 1041.105613288277,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.39385171325364,
+            "actMs": 172,
+            "settleMs": 5052,
+            "stepMs": 8353,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 279,
+            "tapY": 1951,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 6,
+            "intent": "Click on the 3 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+            "outcome": "tapped (1160,921)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+                    "thought": "Click on the 3 button",
+                    "modelMs": 2690,
+                    "firstPieceMs": 2182,
+                    "lastPieceMs": 2687,
+                    "bench": {
+                        "ttftMs": 1336,
+                        "prefillTokens": 1428,
+                        "prefillTokensPerS": 1088.3327188597657,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.52695441939193,
+                        "marksMs": {
+                            "vision_executor": 798
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 243,
+            "resizeMs": 58,
+            "pngMs": 44,
+            "engineMs": null,
+            "modelMs": 2690,
+            "ttftMs": 1336,
+            "prefillTokens": 1428,
+            "prefillTokensPerS": 1088.3327188597657,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.52695441939193,
+            "actMs": 183,
+            "settleMs": 5052,
+            "stepMs": 8341,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 1160,
+            "tapY": 921,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 7,
+            "intent": "Click on the 0 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+            "outcome": "tapped (720,2460)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+                    "thought": "Click on the 0 button",
+                    "modelMs": 2697,
+                    "firstPieceMs": 2187,
+                    "lastPieceMs": 2694,
+                    "bench": {
+                        "ttftMs": 1351,
+                        "prefillTokens": 1452,
+                        "prefillTokensPerS": 1093.6120957595072,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.27833467605475,
+                        "marksMs": {
+                            "vision_executor": 789
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 252,
+            "resizeMs": 52,
+            "pngMs": 31,
+            "engineMs": null,
+            "modelMs": 2697,
+            "ttftMs": 1351,
+            "prefillTokens": 1452,
+            "prefillTokensPerS": 1093.6120957595072,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.27833467605475,
+            "actMs": 166,
+            "settleMs": 5055,
+            "stepMs": 8302,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 2460,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 8,
+            "intent": "Click on the 7 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+            "outcome": "tapped (279,1951)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+                    "thought": "Click on the 7 button",
+                    "modelMs": 2682,
+                    "firstPieceMs": 2177,
+                    "lastPieceMs": 2679,
+                    "bench": {
+                        "ttftMs": 1341,
+                        "prefillTokens": 1476,
+                        "prefillTokensPerS": 1120.4849052987793,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.52464275952642,
+                        "marksMs": {
+                            "vision_executor": 781
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 315,
+            "resizeMs": 64,
+            "pngMs": 49,
+            "engineMs": null,
+            "modelMs": 2682,
+            "ttftMs": 1341,
+            "prefillTokens": 1476,
+            "prefillTokensPerS": 1120.4849052987793,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.52464275952642,
+            "actMs": 181,
+            "settleMs": 5049,
+            "stepMs": 8413,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 279,
+            "tapY": 1951,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 9,
+            "intent": "Click on the 3 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+            "outcome": "tapped (1160,921)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+                    "thought": "Click on the 3 button",
+                    "modelMs": 2673,
+                    "firstPieceMs": 2165,
+                    "lastPieceMs": 2670,
+                    "bench": {
+                        "ttftMs": 1344,
+                        "prefillTokens": 1500,
+                        "prefillTokensPerS": 1136.1663410785081,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.57029136834108,
+                        "marksMs": {
+                            "vision_executor": 770
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 223,
+            "resizeMs": 51,
+            "pngMs": 47,
+            "engineMs": null,
+            "modelMs": 2673,
+            "ttftMs": 1344,
+            "prefillTokens": 1500,
+            "prefillTokensPerS": 1136.1663410785081,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.57029136834108,
+            "actMs": 188,
+            "settleMs": 5043,
+            "stepMs": 8284,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 1160,
+            "tapY": 921,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 10,
+            "intent": "Click on the 0 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+            "outcome": "tapped (720,2460)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+                    "thought": "Click on the 0 button",
+                    "modelMs": 2667,
+                    "firstPieceMs": 2158,
+                    "lastPieceMs": 2663,
+                    "bench": {
+                        "ttftMs": 1343,
+                        "prefillTokens": 1504,
+                        "prefillTokensPerS": 1140.1161390524273,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.22290131256603,
+                        "marksMs": {
+                            "vision_executor": 763
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 253,
+            "resizeMs": 65,
+            "pngMs": 31,
+            "engineMs": null,
+            "modelMs": 2667,
+            "ttftMs": 1343,
+            "prefillTokens": 1504,
+            "prefillTokensPerS": 1140.1161390524273,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.22290131256603,
+            "actMs": 160,
+            "settleMs": 5047,
+            "stepMs": 8261,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 2460,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 11,
+            "intent": "Click on the 7 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+            "outcome": "tapped (279,1951)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+                    "thought": "Click on the 7 button",
+                    "modelMs": 2687,
+                    "firstPieceMs": 2179,
+                    "lastPieceMs": 2684,
+                    "bench": {
+                        "ttftMs": 1342,
+                        "prefillTokens": 1504,
+                        "prefillTokensPerS": 1140.6785534336575,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.37166555572952,
+                        "marksMs": {
+                            "vision_executor": 780
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 256,
+            "resizeMs": 51,
+            "pngMs": 47,
+            "engineMs": null,
+            "modelMs": 2687,
+            "ttftMs": 1342,
+            "prefillTokens": 1504,
+            "prefillTokensPerS": 1140.6785534336575,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.37166555572952,
+            "actMs": 164,
+            "settleMs": 5050,
+            "stepMs": 8316,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 279,
+            "tapY": 1951,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 12,
+            "intent": "Click on the 3 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+            "outcome": "tapped (1160,921)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+                    "thought": "Click on the 3 button",
+                    "modelMs": 2676,
+                    "firstPieceMs": 2168,
+                    "lastPieceMs": 2674,
+                    "bench": {
+                        "ttftMs": 1343,
+                        "prefillTokens": 1504,
+                        "prefillTokensPerS": 1139.9047471188433,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.25186711107028,
+                        "marksMs": {
+                            "vision_executor": 775
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 266,
+            "resizeMs": 67,
+            "pngMs": 47,
+            "engineMs": null,
+            "modelMs": 2676,
+            "ttftMs": 1343,
+            "prefillTokens": 1504,
+            "prefillTokensPerS": 1139.9047471188433,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.25186711107028,
+            "actMs": 178,
+            "settleMs": 5058,
+            "stepMs": 8341,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 1160,
+            "tapY": 921,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 13,
+            "intent": "Click on the 0 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+            "outcome": "tapped (720,2460)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,769]}",
+                    "thought": "Click on the 0 button",
+                    "modelMs": 2689,
+                    "firstPieceMs": 2185,
+                    "lastPieceMs": 2686,
+                    "bench": {
+                        "ttftMs": 1343,
+                        "prefillTokens": 1504,
+                        "prefillTokensPerS": 1140.1936591334925,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.764390422346665,
+                        "marksMs": {
+                            "vision_executor": 794
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 256,
+            "resizeMs": 55,
+            "pngMs": 31,
+            "engineMs": null,
+            "modelMs": 2689,
+            "ttftMs": 1343,
+            "prefillTokens": 1504,
+            "prefillTokensPerS": 1140.1936591334925,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.764390422346665,
+            "actMs": 165,
+            "settleMs": 5050,
+            "stepMs": 8285,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 2460,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 14,
+            "intent": "Click on the 7 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+            "outcome": "tapped (279,1951)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[194,610]}",
+                    "thought": "Click on the 7 button",
+                    "modelMs": 2689,
+                    "firstPieceMs": 2176,
+                    "lastPieceMs": 2686,
+                    "bench": {
+                        "ttftMs": 1339,
+                        "prefillTokens": 1504,
+                        "prefillTokensPerS": 1143.8168877963722,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 41.00495192914607,
+                        "marksMs": {
+                            "vision_executor": 781
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 235,
+            "resizeMs": 63,
+            "pngMs": 43,
+            "engineMs": null,
+            "modelMs": 2689,
+            "ttftMs": 1339,
+            "prefillTokens": 1504,
+            "prefillTokensPerS": 1143.8168877963722,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 41.00495192914607,
+            "actMs": 161,
+            "settleMs": 5041,
+            "stepMs": 8284,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 279,
+            "tapY": 1951,
+            "guard": null,
+            "loopRules": []
+        },
+        {
+            "step": 15,
+            "intent": "Click on the 3 button",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+            "outcome": "tapped (1160,921)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[806,288]}",
+                    "thought": "Click on the 3 button",
+                    "modelMs": 2722,
+                    "firstPieceMs": 2195,
+                    "lastPieceMs": 2718,
+                    "bench": {
+                        "ttftMs": 1345,
+                        "prefillTokens": 1504,
+                        "prefillTokensPerS": 1138.8096618813615,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 40.22122034931857,
+                        "marksMs": {
+                            "vision_executor": 803
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 229,
+            "resizeMs": 53,
+            "pngMs": 38,
+            "engineMs": null,
+            "modelMs": 2722,
+            "ttftMs": 1345,
+            "prefillTokens": 1504,
+            "prefillTokensPerS": 1138.8096618813615,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 40.22122034931857,
+            "actMs": 197,
+            "settleMs": 5040,
+            "stepMs": 8331,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 1160,
+            "tapY": 921,
+            "guard": null,
+            "loopRules": []
+        }
+    ],
+    "startedAtMs": 1795417448765,
+    "endedAtMs": 1795417579702
+}

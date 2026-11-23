@@ -1,0 +1,20 @@
+Mon Nov 23 00:40:53 PST 2026
+Thermal Status: 1
+	Temperature{mValue=38.0, mType=2, mName=battery, mStatus=0}
+	Temperature{mValue=60.1, mType=0, mName=CPU0, mStatus=0}
+	Temperature{mValue=71.9, mType=0, mName=CPU1, mStatus=0}
+	Temperature{mValue=64.9, mType=0, mName=CPU2, mStatus=0}
+	Temperature{mValue=68.9, mType=0, mName=CPU3, mStatus=0}
+	Temperature{mValue=81.7, mType=0, mName=CPU4, mStatus=0}
+	Temperature{mValue=75.0, mType=0, mName=CPU5, mStatus=0}
+	Temperature{mValue=85.7, mType=0, mName=CPU6, mStatus=0}
+	Temperature{mValue=73.0, mType=0, mName=CPU7, mStatus=0}
+	Temperature{mValue=48.44364, mType=3, mName=skin, mStatus=1}
+	Temperature{mValue=47.6826, mType=3, mName=skin, mStatus=1}
+/sys/devices/system/cpu/cpufreq/policy0 cur=1152000 max=2534400
+/sys/devices/system/cpu/cpufreq/policy3 cur=480000 max=2304000
+/sys/devices/system/cpu/cpufreq/policy6 cur=921600 max=2649600
+gpu 636000000 max 636000000
+  level: 100
+  temperature: 380
+  Capacity level: -1

@@ -32,7 +32,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /**
- * The agent's eyes and hands (adapted from Agent Owl). Android binds this service once the user turns it on in
+ * The agent's eyes and hands. Android binds this service once the user turns it on in
  * Accessibility settings; it can then take screenshots (API 30+), dispatch gestures, press Back / Home, set text in
  * the focused field, and read the window tree for the safety guard.
  */
@@ -70,7 +70,7 @@ class AgentService : AccessibilityService() {
 
     /**
      * Waits until the screen has stopped changing: [quietMs] without a UI event from another app, at most [maxMs].
-     * (Agent Owl: a fixed second was not enough, a fling was still scrolling when the next screenshot was taken.)
+     * (A fixed second is not always enough: a fling can still be scrolling when the next screenshot is taken.)
      */
     suspend fun awaitQuiet(quietMs: Long = QUIET_MS, maxMs: Long = SETTLE_MAX_MS) {
         val start = SystemClock.uptimeMillis()
@@ -139,8 +139,11 @@ class AgentService : AccessibilityService() {
         val packages = windows.map { it.root?.packageName?.toString() }
         var labels = emptyList<String>()
         var targetPackage: String? = null
+        var readable = true
         if (x != null && y != null) {
-            liveNodeAt(x, y)?.let { node ->
+            val hit = liveNodeAt(x, y)
+            readable = hit != null
+            hit?.let { node ->
                 targetPackage = node.packageName?.toString()
                 val out = mutableListOf<String>()
                 var n: AccessibilityNodeInfo? = node
@@ -152,6 +155,8 @@ class AgentService : AccessibilityService() {
                     depth++
                 }
                 labels = out
+                val cls = node.className?.toString().orEmpty()
+                if (out.isEmpty() && OPAQUE.any { cls.endsWith(it) }) readable = false
             }
         }
         val focused = findFocus(AccessibilityNodeInfo.FOCUS_INPUT)
@@ -159,13 +164,47 @@ class AgentService : AccessibilityService() {
         return Guard.Live(
             packages, labels, targetPackage, focused?.isPassword == true, focused?.packageName?.toString(),
             protectedWindow = hidden?.let { it.title?.toString() ?: "untitled" },
+            foregroundPackage = foreground(),
+            screenTitle = screenTitle(),
+            targetReadable = readable,
         )
+    }
+
+    /** The app in front: the active app window (not this app's), "protected: <title>" if its content is hidden. */
+    fun foreground(): String? {
+        val w = windows.filter { it.type == AccessibilityWindowInfo.TYPE_APPLICATION }
+            .filter { it.root?.packageName?.toString() != packageName }
+            .let { list -> list.firstOrNull { it.isActive } ?: list.maxByOrNull { it.layer } } ?: return null
+        return w.root?.packageName?.toString() ?: "protected: ${w.title}"
+    }
+
+    /** The active app window's title and its heading texts (Settings pages mark their title as a heading). */
+    private fun screenTitle(): String? {
+        val w = windows.firstOrNull { it.type == AccessibilityWindowInfo.TYPE_APPLICATION && it.isActive } ?: return null
+        val parts = mutableListOf<String>()
+        w.title?.toString()?.let { parts += it }
+        fun walk(n: AccessibilityNodeInfo, depth: Int) {
+            if (depth > 20 || parts.size > 6) return
+            if (n.isHeading) (n.text ?: n.contentDescription)?.toString()?.let { parts += it }
+            for (i in 0 until n.childCount) n.getChild(i)?.let { walk(it, depth + 1) }
+        }
+        w.root?.let { walk(it, 0) }
+        return parts.distinct().joinToString(" | ").ifEmpty { null }
     }
 
     /** One line per window as this service sees it (diagnostics: `WINDOWS` adb hook). */
     fun describeWindows(): List<String> = windows.map { w ->
         val r = w.root
         "type=${w.type} layer=${w.layer} active=${w.isActive} title=${w.title} pkg=${r?.packageName} root=${r != null} children=${r?.childCount}"
+    }
+
+    private fun touchable(w: AccessibilityWindowInfo, x: Int, y: Int): Boolean {
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            val region = android.graphics.Region()
+            w.getRegionInScreen(region)
+            if (!region.isEmpty) return region.contains(x, y)
+        }
+        return Rect().also(w::getBoundsInScreen).contains(x, y)
     }
 
     /** The deepest live node containing the point, top window first, skipping accessibility overlays. */
@@ -177,8 +216,12 @@ class AgentService : AccessibilityService() {
             for (i in n.childCount - 1 downTo 0) n.getChild(i)?.let { c -> deepest(c, depth + 1)?.let { return it } }
             return n
         }
+        // The top window whose touchable region holds the point gets the touch (as input dispatch routes it). Not the
+        // first root that contains it: the keyboard's root spans the whole screen while only its keys take touches,
+        // so a tap on an app's Send button above the keyboard was read as a tap on the keyboard (seen on Messaging).
         return windows.sortedByDescending { it.layer }
             .filter { it.type != AccessibilityWindowInfo.TYPE_ACCESSIBILITY_OVERLAY && it.root?.packageName?.toString() != packageName }
+            .filter { w -> touchable(w, x, y) }
             .firstNotNullOfOrNull { w -> w.root?.let { deepest(it, 0) } }
     }
 
@@ -214,12 +257,24 @@ class AgentService : AccessibilityService() {
 
     fun home(): Boolean = performGlobalAction(GLOBAL_ACTION_HOME)
 
-    /** Types at the end of the focused field (AndroidWorld types with `adb shell input text` at the cursor). */
+    /**
+     * Types into the focused field the way a keyboard would (AndroidWorld types with `adb shell input text`): at the
+     * cursor, replacing a selection; at the end when the field reports no cursor. The cursor then follows the text.
+     */
     fun typeText(text: String): String {
         val field = findFocus(AccessibilityNodeInfo.FOCUS_INPUT)?.takeIf { it.isEditable } ?: return "no text field is focused"
         val existing = field.text?.toString()?.takeUnless { field.isShowingHintText }.orEmpty()
-        val args = Bundle().apply { putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, existing + text) }
-        return if (field.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, args)) "typed" else "typing failed"
+        val (value, cursor) = Typing.insert(existing, field.textSelectionStart, field.textSelectionEnd, text)
+        val args = Bundle().apply { putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, value) }
+        if (!field.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, args)) return "typing failed"
+        field.performAction(
+            AccessibilityNodeInfo.ACTION_SET_SELECTION,
+            Bundle().apply {
+                putInt(AccessibilityNodeInfo.ACTION_ARGUMENT_SELECTION_START_INT, cursor)
+                putInt(AccessibilityNodeInfo.ACTION_ARGUMENT_SELECTION_END_INT, cursor)
+            },
+        )
+        return "typed"
     }
 
     /** Enter in the focused field (the keyboard's action key). */
@@ -290,6 +345,9 @@ class AgentService : AccessibilityService() {
         private const val POLL_MS = 100L
         private const val RING_DP = 56
         private const val RING_MS = 700L
+
+        /** Views that draw their own content without accessibility nodes. */
+        private val OPAQUE = listOf("WebView", "SurfaceView", "TextureView", "GLSurfaceView")
 
         @Volatile var instance: AgentService? = null
             private set

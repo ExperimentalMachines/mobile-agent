@@ -52,6 +52,8 @@ data class StepRecord(
     val guard: String? = null,
     /** Loop-guard rules (G1/G2) that would have fired; diagnostics only. */
     val loopRules: List<String> = emptyList(),
+    /** This step as later prompts show it ("intent -> action", with a [skipped ...] / [not executed ...] note). */
+    val historyEntry: String? = null,
 )
 
 @Serializable
@@ -76,6 +78,10 @@ data class RunRecord(
     val android: String,
     val litertLm: String,
     val installedApps: List<String>,
+    val installedAppCount: Int = installedApps.size,
+    /** smart_resize of this screen (height x width) and whether it equals the model file's grid ([imageGrid]). */
+    val screenGrid: String? = null,
+    val gridMatches: Boolean? = null,
     val steps: List<StepRecord>,
     val startedAtMs: Long,
     val endedAtMs: Long,
@@ -104,5 +110,15 @@ class RunStore(private val root: File) {
 
     fun delete(id: String) {
         File(dir, id).deleteRecursively()
+    }
+
+    /** Deletes every run (run.json and the step screenshots). */
+    fun deleteAll() {
+        dir.listFiles().orEmpty().forEach { it.deleteRecursively() }
+    }
+
+    /** Keeps the newest [keep] runs and deletes the rest. */
+    fun prune(keep: Int) {
+        dir.listFiles().orEmpty().filter { it.isDirectory }.sortedByDescending { it.name }.drop(keep.coerceAtLeast(1)).forEach { it.deleteRecursively() }
     }
 }

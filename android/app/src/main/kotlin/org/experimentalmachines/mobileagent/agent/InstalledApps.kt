@@ -28,7 +28,7 @@ object InstalledApps {
 
     /**
      * The app an `open_app` name means: the exact label (ignoring case), then a label starting with it, then one
-     * containing it, then a package name containing it.
+     * containing it, then a package name containing it, then the research repo's lexical match ([AppResolver]).
      */
     fun resolve(apps: List<App>, name: String): App? {
         val want = name.trim().lowercase()
@@ -37,5 +37,6 @@ object InstalledApps {
             ?: apps.firstOrNull { it.label.lowercase().startsWith(want) }
             ?: apps.firstOrNull { want in it.label.lowercase() }
             ?: apps.firstOrNull { want in it.packageName.lowercase() }
+            ?: AppResolver.resolve(name, apps.map { it.label }.distinct())?.let { (label, _) -> apps.first { it.label == label } }
     }
 }

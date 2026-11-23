@@ -4,9 +4,11 @@
   gguf   : llama-server (llama.cpp cd959bae9, the evaluation build) already serving v4 Q4_K_M + mmproj Q8_0 with the
            evaluation flags (-c 8192 --image-max-tokens 1024 --reasoning-format deepseek); request exactly as
            eval/androidworld/lfm_agent.py (system + user[image PNG, text], temperature 0, max_tokens 512,
-           enable_thinking true).
+           enable_thinking true), cache_prompt off (earlier runs had llama-server's default prompt cache on).
   litert : LiteRT-LM Python API (litert-lm 0.19.1) on a .litertlm file; system message + user[image, text], thinking on,
-           greedy (no sampler in the file), max 512 output tokens. --engine_per_row 1 creates a new Engine for every
+           greedy (no sampler in the file), max 512 output tokens, thought kept in the KV cache as in the app
+           (filter_channel_content_from_kv_cache=False). Rows run before 2026-11-23 15:30 passed neither setting;
+           single-turn replies here are short, so neither changes them. --engine_per_row 1 creates a new Engine for every
            row (LiteRT-LM issue #3165: a later Conversation on a shared Engine may start from the previous state).
 
   python run.py --set SET --runtime gguf --url http://127.0.0.1:8131 --out OUT.jsonl
@@ -32,7 +34,7 @@ def run_gguf(a, rows, done, fo):
     if r["id"] in done:
       continue
     png = open(os.path.join(a.set, r["image"]), "rb").read()
-    payload = {"model": "local", "temperature": 0.0, "max_tokens": 512,
+    payload = {"model": "local", "temperature": 0.0, "max_tokens": 512, "cache_prompt": False,
                "chat_template_kwargs": {"enable_thinking": True},
                "messages": [{"role": "system", "content": r["system"]},
                             {"role": "user", "content": [
@@ -71,7 +73,8 @@ def run_litert(a, rows, done, fo):
     img = os.path.abspath(os.path.join(a.set, r["image"]))
     t0 = time.time()
     conv = engine.create_conversation(messages=[{"role": "system", "content": r["system"]}],
-                                      extra_context={"enable_thinking": True})
+                                      extra_context={"enable_thinking": True}, max_output_tokens=512,
+                                      filter_channel_content_from_kv_cache=False)  # as the app
     reply = conv.send_message({"role": "user", "content": [{"type": "image", "path": img}, {"type": "text", "text": r["user"]}]})
     dt = time.time() - t0
     text = "".join(p.get("text", "") for p in reply.get("content", []) if p.get("type") == "text")

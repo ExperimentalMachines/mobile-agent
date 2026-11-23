@@ -1,0 +1,43 @@
+{
+ "n_common": 60,
+ "files": {
+  "terminal_gguf_v4.jsonl": {
+   "all": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.65,
+    "step_acc": 0.65
+   },
+   "terminal": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.65,
+    "step_acc": 0.65
+   },
+   "median_s": 3.117
+  },
+  "terminal_litert_v4_int4.jsonl": {
+   "all": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.667,
+    "step_acc": 0.667
+   },
+   "terminal": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.667,
+    "step_acc": 0.667
+   },
+   "median_s": 6.843,
+   "vs_ref": {
+    "same_action": 0.883,
+    "same_intent_text": 0.85,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 731.5743297847458,
+    "right_only_in_ref": 2,
+    "right_only_here": 3
+   }
+  }
+ }
+}

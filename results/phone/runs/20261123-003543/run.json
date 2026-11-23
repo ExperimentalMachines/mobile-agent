@@ -1,0 +1,834 @@
+{
+    "runId": "20261123-003543",
+    "goal": "Search for weather in Paris in Chrome",
+    "model": "MobileAgent v4 (int8, 1280x576, ctx 4096)",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm",
+    "imageGrid": "1280x576",
+    "promptVersion": "v4",
+    "backends": "text GPU, vision GPU",
+    "enginePerStep": true,
+    "enterAfterTyping": true,
+    "loadMs": 4818,
+    "maxSteps": 15,
+    "status": "max_steps",
+    "answer": null,
+    "error": null,
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "installedApps": [
+        "Ambient Service Sample",
+        "AONTest",
+        "APTMM_Camcorder2",
+        "APTMM_ExoPlayer",
+        "APTMM_MediaCodec",
+        "APTMM_MediaPlayer",
+        "APTMM_MediaRecorder",
+        "Calendar",
+        "Cam2test",
+        "CamExtension",
+        "Carrier Test",
+        "CarrierSwitch",
+        "ChannelSoundingTestApp",
+        "Chrome",
+        "Clock",
+        "Connection Manager Test App",
+        "Contacts",
+        "DC Test App",
+        "DcfNearbyClientApp",
+        "Episteme",
+        "FDA",
+        "Files",
+        "FM Radio",
+        "Gallery",
+        "Google",
+        "LibsocHelperTest",
+        "LifeLoggerRefApp",
+        "LocSDKFgServiceTest",
+        "LocSysTest",
+        "LPA Test Application",
+        "LTE Broadcast UI",
+        "LTM Tuning",
+        "MainActivity2",
+        "Messaging",
+        "Multiple PDP Test",
+        "Music",
+        "odp-demo",
+        "Play Store",
+        "Presence",
+        "Proximity Ranging",
+        "QAIOR Screen Understanding Sample App",
+        "QFP Calibration",
+        "QsensorStressAgingTest",
+        "QSensorTest",
+        "QTI Phone",
+        "QtiEmail",
+        "QtiTelephonySettings",
+        "Qualcomm DLT",
+        "Sample Location Attribution",
+        "Settings",
+        "Snapdragon Camera",
+        "SnapdragonSDKTest",
+        "Sound Recorder",
+        "SpectrAEye",
+        "Unified Sensor Test App",
+        "Videos",
+        "Voice Activation",
+        "VoiceAI Usecase",
+        "VTLoopback",
+        "Wfd Client"
+    ],
+    "installedAppCount": 60,
+    "screenGrid": "1280x576",
+    "gridMatches": true,
+    "steps": [
+        {
+            "step": 1,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Chrome\"}",
+            "outcome": "opened Chrome",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"open_app\",\"app_name\":\"Chrome\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3768,
+                    "firstPieceMs": 3108,
+                    "lastPieceMs": 3764,
+                    "bench": {
+                        "ttftMs": 1444,
+                        "prefillTokens": 1312,
+                        "prefillTokensPerS": 943.4689783804371,
+                        "decodeTokens": 18,
+                        "decodeTokensPerS": 18.71711609370493,
+                        "marksMs": {
+                            "vision_executor": 1365
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 240,
+            "resizeMs": 54,
+            "pngMs": 254,
+            "engineMs": 4818,
+            "modelMs": 3768,
+            "ttftMs": 1444,
+            "prefillTokens": 1312,
+            "prefillTokensPerS": 943.4689783804371,
+            "decodeTokens": 18,
+            "decodeTokensPerS": 18.71711609370493,
+            "actMs": 134,
+            "settleMs": 1103,
+            "stepMs": 8815,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"open_app\",\"app_name\":\"Chrome\"}"
+        },
+        {
+            "step": 2,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3437,
+                    "firstPieceMs": 3061,
+                    "lastPieceMs": 3433,
+                    "bench": {
+                        "ttftMs": 1451,
+                        "prefillTokens": 1329,
+                        "prefillTokensPerS": 954.9582659741053,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 16.827560299416817,
+                        "marksMs": {
+                            "vision_executor": 1368
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 226,
+            "resizeMs": 57,
+            "pngMs": 41,
+            "engineMs": 4879,
+            "modelMs": 3437,
+            "ttftMs": 1451,
+            "prefillTokens": 1329,
+            "prefillTokensPerS": 954.9582659741053,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 16.827560299416817,
+            "actMs": 1097,
+            "settleMs": 1001,
+            "stepMs": 13455,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 3,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3546,
+                    "firstPieceMs": 3155,
+                    "lastPieceMs": 3542,
+                    "bench": {
+                        "ttftMs": 1448,
+                        "prefillTokens": 1341,
+                        "prefillTokensPerS": 971.8113486937908,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.59087618902592,
+                        "marksMs": {
+                            "vision_executor": 1384
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 287,
+            "resizeMs": 57,
+            "pngMs": 33,
+            "engineMs": 4198,
+            "modelMs": 3546,
+            "ttftMs": 1448,
+            "prefillTokens": 1341,
+            "prefillTokensPerS": 971.8113486937908,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.59087618902592,
+            "actMs": 1103,
+            "settleMs": 1001,
+            "stepMs": 13407,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 4,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3561,
+                    "firstPieceMs": 3167,
+                    "lastPieceMs": 3557,
+                    "bench": {
+                        "ttftMs": 1443,
+                        "prefillTokens": 1353,
+                        "prefillTokensPerS": 984.8964054331977,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.349251279548826,
+                        "marksMs": {
+                            "vision_executor": 1389
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 279,
+            "resizeMs": 73,
+            "pngMs": 41,
+            "engineMs": 4811,
+            "modelMs": 3561,
+            "ttftMs": 1443,
+            "prefillTokens": 1353,
+            "prefillTokensPerS": 984.8964054331977,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.349251279548826,
+            "actMs": 1115,
+            "settleMs": 1406,
+            "stepMs": 15423,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 5,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3782,
+                    "firstPieceMs": 3392,
+                    "lastPieceMs": 3778,
+                    "bench": {
+                        "ttftMs": 1628,
+                        "prefillTokens": 1365,
+                        "prefillTokensPerS": 875.5288783723653,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.40565226667975,
+                        "marksMs": {
+                            "vision_executor": 1429
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 266,
+            "resizeMs": 73,
+            "pngMs": 41,
+            "engineMs": 4796,
+            "modelMs": 3782,
+            "ttftMs": 1628,
+            "prefillTokens": 1365,
+            "prefillTokensPerS": 875.5288783723653,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.40565226667975,
+            "actMs": 1112,
+            "settleMs": 1001,
+            "stepMs": 15199,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 6,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3708,
+                    "firstPieceMs": 3315,
+                    "lastPieceMs": 3704,
+                    "bench": {
+                        "ttftMs": 1590,
+                        "prefillTokens": 1377,
+                        "prefillTokensPerS": 905.1280116236579,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.556417967888137,
+                        "marksMs": {
+                            "vision_executor": 1400
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 311,
+            "resizeMs": 67,
+            "pngMs": 37,
+            "engineMs": 4913,
+            "modelMs": 3708,
+            "ttftMs": 1590,
+            "prefillTokens": 1377,
+            "prefillTokensPerS": 905.1280116236579,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.556417967888137,
+            "actMs": 1111,
+            "settleMs": 1001,
+            "stepMs": 15284,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 7,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3717,
+                    "firstPieceMs": 3343,
+                    "lastPieceMs": 3714,
+                    "bench": {
+                        "ttftMs": 1590,
+                        "prefillTokens": 1389,
+                        "prefillTokensPerS": 911.9577822873298,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.920391039630779,
+                        "marksMs": {
+                            "vision_executor": 1426
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 299,
+            "resizeMs": 80,
+            "pngMs": 41,
+            "engineMs": 4733,
+            "modelMs": 3717,
+            "ttftMs": 1590,
+            "prefillTokens": 1389,
+            "prefillTokensPerS": 911.9577822873298,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.920391039630779,
+            "actMs": 1114,
+            "settleMs": 1002,
+            "stepMs": 15089,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 8,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3569,
+                    "firstPieceMs": 3187,
+                    "lastPieceMs": 3566,
+                    "bench": {
+                        "ttftMs": 1549,
+                        "prefillTokens": 1401,
+                        "prefillTokensPerS": 941.2099297180004,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 16.383787737413165,
+                        "marksMs": {
+                            "vision_executor": 1385
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 307,
+            "resizeMs": 67,
+            "pngMs": 45,
+            "engineMs": 4725,
+            "modelMs": 3569,
+            "ttftMs": 1549,
+            "prefillTokens": 1401,
+            "prefillTokensPerS": 941.2099297180004,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 16.383787737413165,
+            "actMs": 1099,
+            "settleMs": 1003,
+            "stepMs": 14298,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 9,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3560,
+                    "firstPieceMs": 3185,
+                    "lastPieceMs": 3557,
+                    "bench": {
+                        "ttftMs": 1554,
+                        "prefillTokens": 1413,
+                        "prefillTokensPerS": 945.4171580045246,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 16.803009467877178,
+                        "marksMs": {
+                            "vision_executor": 1387
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 252,
+            "resizeMs": 60,
+            "pngMs": 31,
+            "engineMs": 4122,
+            "modelMs": 3560,
+            "ttftMs": 1554,
+            "prefillTokens": 1413,
+            "prefillTokensPerS": 945.4171580045246,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 16.803009467877178,
+            "actMs": 1103,
+            "settleMs": 1003,
+            "stepMs": 12554,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 10,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3690,
+                    "firstPieceMs": 3298,
+                    "lastPieceMs": 3686,
+                    "bench": {
+                        "ttftMs": 1578,
+                        "prefillTokens": 1406,
+                        "prefillTokensPerS": 931.3416696388124,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.511737748498058,
+                        "marksMs": {
+                            "vision_executor": 1390
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 208,
+            "resizeMs": 64,
+            "pngMs": 32,
+            "engineMs": 4266,
+            "modelMs": 3690,
+            "ttftMs": 1578,
+            "prefillTokens": 1406,
+            "prefillTokensPerS": 931.3416696388124,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.511737748498058,
+            "actMs": 1114,
+            "settleMs": 1002,
+            "stepMs": 14064,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 11,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3707,
+                    "firstPieceMs": 3315,
+                    "lastPieceMs": 3704,
+                    "bench": {
+                        "ttftMs": 1595,
+                        "prefillTokens": 1406,
+                        "prefillTokensPerS": 921.0826530498664,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.506325427815012,
+                        "marksMs": {
+                            "vision_executor": 1391
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 267,
+            "resizeMs": 67,
+            "pngMs": 32,
+            "engineMs": 4727,
+            "modelMs": 3707,
+            "ttftMs": 1595,
+            "prefillTokens": 1406,
+            "prefillTokensPerS": 921.0826530498664,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.506325427815012,
+            "actMs": 1099,
+            "settleMs": 1001,
+            "stepMs": 14993,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 12,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3769,
+                    "firstPieceMs": 3393,
+                    "lastPieceMs": 3765,
+                    "bench": {
+                        "ttftMs": 1728,
+                        "prefillTokens": 1406,
+                        "prefillTokensPerS": 843.7813605093088,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 16.117592477760173,
+                        "marksMs": {
+                            "vision_executor": 1391
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 243,
+            "resizeMs": 73,
+            "pngMs": 41,
+            "engineMs": 4931,
+            "modelMs": 3769,
+            "ttftMs": 1728,
+            "prefillTokens": 1406,
+            "prefillTokensPerS": 843.7813605093088,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 16.117592477760173,
+            "actMs": 1096,
+            "settleMs": 1001,
+            "stepMs": 15044,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 13,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3564,
+                    "firstPieceMs": 3189,
+                    "lastPieceMs": 3561,
+                    "bench": {
+                        "ttftMs": 1567,
+                        "prefillTokens": 1406,
+                        "prefillTokensPerS": 932.6492646824378,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 16.653225293424835,
+                        "marksMs": {
+                            "vision_executor": 1375
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 280,
+            "resizeMs": 62,
+            "pngMs": 30,
+            "engineMs": 4525,
+            "modelMs": 3564,
+            "ttftMs": 1567,
+            "prefillTokens": 1406,
+            "prefillTokensPerS": 932.6492646824378,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 16.653225293424835,
+            "actMs": 1096,
+            "settleMs": 1001,
+            "stepMs": 12964,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 14,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3615,
+                    "firstPieceMs": 3234,
+                    "lastPieceMs": 3611,
+                    "bench": {
+                        "ttftMs": 1580,
+                        "prefillTokens": 1406,
+                        "prefillTokensPerS": 926.324418431492,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 16.027208628610854,
+                        "marksMs": {
+                            "vision_executor": 1390
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 205,
+            "resizeMs": 62,
+            "pngMs": 62,
+            "engineMs": 4330,
+            "modelMs": 3615,
+            "ttftMs": 1580,
+            "prefillTokens": 1406,
+            "prefillTokensPerS": 926.324418431492,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 16.027208628610854,
+            "actMs": 1103,
+            "settleMs": 1001,
+            "stepMs": 12945,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        },
+        {
+            "step": 15,
+            "intent": "Open Chrome browser",
+            "action": "{\"action_type\":\"wait\"}",
+            "outcome": "waited",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"wait\"}",
+                    "thought": "Open Chrome browser",
+                    "modelMs": 3726,
+                    "firstPieceMs": 3344,
+                    "lastPieceMs": 3722,
+                    "bench": {
+                        "ttftMs": 1620,
+                        "prefillTokens": 1406,
+                        "prefillTokensPerS": 905.4989459425528,
+                        "decodeTokens": 11,
+                        "decodeTokensPerS": 14.861149597548112,
+                        "marksMs": {
+                            "vision_executor": 1402
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 253,
+            "resizeMs": 67,
+            "pngMs": 31,
+            "engineMs": 4850,
+            "modelMs": 3726,
+            "ttftMs": 1620,
+            "prefillTokens": 1406,
+            "prefillTokensPerS": 905.4989459425528,
+            "decodeTokens": 11,
+            "decodeTokensPerS": 14.861149597548112,
+            "actMs": 1099,
+            "settleMs": 1002,
+            "stepMs": 15103,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G1",
+                "G2"
+            ],
+            "historyEntry": "Open Chrome browser -> {\"action_type\":\"wait\"}"
+        }
+    ],
+    "startedAtMs": 1795422943037,
+    "endedAtMs": 1795423156951
+}

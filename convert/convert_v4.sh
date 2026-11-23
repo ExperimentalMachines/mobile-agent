@@ -5,7 +5,8 @@
 # base-model file. Recipe = hf-to-litertlm lfm3vl_work/convert_lfm3_vl.sh (Apache-2.0, third_party/hf-to-litertlm),
 # with the vision re-write and the packer patched for an H x W grid (convert/lfm3vl/).
 # Steps: src template vision float quant pack. A finished step leaves $OUT/.done/<step>.
-# Env: WEIGHTS (model.safetensors of the merged v4), CTX (default 4096), FORMS (default int4), HW (default 1280x576)
+# Env: WEIGHTS (model.safetensors of the merged v4), CTX (default 4096), FORMS (int4 | int8 | f16; default int4),
+#      HW (default 1280x576), KEEP_FLOAT=1 keeps the 16 GB float export after packing (to pack more forms later)
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT=$(pwd)
@@ -25,6 +26,7 @@ for step in "${STEPS[@]}"; do
   case $step in
     src)  # the base revision's code and text files (f83d2b0a, the converter's pin; same code as v4's base 23387be)
           # + the merged v4 weights. The folder name "src" is part of the decoder graph's tensor names, as upstream.
+      "$PY_EXPORT" convert/fetch_base.py   # build/base_f83, each file checked against convert/base_f83.sha256
       rm -rf "$OUT/src"; mkdir -p "$OUT/src"
       cp build/base_f83/* "$OUT/src/"
       ln -s "$WEIGHTS" "$OUT/src/model.safetensors"
@@ -41,7 +43,7 @@ for step in "${STEPS[@]}"; do
     quant)
       for form in emb_wi8 "${FORMS[@]}"; do
         rm -f "$OUT/dec/$form.tflite"
-        run "$PY" -B "$H2L/lfm3vl_work/tools/vl_decoder.py" quant --form "$form" --out "$OUT/dec" --ctx "$CTX"
+        run "$PY" -B "$T/vl_decoder_forms.py" quant --form "$form" --out "$OUT/dec" --ctx "$CTX"
       done ;;
     pack)
       for form in "${FORMS[@]}"; do
@@ -51,7 +53,8 @@ for step in "${STEPS[@]}"; do
           --embedder-tflite "$OUT/dec/emb_wi8.tflite" --decoder-tflite "$OUT/dec/$form.tflite" \
           --encoder "$OUT/tower/vision_encoder_g${HW}_v2.tflite" --adapter "$OUT/tower/vision_adapter_g${HW}_v2_fp16.tflite" \
           --vision-act fp32
-      done ;;
+      done
+      [ -n "${KEEP_FLOAT:-}" ] || rm -rf "$OUT/dec/float" ;;
     *) echo "unknown step $step"; exit 2 ;;
   esac
   touch "$OUT/.done/$step"

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copied unchanged from john-rocky/hf-to-litertlm @ a395b496 (Apache-2.0), lfm3vl_work/tools/vl_template.py.
 """The LFM3-VL bundle's chat template = the source chat_template.jinja (@ f83d2b0a) with four edits, each counted:
 
   1. image parts render <|vision_start|><image_soft_token><|vision_end|> instead of <|vision_start|><|image|><|vision_end|>

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Modified 2026-11-23 for Mobile Agent: --g HxW sets image_tensor_height / image_tensor_width separately. Original: john-rocky/hf-to-litertlm @ a395b496 (Apache-2.0),
+# lfm3vl_work/tools/build_vl_bundle.py. See NOTICE.md.
 """Assemble an LFM3-VL-2B .litertlm VLM bundle (litert-lm-builder 0.18.1).
 
   PY_EXPORT tools/build_vl_bundle.py --name NAME --out-dir OUT --src SRC --template VL.jinja --g 512 \

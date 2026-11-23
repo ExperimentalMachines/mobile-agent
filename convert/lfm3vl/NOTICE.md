@@ -1,7 +1,7 @@
 # Third-party code in this folder
 
 `lfm3_vision.py`, `export_vision.py`, `build_vl_bundle.py`, `vl_template.py` and `lfm3_preprocess.py` are copied from
-[john-rocky/hf-to-litertlm](https://github.com/john-rocky/hf-to-litertlm) (`lfm3vl_work/tools/`, commit `a395b49`,
+[john-rocky/hf-to-litertlm](https://github.com/john-rocky/hf-to-litertlm) (`lfm3vl_work/tools/`, commit `a395b4967fa9e879a5de548d83399b4be2487b1e`,
 Apache-2.0).
 
 | File | Change here |

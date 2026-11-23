@@ -1,0 +1,379 @@
+{
+    "runId": "20261123-002846",
+    "goal": "Type hunter2 into the password field",
+    "model": "MobileAgent v4 (int8, 1280x576, ctx 4096)",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm",
+    "imageGrid": "1280x576",
+    "promptVersion": "v4",
+    "backends": "text GPU, vision GPU",
+    "enginePerStep": false,
+    "enterAfterTyping": true,
+    "loadMs": 3596,
+    "maxSteps": 6,
+    "status": "max_steps",
+    "answer": null,
+    "error": null,
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "installedApps": [
+        "Ambient Service Sample",
+        "AONTest",
+        "APTMM_Camcorder2",
+        "APTMM_ExoPlayer",
+        "APTMM_MediaCodec",
+        "APTMM_MediaPlayer",
+        "APTMM_MediaRecorder",
+        "Calendar",
+        "Cam2test",
+        "CamExtension",
+        "Carrier Test",
+        "CarrierSwitch",
+        "ChannelSoundingTestApp",
+        "Chrome",
+        "Clock",
+        "Connection Manager Test App",
+        "Contacts",
+        "DC Test App",
+        "DcfNearbyClientApp",
+        "Episteme",
+        "FDA",
+        "Files",
+        "FM Radio",
+        "Gallery",
+        "Google",
+        "LibsocHelperTest",
+        "LifeLoggerRefApp",
+        "LocSDKFgServiceTest",
+        "LocSysTest",
+        "LPA Test Application",
+        "LTE Broadcast UI",
+        "LTM Tuning",
+        "MainActivity2",
+        "Messaging",
+        "Multiple PDP Test",
+        "Music",
+        "odp-demo",
+        "Play Store",
+        "Presence",
+        "Proximity Ranging",
+        "QAIOR Screen Understanding Sample App",
+        "QFP Calibration",
+        "QsensorStressAgingTest",
+        "QSensorTest",
+        "QTI Phone",
+        "QtiEmail",
+        "QtiTelephonySettings",
+        "Qualcomm DLT",
+        "Sample Location Attribution",
+        "Settings",
+        "Snapdragon Camera",
+        "SnapdragonSDKTest",
+        "Sound Recorder",
+        "SpectrAEye",
+        "Unified Sensor Test App",
+        "Videos",
+        "Voice Activation",
+        "VoiceAI Usecase",
+        "VTLoopback",
+        "Wfd Client"
+    ],
+    "installedAppCount": 60,
+    "screenGrid": "1280x576",
+    "gridMatches": true,
+    "steps": [
+        {
+            "step": 1,
+            "intent": "Type hunter2 in the password field",
+            "action": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+            "outcome": "no text field is focused",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+                    "thought": "Type hunter2 in the password field",
+                    "modelMs": 2902,
+                    "firstPieceMs": 2182,
+                    "lastPieceMs": 2894,
+                    "bench": {
+                        "ttftMs": 949,
+                        "prefillTokens": 1312,
+                        "prefillTokensPerS": 1449.0614397577365,
+                        "decodeTokens": 22,
+                        "decodeTokensPerS": 22.585253317951572,
+                        "marksMs": {
+                            "vision_executor": 982
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 201,
+            "resizeMs": 53,
+            "pngMs": 25,
+            "engineMs": 3596,
+            "modelMs": 2902,
+            "ttftMs": 949,
+            "prefillTokens": 1312,
+            "prefillTokensPerS": 1449.0614397577365,
+            "decodeTokens": 22,
+            "decodeTokensPerS": 22.585253317951572,
+            "actMs": 118,
+            "settleMs": 1001,
+            "stepMs": 6676,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Type hunter2 in the password field -> {\"action_type\":\"input_text\",\"text\":\"hunter2\"}"
+        },
+        {
+            "step": 2,
+            "intent": "Type hunter2 in the password field",
+            "action": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+            "outcome": "no text field is focused",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+                    "thought": "Type hunter2 in the password field",
+                    "modelMs": 2594,
+                    "firstPieceMs": 1889,
+                    "lastPieceMs": 2590,
+                    "bench": {
+                        "ttftMs": 897,
+                        "prefillTokens": 1333,
+                        "prefillTokensPerS": 1545.5331934152355,
+                        "decodeTokens": 22,
+                        "decodeTokensPerS": 28.546570032876605,
+                        "marksMs": {
+                            "vision_executor": 923
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 251,
+            "resizeMs": 76,
+            "pngMs": 41,
+            "engineMs": null,
+            "modelMs": 2594,
+            "ttftMs": 897,
+            "prefillTokens": 1333,
+            "prefillTokensPerS": 1545.5331934152355,
+            "decodeTokens": 22,
+            "decodeTokensPerS": 28.546570032876605,
+            "actMs": 95,
+            "settleMs": 1001,
+            "stepMs": 4103,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Type hunter2 in the password field -> {\"action_type\":\"input_text\",\"text\":\"hunter2\"}"
+        },
+        {
+            "step": 3,
+            "intent": "Type hunter2 in the password field",
+            "action": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+            "outcome": "no text field is focused",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+                    "thought": "Type hunter2 in the password field",
+                    "modelMs": 2909,
+                    "firstPieceMs": 2178,
+                    "lastPieceMs": 2906,
+                    "bench": {
+                        "ttftMs": 1099,
+                        "prefillTokens": 1356,
+                        "prefillTokensPerS": 1275.585433462302,
+                        "decodeTokens": 22,
+                        "decodeTokensPerS": 27.133465043694898,
+                        "marksMs": {
+                            "vision_executor": 1012
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 235,
+            "resizeMs": 54,
+            "pngMs": 41,
+            "engineMs": null,
+            "modelMs": 2909,
+            "ttftMs": 1099,
+            "prefillTokens": 1356,
+            "prefillTokensPerS": 1275.585433462302,
+            "decodeTokens": 22,
+            "decodeTokensPerS": 27.133465043694898,
+            "actMs": 97,
+            "settleMs": 1001,
+            "stepMs": 4387,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Type hunter2 in the password field -> {\"action_type\":\"input_text\",\"text\":\"hunter2\"}"
+        },
+        {
+            "step": 4,
+            "intent": "Type hunter2 in the password field",
+            "action": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+            "outcome": "no text field is focused",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+                    "thought": "Type hunter2 in the password field",
+                    "modelMs": 3678,
+                    "firstPieceMs": 2856,
+                    "lastPieceMs": 3674,
+                    "bench": {
+                        "ttftMs": 1508,
+                        "prefillTokens": 1379,
+                        "prefillTokensPerS": 940.1040178260956,
+                        "decodeTokens": 22,
+                        "decodeTokensPerS": 23.93429898286116,
+                        "marksMs": {
+                            "vision_executor": 1260
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 237,
+            "resizeMs": 67,
+            "pngMs": 34,
+            "engineMs": null,
+            "modelMs": 3678,
+            "ttftMs": 1508,
+            "prefillTokens": 1379,
+            "prefillTokensPerS": 940.1040178260956,
+            "decodeTokens": 22,
+            "decodeTokensPerS": 23.93429898286116,
+            "actMs": 107,
+            "settleMs": 1001,
+            "stepMs": 5173,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Type hunter2 in the password field -> {\"action_type\":\"input_text\",\"text\":\"hunter2\"}"
+        },
+        {
+            "step": 5,
+            "intent": "Type hunter2 in the password field",
+            "action": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+            "outcome": "no text field is focused",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+                    "thought": "Type hunter2 in the password field",
+                    "modelMs": 3682,
+                    "firstPieceMs": 2881,
+                    "lastPieceMs": 3678,
+                    "bench": {
+                        "ttftMs": 1505,
+                        "prefillTokens": 1402,
+                        "prefillTokensPerS": 956.6430156901096,
+                        "decodeTokens": 22,
+                        "decodeTokensPerS": 24.845261200484014,
+                        "marksMs": {
+                            "vision_executor": 1298
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 250,
+            "resizeMs": 72,
+            "pngMs": 35,
+            "engineMs": null,
+            "modelMs": 3682,
+            "ttftMs": 1505,
+            "prefillTokens": 1402,
+            "prefillTokensPerS": 956.6430156901096,
+            "decodeTokens": 22,
+            "decodeTokensPerS": 24.845261200484014,
+            "actMs": 94,
+            "settleMs": 1001,
+            "stepMs": 5181,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Type hunter2 in the password field -> {\"action_type\":\"input_text\",\"text\":\"hunter2\"}"
+        },
+        {
+            "step": 6,
+            "intent": "Type hunter2 in the password field",
+            "action": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+            "outcome": "no text field is focused",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"input_text\",\"text\":\"hunter2\"}",
+                    "thought": "Type hunter2 in the password field",
+                    "modelMs": 3734,
+                    "firstPieceMs": 2913,
+                    "lastPieceMs": 3731,
+                    "bench": {
+                        "ttftMs": 1507,
+                        "prefillTokens": 1425,
+                        "prefillTokensPerS": 971.8562720163425,
+                        "decodeTokens": 22,
+                        "decodeTokensPerS": 24.03940961369165,
+                        "marksMs": {
+                            "vision_executor": 1316
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 257,
+            "resizeMs": 64,
+            "pngMs": 41,
+            "engineMs": null,
+            "modelMs": 3734,
+            "ttftMs": 1507,
+            "prefillTokens": 1425,
+            "prefillTokensPerS": 971.8562720163425,
+            "decodeTokens": 22,
+            "decodeTokensPerS": 24.03940961369165,
+            "actMs": 106,
+            "settleMs": 1002,
+            "stepMs": 5250,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Type hunter2 in the password field -> {\"action_type\":\"input_text\",\"text\":\"hunter2\"}"
+        }
+    ],
+    "startedAtMs": 1795422526355,
+    "endedAtMs": 1795422560745
+}

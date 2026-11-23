@@ -1,0 +1,118 @@
+{
+ "labels": [
+  "Calendar",
+  "Chrome",
+  "Clock",
+  "Contacts",
+  "Files",
+  "Gallery",
+  "Messaging",
+  "Music",
+  "Settings",
+  "Sound Recorder",
+  "Snapdragon Camera",
+  "QTI Phone",
+  "Play Store",
+  "Google",
+  "Videos",
+  "Voice Activation"
+ ],
+ "cases": {
+  "Clock app": [
+   "Clock",
+   1.0
+  ],
+  "Calender": [
+   "Calendar",
+   1.0
+  ],
+  "Messages": [
+   null,
+   0.0
+  ],
+  "Message": [
+   null,
+   0.0
+  ],
+  "Camera": [
+   "Snapdragon Camera",
+   1.0
+  ],
+  "Phone": [
+   "QTI Phone",
+   1.0
+  ],
+  "Recorder": [
+   "Sound Recorder",
+   1.0
+  ],
+  "Google Chrome": [
+   "Chrome",
+   1.0
+  ],
+  "Photos": [
+   null,
+   0.0
+  ],
+  "Maps": [
+   null,
+   0.0
+  ],
+  "Settings app": [
+   "Settings",
+   1.0
+  ],
+  "Sound recorder app": [
+   "Sound Recorder",
+   1.0
+  ],
+  "Contact": [
+   "Contacts",
+   1.0
+  ],
+  "Galery": [
+   "Gallery",
+   1.0
+  ],
+  "Playstore": [
+   "Play Store",
+   1.0
+  ],
+  "Video": [
+   "Videos",
+   1.0
+  ]
+ },
+ "ratios": [
+  [
+   "messages",
+   "messaging",
+   0.7058823529411765
+  ],
+  [
+   "calender",
+   "calendar",
+   0.875
+  ],
+  [
+   "galery",
+   "gallery",
+   0.9230769230769231
+  ],
+  [
+   "playstore",
+   "play",
+   0.6153846153846154
+  ],
+  [
+   "abcde",
+   "abxde",
+   0.8
+  ],
+  [
+   "recorder",
+   "recording",
+   0.7058823529411765
+  ]
+ ]
+}

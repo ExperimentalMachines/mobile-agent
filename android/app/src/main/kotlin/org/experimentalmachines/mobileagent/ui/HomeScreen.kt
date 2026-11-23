@@ -54,7 +54,23 @@ import org.experimentalmachines.mobileagent.MobileAgentApp
 import org.experimentalmachines.mobileagent.agent.AgentService
 import org.experimentalmachines.mobileagent.agent.RunState
 import org.experimentalmachines.mobileagent.model.LlmRuntime
+import org.experimentalmachines.mobileagent.model.ModelSpec
+import org.experimentalmachines.mobileagent.protocol.AgentFormat
+import android.view.WindowManager
 import java.util.Locale
+
+/**
+ * This screen against the model file's grid: training resized each screenshot with smart_resize, so the file matches
+ * a screen only when smart_resize gives its grid (1280 x 576: most 20:9 portrait phones). Returns a line for the UI and
+ * whether it matches.
+ */
+fun screenGridCheck(context: Context, spec: ModelSpec): Pair<String, Boolean> {
+    val b = context.getSystemService(WindowManager::class.java).currentWindowMetrics.bounds
+    val (h, w) = AgentFormat.smartResize(b.height(), b.width())
+    val ok = h == spec.imageHeight && w == spec.imageWidth
+    return (if (ok) "This screen (${b.width()}×${b.height()}) gives the same ${h}×$w grid as training"
+    else "This screen (${b.width()}×${b.height()}) would give a ${h}×$w grid in training, not ${spec.imageHeight}×${spec.imageWidth}: screenshots are stretched (accuracy not measured)") to ok
+}
 
 /** The three grants the app needs, read live. */
 data class Grants(val accessibility: Boolean, val accessibilityEnabledNotBound: Boolean, val overlay: Boolean, val notifications: Boolean) {
@@ -91,6 +107,9 @@ fun HomeScreen(onOpenSettings: () -> Unit, onOpenLog: (String?) -> Unit) {
     val run by app.controller.state.collectAsState()
     val settings by app.settings.values.collectAsState()
     var goal by rememberSaveable { mutableStateOf("") }
+    val entries by app.models.entries.collectAsState()
+    val spec = (entries.firstOrNull { it.sidecar.name == settings.modelSidecar } ?: entries.firstOrNull())?.spec
+    val grid = spec?.let { onResumeValue { screenGridCheck(context, it) } }
 
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Row(Modifier.fillMaxWidth().padding(top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -111,7 +130,8 @@ fun HomeScreen(onOpenSettings: () -> Unit, onOpenLog: (String?) -> Unit) {
             onGoal = { goal = it },
             run = run,
             canRun = grants.ready && !app.controller.running,
-            limitLine = "Step limit ${settings.maxSteps} · ${if (settings.enginePerStep) "new engine every step" else "one engine per run"}",
+            limitLine = "Step limit ${settings.maxSteps} · ${if (settings.enginePerStep) "new engine every step" else "new engine per run"}",
+            gridWarning = grid?.takeIf { !it.second }?.first,
             onRun = { app.controller.start(goal) },
             onPause = { app.controller.setPaused(it) },
             onStop = { app.controller.stop() },
@@ -249,6 +269,10 @@ private fun ModelCard() {
                     style = MaterialTheme.typography.bodySmall,
                     color = if (problem == null) MaterialTheme.colorScheme.onSurfaceVariant else LocalStatus.current.warn,
                 )
+                spec?.let { s ->
+                    val (line, ok) = onResumeValue { screenGridCheck(context, s) }
+                    Text(line, style = MaterialTheme.typography.bodySmall, color = if (ok) MaterialTheme.colorScheme.onSurfaceVariant else LocalStatus.current.warn)
+                }
             }
         }
         val loadedHere = (state as? LlmRuntime.State.Ready)?.loaded?.takeIf { it.file == selected.modelFile }
@@ -294,6 +318,7 @@ private fun GoalCard(
     onStop: () -> Unit,
     onOpenRun: (String) -> Unit,
     onDismiss: () -> Unit,
+    gridWarning: String? = null,
 ) {
     Section("Goal") {
         when (run) {
@@ -325,6 +350,7 @@ private fun GoalCard(
                     Button(onClick = onRun, enabled = canRun && goal.isNotBlank()) { Text("Run") }
                 }
                 if (!canRun) Text("Turn on Accessibility first.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                gridWarning?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = LocalStatus.current.warn) }
                 if (run is RunState.Finished) {
                     Surface(color = MaterialTheme.colorScheme.surfaceContainerHigh, shape = RoundedCornerShape(12.dp)) {
                         Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {

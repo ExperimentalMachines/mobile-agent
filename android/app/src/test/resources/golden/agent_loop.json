@@ -1,0 +1,263 @@
+[
+ {
+  "name": "long_answer",
+  "goal": "What version is this?",
+  "apps": [
+   "Chrome",
+   "Clock",
+   "Settings"
+  ],
+  "max_steps": 20,
+  "replies": [
+   {
+    "reasoning": "Open Settings\nsecond line",
+    "content": "{\"action_type\":\"open_app\",\"app_name\":\"Settings\"}"
+   },
+   {
+    "reasoning": "",
+    "content": "I am not sure"
+   },
+   {
+    "reasoning": "",
+    "content": "<think>still thinking"
+   },
+   {
+    "reasoning": "",
+    "content": "<think>Scroll down</think>{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+   },
+   {
+    "reasoning": "Type it",
+    "content": "{\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}"
+   },
+   {
+    "reasoning": "nonsense first",
+    "content": "{}"
+   },
+   {
+    "reasoning": "Press enter",
+    "content": "{\"action_type\":\"keyboard_enter\"}"
+   },
+   {
+    "reasoning": "Tap at 100,200",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[100,200]}"
+   },
+   {
+    "reasoning": "Tap at 110,210",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[110,210]}"
+   },
+   {
+    "reasoning": "Tap at 120,220",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[120,220]}"
+   },
+   {
+    "reasoning": "Tap at 130,230",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[130,230]}"
+   },
+   {
+    "reasoning": "Tap at 140,240",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[140,240]}"
+   },
+   {
+    "reasoning": "Tap at 150,250",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[150,250]}"
+   },
+   {
+    "reasoning": "Tap at 160,260",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[160,260]}"
+   },
+   {
+    "reasoning": "Tap at 170,270",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[170,270]}"
+   },
+   {
+    "reasoning": "Wait for it",
+    "content": "{\"action_type\":\"wait\"} trailing"
+   },
+   {
+    "reasoning": "The answer is on screen",
+    "content": "{\"action_type\":\"answer\",\"text\":\"Android 17\"}"
+   }
+  ],
+  "calls": [
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\nNone\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Open Settings -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\n8. Tap at 120,220 -> {\"action_type\":\"click\",\"point_2d\":[120,220]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n2. (invalid output) -> <think>still thinking\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\n8. Tap at 120,220 -> {\"action_type\":\"click\",\"point_2d\":[120,220]}\n9. Tap at 130,230 -> {\"action_type\":\"click\",\"point_2d\":[130,230]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n3. Scroll down -> {\"action_type\":\"scroll\",\"direction\":\"down\"}\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\n8. Tap at 120,220 -> {\"action_type\":\"click\",\"point_2d\":[120,220]}\n9. Tap at 130,230 -> {\"action_type\":\"click\",\"point_2d\":[130,230]}\n10. Tap at 140,240 -> {\"action_type\":\"click\",\"point_2d\":[140,240]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n4. Type it -> {\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\n8. Tap at 120,220 -> {\"action_type\":\"click\",\"point_2d\":[120,220]}\n9. Tap at 130,230 -> {\"action_type\":\"click\",\"point_2d\":[130,230]}\n10. Tap at 140,240 -> {\"action_type\":\"click\",\"point_2d\":[140,240]}\n11. Tap at 150,250 -> {\"action_type\":\"click\",\"point_2d\":[150,250]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n5. Press enter -> {\"action_type\":\"keyboard_enter\"}\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\n8. Tap at 120,220 -> {\"action_type\":\"click\",\"point_2d\":[120,220]}\n9. Tap at 130,230 -> {\"action_type\":\"click\",\"point_2d\":[130,230]}\n10. Tap at 140,240 -> {\"action_type\":\"click\",\"point_2d\":[140,240]}\n11. Tap at 150,250 -> {\"action_type\":\"click\",\"point_2d\":[150,250]}\n12. Tap at 160,260 -> {\"action_type\":\"click\",\"point_2d\":[160,260]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n6. Tap at 100,200 -> {\"action_type\":\"click\",\"point_2d\":[100,200]}\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\n8. Tap at 120,220 -> {\"action_type\":\"click\",\"point_2d\":[120,220]}\n9. Tap at 130,230 -> {\"action_type\":\"click\",\"point_2d\":[130,230]}\n10. Tap at 140,240 -> {\"action_type\":\"click\",\"point_2d\":[140,240]}\n11. Tap at 150,250 -> {\"action_type\":\"click\",\"point_2d\":[150,250]}\n12. Tap at 160,260 -> {\"action_type\":\"click\",\"point_2d\":[160,260]}\n13. Tap at 170,270 -> {\"action_type\":\"click\",\"point_2d\":[170,270]}\nWhat is the next action?",
+   "Goal: What version is this?\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n7. Tap at 110,210 -> {\"action_type\":\"click\",\"point_2d\":[110,210]}\n8. Tap at 120,220 -> {\"action_type\":\"click\",\"point_2d\":[120,220]}\n9. Tap at 130,230 -> {\"action_type\":\"click\",\"point_2d\":[130,230]}\n10. Tap at 140,240 -> {\"action_type\":\"click\",\"point_2d\":[140,240]}\n11. Tap at 150,250 -> {\"action_type\":\"click\",\"point_2d\":[150,250]}\n12. Tap at 160,260 -> {\"action_type\":\"click\",\"point_2d\":[160,260]}\n13. Tap at 170,270 -> {\"action_type\":\"click\",\"point_2d\":[170,270]}\n14. Wait for it -> {\"action_type\":\"wait\"}\nWhat is the next action?"
+  ],
+  "executed": [
+   "{\"action_type\":\"open_app\",\"app_name\":\"Settings\"}",
+   "{\"action_type\":\"scroll\",\"direction\":\"down\"}",
+   "{\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}",
+   "{\"action_type\":\"keyboard_enter\"}",
+   "{\"action_type\":\"click\",\"point_2d\":[100,200]}",
+   "{\"action_type\":\"click\",\"point_2d\":[110,210]}",
+   "{\"action_type\":\"click\",\"point_2d\":[120,220]}",
+   "{\"action_type\":\"click\",\"point_2d\":[130,230]}",
+   "{\"action_type\":\"click\",\"point_2d\":[140,240]}",
+   "{\"action_type\":\"click\",\"point_2d\":[150,250]}",
+   "{\"action_type\":\"click\",\"point_2d\":[160,260]}",
+   "{\"action_type\":\"click\",\"point_2d\":[170,270]}",
+   "{\"action_type\":\"wait\"}",
+   "{\"action_type\":\"answer\",\"text\":\"Android 17\"}"
+  ],
+  "status": "answered",
+  "answer": "Android 17",
+  "history": [
+   [
+    "Open Settings",
+    "{\"action_type\":\"open_app\",\"app_name\":\"Settings\"}"
+   ],
+   [
+    "(invalid output)",
+    "<think>still thinking"
+   ],
+   [
+    "Scroll down",
+    "{\"action_type\":\"scroll\",\"direction\":\"down\"}"
+   ],
+   [
+    "Type it",
+    "{\"action_type\":\"input_text\",\"text\":\"café \\\"7\\\"\"}"
+   ],
+   [
+    "Press enter",
+    "{\"action_type\":\"keyboard_enter\"}"
+   ],
+   [
+    "Tap at 100,200",
+    "{\"action_type\":\"click\",\"point_2d\":[100,200]}"
+   ],
+   [
+    "Tap at 110,210",
+    "{\"action_type\":\"click\",\"point_2d\":[110,210]}"
+   ],
+   [
+    "Tap at 120,220",
+    "{\"action_type\":\"click\",\"point_2d\":[120,220]}"
+   ],
+   [
+    "Tap at 130,230",
+    "{\"action_type\":\"click\",\"point_2d\":[130,230]}"
+   ],
+   [
+    "Tap at 140,240",
+    "{\"action_type\":\"click\",\"point_2d\":[140,240]}"
+   ],
+   [
+    "Tap at 150,250",
+    "{\"action_type\":\"click\",\"point_2d\":[150,250]}"
+   ],
+   [
+    "Tap at 160,260",
+    "{\"action_type\":\"click\",\"point_2d\":[160,260]}"
+   ],
+   [
+    "Tap at 170,270",
+    "{\"action_type\":\"click\",\"point_2d\":[170,270]}"
+   ],
+   [
+    "Wait for it",
+    "{\"action_type\":\"wait\"}"
+   ],
+   [
+    "The answer is on screen",
+    "{\"action_type\":\"answer\",\"text\":\"Android 17\"}"
+   ]
+  ]
+ },
+ {
+  "name": "step_limit",
+  "goal": "Tap around",
+  "apps": [
+   "Chrome",
+   "Clock",
+   "Settings"
+  ],
+  "max_steps": 3,
+  "replies": [
+   {
+    "reasoning": "Tap at 500,500",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[500,500]}"
+   },
+   {
+    "reasoning": "",
+    "content": "??"
+   },
+   {
+    "reasoning": "",
+    "content": "??"
+   },
+   {
+    "reasoning": "Tap at 1,2",
+    "content": "{\"action_type\":\"click\",\"point_2d\":[1,2]}"
+   }
+  ],
+  "calls": [
+   "Goal: Tap around\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\nNone\nWhat is the next action?",
+   "Goal: Tap around\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Tap at 500,500 -> {\"action_type\":\"click\",\"point_2d\":[500,500]}\nWhat is the next action?",
+   "Goal: Tap around\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Tap at 500,500 -> {\"action_type\":\"click\",\"point_2d\":[500,500]}\nWhat is the next action?",
+   "Goal: Tap around\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\n1. Tap at 500,500 -> {\"action_type\":\"click\",\"point_2d\":[500,500]}\n2. (invalid output) -> ??\nWhat is the next action?"
+  ],
+  "executed": [
+   "{\"action_type\":\"click\",\"point_2d\":[500,500]}",
+   "{\"action_type\":\"click\",\"point_2d\":[1,2]}"
+  ],
+  "status": "max_steps",
+  "answer": null,
+  "history": [
+   [
+    "Tap at 500,500",
+    "{\"action_type\":\"click\",\"point_2d\":[500,500]}"
+   ],
+   [
+    "(invalid output)",
+    "??"
+   ],
+   [
+    "Tap at 1,2",
+    "{\"action_type\":\"click\",\"point_2d\":[1,2]}"
+   ]
+  ]
+ },
+ {
+  "name": "infeasible",
+  "goal": "Fly",
+  "apps": [
+   "Chrome",
+   "Clock",
+   "Settings"
+  ],
+  "max_steps": 5,
+  "replies": [
+   {
+    "reasoning": "Nothing to do",
+    "content": "{\"action_type\":\"status\",\"goal_status\":\"infeasible\"}"
+   }
+  ],
+  "calls": [
+   "Goal: Fly\nInstalled apps: Chrome, Clock, Settings\nPrevious steps:\nNone\nWhat is the next action?"
+  ],
+  "executed": [],
+  "status": "infeasible",
+  "answer": null,
+  "history": [
+   [
+    "Nothing to do",
+    "{\"action_type\":\"status\",\"goal_status\":\"infeasible\"}"
+   ]
+  ]
+ }
+]

@@ -50,7 +50,7 @@ def main():
   report = {"n_common": len(ids), "files": {}}
   preds = []
   for f, o in zip(a.files, outs):
-    res = {"all": [0, 0, 0, 0], "high": [0, 0, 0, 0], "low": [0, 0, 0, 0]}  # n, parse, type, step
+    res = {"all": [0, 0, 0, 0]}  # per mode: n, parse, type, step
     pr, secs = {}, []
     for i in ids:
       r = rows[i]
@@ -59,6 +59,7 @@ def main():
       p = af.parse_action(o[i]["content"])
       pr[i] = p
       t_ok, s_ok = match(p, r["gt_action"], bbox)
+      res.setdefault(r["mode"], [0, 0, 0, 0])
       for k in ("all", r["mode"]):
         res[k][0] += 1; res[k][1] += p is not None; res[k][2] += t_ok; res[k][3] += s_ok
       secs.append(o[i].get("seconds") or 0)

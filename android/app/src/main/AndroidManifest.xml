@@ -82,24 +82,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- adb test hooks; DUMP is held by adb's shell only. -->
-        <receiver
-            android:name=".host.HostCommandReceiver"
-            android:exported="true"
-            android:permission="android.permission.DUMP">
-            <intent-filter>
-                <action android:name="org.experimentalmachines.mobileagent.RUN_GOAL" />
-                <action android:name="org.experimentalmachines.mobileagent.STOP" />
-                <action android:name="org.experimentalmachines.mobileagent.ALLOW" />
-                <action android:name="org.experimentalmachines.mobileagent.SKIP" />
-                <action android:name="org.experimentalmachines.mobileagent.PAUSE" />
-                <action android:name="org.experimentalmachines.mobileagent.RESUME" />
-                <action android:name="org.experimentalmachines.mobileagent.LOAD" />
-                <action android:name="org.experimentalmachines.mobileagent.UNLOAD" />
-                <action android:name="org.experimentalmachines.mobileagent.BENCH" />
-                <action android:name="org.experimentalmachines.mobileagent.RENDER" />
-                <action android:name="org.experimentalmachines.mobileagent.WINDOWS" />
-            </intent-filter>
-        </receiver>
     </application>
 </manifest>

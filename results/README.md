@@ -10,8 +10,13 @@ The raw outputs behind the numbers in [`../README.md`](../README.md) and [`../do
 | `gguf_v4.jsonl` | Reference: v4 Q4_K_M GGUF, llama.cpp `cd959bae9` with the evaluation flags (Mac M5, Metal) |
 | `litert_v4_int4_shared.jsonl` | The `.litertlm` file, LiteRT-LM 0.19.1 Python, Mac GPU, one engine for all rows |
 | `litert_v4_int4_perrow30.jsonl` | The same file with a new engine per row, first 30 rows (LiteRT-LM issue #3165 check) |
-| `compare_gguf_vs_litert_shared.json` | `convert/parity/compare.py` output: accuracy per file, agreement, paired counts |
+| `compare_gguf_vs_litert_shared.json` | `convert/parity/compare.py` output: accuracy per file, agreement, paired counts (GGUF as the reference) |
 | `check_vision.txt` | `convert/parity/check_vision.py`: per-token cosine of the exported vision graphs vs the original model, 6 screenshots |
+| `hf_bf16_v4.jsonl` | The unquantized reference: merged v4 in Transformers bf16 (Mac MPS), as the published AndroidControl numbers were made (`convert/parity/run_hf.py`) |
+| `litert_v4_int8.jsonl`, `litert_v4_f16.jsonl` | The int8 and fp16 decoder files on the Mac (LiteRT-LM 0.19.1 Python, GPU) |
+| `litert_phone_int4.jsonl`, `litert_phone_int8.jsonl` | The same 180 rows on the phone through the app's `PARITY` hook (QDC session 2, device b3ba6e19, 11.5 GB RAM) |
+| `compare_all_vs_bf16.json` | Every run above against bf16 |
+| `set_terminal_rows.jsonl`, `terminal_*.jsonl`, `compare_terminal.json` | 60 terminal steps (ground truth `status complete`), GGUF and LiteRT int4 on the Mac |
 
 ## phone/: the app on the QDC phone
 

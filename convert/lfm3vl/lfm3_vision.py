@@ -1,3 +1,5 @@
+# Modified 2026-11-23 for Mobile Agent: the vision tower and projector take a fixed H x W grid. Original: john-rocky/hf-to-litertlm @ a395b496 (Apache-2.0),
+# lfm3vl_work/tools/lfm3_vision.py. See NOTICE.md.
 """[mobile-agent: patched for a fixed H x W grid; g = int side or (h, w)]
 Plain-PyTorch re-author of the LFM3-VL vision tower + projector for ONE fixed G x G image (no transformers
 import), split for the LiteRT-LM fast_vlm / generic image contract:

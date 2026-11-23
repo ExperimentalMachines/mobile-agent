@@ -1,3 +1,4 @@
+# Copied unchanged from john-rocky/hf-to-litertlm @ a395b496 (Apache-2.0), lfm3vl_work/tools/lfm3_preprocess.py.
 """Host-side image preparation for the LFM3-VL fixed-grid tower (fast_vlm / generic image path), and how it differs
 from the Hugging Face processor.
 

@@ -1,0 +1,200 @@
+{
+ "n_common": 180,
+ "files": {
+  "hf_bf16_v4.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.822,
+    "step_acc": 0.772
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.783,
+    "step_acc": 0.725
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.9,
+    "step_acc": 0.867
+   },
+   "median_s": 3.715
+  },
+  "gguf_v4.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.856,
+    "step_acc": 0.8
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.825,
+    "step_acc": 0.758
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.917,
+    "step_acc": 0.883
+   },
+   "median_s": 2.136,
+   "vs_ref": {
+    "same_action": 0.894,
+    "same_intent_text": 0.661,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 5.0,
+    "right_only_in_ref": 1,
+    "right_only_here": 6
+   }
+  },
+  "litert_v4_int4_shared.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.85,
+    "step_acc": 0.8
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.817,
+    "step_acc": 0.75
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.917,
+    "step_acc": 0.9
+   },
+   "median_s": 6.745,
+   "vs_ref": {
+    "same_action": 0.833,
+    "same_intent_text": 0.594,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 118.0,
+    "right_only_in_ref": 4,
+    "right_only_here": 9
+   }
+  },
+  "litert_v4_int8.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.828,
+    "step_acc": 0.783
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.792,
+    "step_acc": 0.733
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.9,
+    "step_acc": 0.883
+   },
+   "median_s": 4.947,
+   "vs_ref": {
+    "same_action": 0.9,
+    "same_intent_text": 0.622,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 3.0,
+    "right_only_in_ref": 3,
+    "right_only_here": 5
+   }
+  },
+  "litert_v4_f16.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.833,
+    "step_acc": 0.783
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.8,
+    "step_acc": 0.733
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.9,
+    "step_acc": 0.883
+   },
+   "median_s": 5.212,
+   "vs_ref": {
+    "same_action": 0.906,
+    "same_intent_text": 0.639,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 3.0,
+    "right_only_in_ref": 4,
+    "right_only_here": 6
+   }
+  },
+  "litert_phone_int4.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.844,
+    "step_acc": 0.794
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.808,
+    "step_acc": 0.742
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.917,
+    "step_acc": 0.9
+   },
+   "median_s": 4.069,
+   "vs_ref": {
+    "same_action": 0.844,
+    "same_intent_text": 0.578,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 103.0,
+    "right_only_in_ref": 4,
+    "right_only_here": 8
+   }
+  },
+  "litert_phone_int8.jsonl": {
+   "all": {
+    "n": 180,
+    "parse": 1.0,
+    "type": 0.828,
+    "step_acc": 0.783
+   },
+   "high": {
+    "n": 120,
+    "parse": 1.0,
+    "type": 0.792,
+    "step_acc": 0.733
+   },
+   "low": {
+    "n": 60,
+    "parse": 1.0,
+    "type": 0.9,
+    "step_acc": 0.883
+   },
+   "median_s": 3.633,
+   "vs_ref": {
+    "same_action": 0.906,
+    "same_intent_text": 0.639,
+    "point_dist_median": 0.0,
+    "point_dist_p90": 2.0,
+    "right_only_in_ref": 3,
+    "right_only_here": 5
+   }
+  }
+ }
+}

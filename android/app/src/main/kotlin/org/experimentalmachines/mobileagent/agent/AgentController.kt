@@ -86,18 +86,27 @@ class AgentController(
 
     val running: Boolean get() = job?.isActive == true
 
-    data class Options(val maxSteps: Int, val enginePerStep: Boolean, val confirmRisky: Boolean)
+    data class Options(
+        val maxSteps: Int,
+        val enginePerStep: Boolean,
+        val confirmRisky: Boolean,
+        val enterAfterTyping: Boolean,
+        /** Goal, intents, actions and answers in the logcat lines (redacted secrets excepted). */
+        val verboseLogs: Boolean,
+        /** Debug builds only: fixed model replies, one per step, instead of the model (tests the loop itself). */
+        val script: List<String>? = null,
+    )
 
     fun start(goal: String, options: Options? = null): Boolean {
         val g = goal.trim()
         if (g.isEmpty() || running) return false
         val s = settings.current
-        val o = options ?: Options(s.maxSteps, s.enginePerStep, s.confirmRisky)
+        val o = options ?: Options(s.maxSteps, s.enginePerStep, s.confirmRisky, s.enterAfterTyping, s.verboseLogs)
         paused.value = false
         _state.value = RunState.Running(g, 0, o.maxSteps, "Starting", null, null, false, null)
         RunService.start(context)
         overlay.show()
-        job = models.scope.launch { run(g, o) }
+        job = models.exclusive { run(g, o) }
         return true
     }
 
@@ -133,12 +142,8 @@ class AgentController(
     private suspend fun run(goal: String, o: Options) {
         val started = System.currentTimeMillis()
         val runId = SimpleDateFormat("yyyyMMdd-HHmmss", Locale.ROOT).format(Date(started))
-        val steps = mutableListOf<StepRecord>()
-        val history = mutableListOf<AgentFormat.Step>()
-        val loopGuard = LoopGuard()
         val s = settings.current
-        var status = "error"
-        var answer: String? = null
+        val out = AgentLoop.Outcome()
         var error: String? = null
         var loaded: LlmRuntime.Loaded? = null
         var firstLoadMs: Long? = null
@@ -146,150 +151,32 @@ class AgentController(
         try {
             val service = AgentService.instance ?: throw IllegalStateException("Turn on Mobile Agent in Accessibility settings first.")
             update { it.copy(phase = "Loading the model") }
-            if (o.enginePerStep) {
-                loaded = models.loadFresh() // step 1's engine; every later step creates its own
-                firstLoadMs = loaded.loadMs
+            if (o.script != null) {
+                loaded = models.selectedSpec() // scripted replies: the model's grid and prompt, no engine
             } else {
-                val before = models.runtime.loaded
-                loaded = models.ensureLoaded()
-                firstLoadMs = if (loaded !== before) loaded.loadMs else null // null: the engine was already loaded
+                // A new engine for every run (LiteRT-LM #3165: a conversation can inherit state from earlier ones on the
+                // same engine), unless the loaded one has not served a request yet; engine-per-step makes one per step.
+                val l = models.engineForRun()
+                loaded = l.first
+                firstLoadMs = l.second
             }
             val spec = loaded.spec
             appNames = InstalledApps.promptNames(InstalledApps.list(context))
-            val apps = if (spec.promptVersion == "v4") appNames else null
-            status = "max_steps"
-            for (step in 1..o.maxSteps) {
-                awaitResumed()
-                screenUnavailable()?.let { reason ->
-                    status = "needs_user"
-                    answer = reason
-                    break
-                }
-                val s0 = SystemClock.elapsedRealtime()
-                update { it.copy(step = step, phase = "Looking") }
-                // 1. Screenshot, without the floating control in it.
-                val shot = StallWatch.phase("screenshot (step $step)", 30_000) { overlay.whileHidden { service.screenshot() } }
-                val shotMs = SystemClock.elapsedRealtime() - s0
-                val w = shot.width
-                val h = shot.height
-                val prep = ImagePrep.toModelPng(shot, spec.imageHeight, spec.imageWidth)
-                val thumb = grayThumb(shot)
-                saveThumb(shot, File(runs.runDir(runId), "step-%02d.jpg".format(step)))
-                shot.recycle()
-
-                // 2. The model: a new conversation (and, in engine-per-step mode, a new engine).
-                var engineMs: Long? = if (step == 1) firstLoadMs else null
-                if (o.enginePerStep && step > 1) {
-                    update { it.copy(phase = "Loading the model") }
-                    val l = loaded!!
-                    loaded = models.runtime.load(l.spec, l.file, l.textBackend, l.visionBackend)
-                    engineMs = loaded.loadMs
-                }
-                val (system, user) = AgentFormat.messages(spec.promptVersion, goal, history, apps)
-                update { it.copy(phase = "Thinking", intent = null, action = null) }
-                val attempts = mutableListOf<Attempt>()
-                var reply: LlmRuntime.Reply? = null
-                var action: AgentFormat.Action? = null
-                for (k in 0..MAX_PARSE_RETRIES) {
-                    val r = StallWatch.phase("model (step $step)", 300_000) {
-                        models.runtime.generate(prep.png, system, user, MAX_OUTPUT_TOKENS, spec.enableThinking) { thought, _ ->
-                            val i = AgentFormat.intent(thought, "")
-                            if (i.isNotEmpty()) update { st -> if (st.intent == i) st else st.copy(intent = i) }
-                        }
-                    }
-                    reply = r
-                    action = AgentFormat.parseAction(r.text)
-                    attempts += Attempt(r.text, r.thought, r.totalMs, r.firstPieceMs, r.lastPieceMs, r.bench, action != null, AgentFormat.parseAction(r.text, strict = true) != null)
-                    if (action != null) break
-                }
-                val modelMs = attempts.sumOf { it.modelMs }
-                val b0 = attempts.first().bench
-                val r = reply!!
-
-                fun record(intent: String, actionStr: String?, outcome: String, actMs: Long, settleMs: Long, tap: Pair<Int, Int>? = null, guard: String? = null, rules: List<String> = emptyList()) {
-                    val rec = StepRecord(
-                        step = step, intent = intent, action = actionStr, outcome = outcome, attempts = attempts,
-                        screenshotMs = shotMs, resizeMs = prep.resizeMs, pngMs = prep.encodeMs, engineMs = engineMs, modelMs = modelMs,
-                        ttftMs = b0?.ttftMs, prefillTokens = b0?.prefillTokens, prefillTokensPerS = b0?.prefillTokensPerS,
-                        decodeTokens = b0?.decodeTokens, decodeTokensPerS = b0?.decodeTokensPerS, actMs = actMs, settleMs = settleMs,
-                        stepMs = SystemClock.elapsedRealtime() - s0, screenWidth = w, screenHeight = h, tapX = tap?.first, tapY = tap?.second,
-                        guard = guard, loopRules = rules,
-                    )
-                    steps += rec
-                    Log.i(TAG, "MOBILEAGENT_STEP " + line.encodeToString(StepLine.serializer(), StepLine.of(rec)))
-                }
-
-                if (action == null) {
-                    history += AgentFormat.invalidStep(r.text)
-                    record("(invalid output)", null, "invalid output", 0, 0)
-                    update { it.copy(intent = "(invalid output)", action = r.text.take(60)) }
-                    continue
-                }
-                val intent = AgentFormat.intent(r.thought, r.text)
-                val actionStr = AgentFormat.actionToStr(action)
-                history += AgentFormat.Step(intent, actionStr)
-                val rules = loopGuard.check(action, intent, thumb)
-                loopGuard.record(action, thumb)
-                update { it.copy(intent = intent.ifEmpty { null }, action = actionStr) }
-
-                if (action.type == "status") {
-                    status = action.goalStatus ?: "complete"
-                    record(intent, actionStr, "finished: $status", 0, 0, rules = rules)
-                    break
-                }
-
-                // 3. The safety guard, on the live screen.
-                awaitResumed()
-                val tap = if (action.type in AgentFormat.POINT_TYPES) AgentFormat.normToPx(action.x!!, action.y!!, w, h) else null
-                var guardNote: String? = null
-                val risk = Guard.risk(action.type, service.live(tap?.first, tap?.second))
-                if (risk != null) {
-                    if (o.confirmRisky) {
-                        val d = ask(risk)
-                        guardNote = "$risk: ${d?.name?.lowercase() ?: "timeout"}"
-                        when (d) {
-                            Decision.ALLOW -> Unit
-                            Decision.SKIP -> {
-                                record(intent, actionStr, "skipped by the user", 0, 0, tap, guardNote, rules)
-                                continue
-                            }
-                            Decision.STOP, null -> {
-                                status = "needs_user"
-                                answer = "Stopped before: $risk"
-                                record(intent, actionStr, "stopped at the guard", 0, 0, tap, guardNote, rules)
-                                break
-                            }
-                        }
-                    } else {
-                        guardNote = "$risk: not asked (setting off)"
-                    }
-                }
-
-                // 4. Act.
-                update { it.copy(phase = "Acting") }
-                val a0 = SystemClock.elapsedRealtime()
-                val outcome = StallWatch.phase("act ${action.type} (step $step)", 30_000) {
-                    overlay.whileHidden { execute(service, action, w, h, tap, s.enterAfterTyping) }
-                }
-                if (tap != null && settings.current.showTaps) service.showTap(tap.first, tap.second)
-                val actMs = SystemClock.elapsedRealtime() - a0
-                if (action.type == "answer") {
-                    status = "answered"
-                    answer = action.text
-                    record(intent, actionStr, outcome, actMs, 0, tap, guardNote, rules)
-                    break
-                }
-                // 5. wait_after_action (1 s), then a quiet screen.
-                update { it.copy(phase = "Waiting for the screen") }
-                val q0 = SystemClock.elapsedRealtime()
-                delay(WAIT_AFTER_ACTION_MS)
-                service.awaitQuiet()
-                record(intent, actionStr, outcome, actMs, SystemClock.elapsedRealtime() - q0, tap, guardNote, rules)
+            Log.i(TAG, "run $runId: ${appNames.size} installed apps in the prompt")
+            val env = Env(service, o, runId, spec)
+            val config = AgentLoop.Config(
+                goal = goal, promptVersion = spec.promptVersion, apps = if (spec.promptVersion == "v4") appNames else null,
+                grid = spec.imageHeight to spec.imageWidth, maxSteps = o.maxSteps, enginePerStep = o.enginePerStep && o.script == null,
+                confirmRisky = o.confirmRisky, enterAfterTyping = o.enterAfterTyping, firstEngineMs = firstLoadMs,
+            )
+            AgentLoop(env, SystemClock::elapsedRealtime).run(config, out) { rec ->
+                Log.i(TAG, "MOBILEAGENT_STEP " + line.encodeToString(StepLine.serializer(), StepLine.of(rec, o.verboseLogs)))
             }
         } catch (t: Throwable) {
             if (t is CancellationException) {
-                status = "stopped"
+                out.status = "stopped"
             } else {
+                out.status = "error"
                 error = "${t.javaClass.simpleName}: ${t.message}"
                 Log.e(TAG, "run failed", t)
             }
@@ -297,20 +184,124 @@ class AgentController(
             pendingDecision = null
             if (o.enginePerStep) withContext(kotlinx.coroutines.NonCancellable) { models.runtime.close() }
         }
+        val red = out.redactor
         val l = loaded
         val record = RunRecord(
-            runId = runId, goal = goal, model = l?.spec?.name ?: "-", modelFile = l?.file?.name ?: "-",
+            runId = runId, goal = red.scrub(goal)!!, model = l?.spec?.name ?: "-", modelFile = l?.file?.name ?: "-",
             imageGrid = l?.spec?.let { "${it.imageHeight}x${it.imageWidth}" } ?: "-", promptVersion = l?.spec?.promptVersion ?: "-",
-            backends = l?.backends ?: "${s.textBackend}/${s.visionBackend}", enginePerStep = o.enginePerStep, enterAfterTyping = s.enterAfterTyping,
-            loadMs = firstLoadMs, maxSteps = o.maxSteps, status = status, answer = answer, error = error,
+            backends = if (o.script != null) "scripted (no model)" else l?.backends ?: "${s.textBackend}/${s.visionBackend}",
+            enginePerStep = o.enginePerStep, enterAfterTyping = o.enterAfterTyping,
+            loadMs = firstLoadMs, maxSteps = o.maxSteps, status = out.status, answer = red.scrub(out.answer), error = red.scrub(error),
             device = "${Build.MANUFACTURER} ${Build.MODEL}", soc = Build.SOC_MODEL, android = "${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})",
-            litertLm = BuildConfig.LITERT_LM_VERSION, installedApps = appNames, steps = steps, startedAtMs = started, endedAtMs = System.currentTimeMillis(),
+            litertLm = BuildConfig.LITERT_LM_VERSION, installedApps = appNames, screenGrid = out.screenGrid, gridMatches = out.gridMatches,
+            // Scrubbed again: a secret typed late in the run may appear in earlier steps' intents and replies.
+            steps = out.steps.map { AgentLoop.scrub(it, red) }, startedAtMs = started, endedAtMs = System.currentTimeMillis(),
         )
         val file = runs.save(record)
-        val perStep = steps.takeIf { it.isNotEmpty() }?.let { st -> st.sumOf { it.stepMs } / 1000.0 / st.size }
-        Log.i(TAG, "MOBILEAGENT_RESULT " + line.encodeToString(ResultLine.serializer(), ResultLine.of(record, file, perStep)))
-        _state.value = RunState.Finished(runId, goal, status, answer, steps.size, perStep, error)
+        runs.prune(settings.current.keepRuns)
+        val perStep = record.steps.takeIf { it.isNotEmpty() }?.let { st -> st.sumOf { it.stepMs } / 1000.0 / st.size }
+        Log.i(TAG, "MOBILEAGENT_RESULT " + line.encodeToString(ResultLine.serializer(), ResultLine.of(record, file, perStep, o.verboseLogs)))
+        _state.value = RunState.Finished(runId, record.goal, record.status, record.answer, record.steps.size, perStep, record.error)
     }
+
+    /** The loop's view of the phone: the accessibility service, the overlay, the model, the user. */
+    private inner class Env(
+        @Suppress("UNUSED_PARAMETER") firstService: AgentService,
+        private val o: Options,
+        private val runId: String,
+        private val spec: org.experimentalmachines.mobileagent.model.ModelSpec,
+    ) : AgentLoop.Env {
+        /**
+         * The current accessibility service. Android can rebind it in the middle of a run (seen when another app's
+         * permission changed on the test phone); the old instance is then dead, so every call looks it up again.
+         */
+        private val service: AgentService
+            get() = AgentService.instance ?: kotlinx.coroutines.runBlocking {
+                kotlinx.coroutines.withTimeoutOrNull(RECONNECT_MS) {
+                    while (AgentService.instance == null) delay(100)
+                    AgentService.instance
+                }
+            } ?: throw IllegalStateException("The accessibility service disconnected during the run.")
+
+        override suspend fun awaitResumed() = this@AgentController.awaitResumed()
+        override fun screenUnavailable(): String? = this@AgentController.screenUnavailable()
+        override fun update(change: (RunState.Running) -> RunState.Running) = this@AgentController.update(change)
+
+        override suspend fun observe(step: Int): AgentLoop.Screen {
+            val s0 = SystemClock.elapsedRealtime()
+            val shot = StallWatch.phase("screenshot (step $step)", 30_000) { overlay.whileHidden { service.screenshot() } }
+            val shotMs = SystemClock.elapsedRealtime() - s0
+            val prep = ImagePrep.toModelPng(shot, spec.imageHeight, spec.imageWidth)
+            val thumb = grayThumb(shot)
+            saveThumb(shot, File(runs.runDir(runId), "step-%02d.jpg".format(step)))
+            val screen = AgentLoop.Screen(prep.png, shot.width, shot.height, thumb, shotMs, prep.resizeMs, prep.encodeMs)
+            shot.recycle()
+            return screen
+        }
+
+        override fun foreground(): String? = service.foreground()
+        override fun live(x: Int?, y: Int?): Guard.Live = service.live(x, y)
+
+        override suspend fun newEngine(): Long {
+            val l = models.runtime.loaded ?: error("no engine")
+            return models.runtime.load(l.spec, l.file, l.textBackend, l.visionBackend).loadMs
+        }
+
+        override suspend fun reply(png: ByteArray, system: String, user: String, step: Int, onThought: (String) -> Unit): LlmRuntime.Reply =
+            o.script?.let { scripted(it, step) } ?: StallWatch.phase("model (step $step)", 300_000) {
+                models.runtime.generate(png, system, user, MAX_OUTPUT_TOKENS, spec.enableThinking) { thought, _ -> onThought(thought) }
+            }
+
+        override suspend fun ask(reason: String): Decision? = this@AgentController.ask(reason)
+        override suspend fun <T> hidden(block: suspend () -> T): T = StallWatch.phase("act", 30_000) { overlay.whileHidden { block() } }
+        override suspend fun execute(a: AgentFormat.Action, w: Int, h: Int, tap: Pair<Int, Int>?, enterAfterTyping: Boolean): String =
+            this@AgentController.execute(service, a, w, h, tap, enterAfterTyping)
+
+        override fun showTap(x: Int, y: Int) {
+            if (settings.current.showTaps) service.showTap(x, y)
+        }
+
+        override suspend fun settle() {
+            delay(WAIT_AFTER_ACTION_MS)
+            service.awaitQuiet()
+        }
+
+        override fun log(line: String) {
+            Log.i(TAG, line)
+        }
+    }
+
+    /** A scripted reply for [step] (debug runs); past the script's end the run is told to finish as infeasible. */
+    private fun scripted(script: List<String>, step: Int): LlmRuntime.Reply {
+        val text = script.getOrNull(step - 1) ?: """{"action_type":"status","goal_status":"infeasible"}"""
+        return LlmRuntime.Reply(text, "Scripted step $step", 0, null, null, 0, null)
+    }
+
+    /**
+     * Debug builds only (adb `EXEC`): one action JSON through the same executor a run uses, on the current screen,
+     * without the model and without the guard. Logs `MOBILEAGENT_EXEC`.
+     */
+    fun exec(json: String, enterAfterTyping: Boolean) {
+        if (running) {
+            Log.w(TAG, "EXEC ignored: a run is going")
+            return
+        }
+        models.exclusive {
+            val service = AgentService.instance ?: return@exclusive Unit.also { Log.w(TAG, "EXEC: accessibility service not connected") }
+            val action = AgentFormat.parseAction(json) ?: return@exclusive Unit.also { Log.w(TAG, "MOBILEAGENT_EXEC unparseable: $json") }
+            val shot = service.screenshot()
+            val (w, h) = shot.width to shot.height
+            shot.recycle()
+            val tap = if (action.type in AgentFormat.POINT_TYPES) AgentFormat.normToPx(action.x!!, action.y!!, w, h) else null
+            val t0 = SystemClock.elapsedRealtime()
+            val outcome = runCatching { execute(service, action, w, h, tap, enterAfterTyping) }.getOrElse { "failed: ${it.message}" }
+            if (tap != null && settings.current.showTaps) service.showTap(tap.first, tap.second)
+            Log.i(TAG, "MOBILEAGENT_EXEC " + line.encodeToString(ExecLine.serializer(), ExecLine(AgentFormat.actionToStr(action), outcome, tap?.toList(), w, h, enterAfterTyping, SystemClock.elapsedRealtime() - t0)))
+        }
+    }
+
+    @Serializable
+    data class ExecLine(val action: String, val outcome: String, val tap: List<Int>?, val screenWidth: Int, val screenHeight: Int, val enterAfterTyping: Boolean, val ms: Long)
 
     /** Pauses the run until the user answers on the floating control (or [CONFIRM_TIMEOUT_MS] passes: null). */
     private suspend fun ask(reason: String): Decision? {
@@ -406,10 +397,16 @@ class AgentController(
         val guard: String?, val loop: List<String>,
     ) {
         companion object {
-            fun of(r: StepRecord) = StepLine(
-                r.step, r.intent.take(160), r.action?.take(200), r.outcome.take(120), r.screenshotMs, r.resizeMs + r.pngMs, r.engineMs,
+            /** Without [verbose]: no intent, the action's type only, the outcome's first words, the guard as "asked". */
+            fun of(r: StepRecord, verbose: Boolean) = StepLine(
+                r.step,
+                if (verbose) r.intent.take(160) else "",
+                if (verbose) r.action?.take(200) else r.action?.let { AgentFormat.parseAction(it)?.type ?: "?" },
+                if (verbose) r.outcome.take(120) else r.outcome.substringBefore(' '),
+                r.screenshotMs, r.resizeMs + r.pngMs, r.engineMs,
                 r.modelMs, r.ttftMs, r.prefillTokens, r.prefillTokensPerS?.let { Math.round(it * 10) / 10.0 }, r.decodeTokens,
-                r.decodeTokensPerS?.let { Math.round(it * 10) / 10.0 }, r.attempts.size, r.actMs, r.settleMs, r.stepMs, r.guard, r.loopRules,
+                r.decodeTokensPerS?.let { Math.round(it * 10) / 10.0 }, r.attempts.size, r.actMs, r.settleMs, r.stepMs,
+                if (verbose) r.guard else r.guard?.let { "asked" }, r.loopRules,
             )
         }
     }
@@ -418,14 +415,17 @@ class AgentController(
     @Serializable
     data class ResultLine(
         val runId: String, val goal: String, val status: String, val answer: String?, val error: String?, val steps: Int,
+        val installedApps: Int, val screenGrid: String?, val gridMatches: Boolean?,
         val secondsPerStep: Double?, val medianModelMs: Long?, val loadMs: Long?, val backends: String, val enginePerStep: Boolean,
         val modelFile: String, val device: String, val file: String,
     ) {
         companion object {
-            fun of(r: RunRecord, f: File, perStep: Double?): ResultLine {
+            /** Without [verbose]: no goal and no answer. */
+            fun of(r: RunRecord, f: File, perStep: Double?, verbose: Boolean): ResultLine {
                 val m = r.steps.map { it.modelMs }.sorted()
                 return ResultLine(
-                    r.runId, r.goal.take(200), r.status, r.answer?.take(200), r.error?.take(300), r.steps.size,
+                    r.runId, if (verbose) r.goal.take(200) else "", r.status, if (verbose) r.answer?.take(200) else null,
+                    if (verbose) r.error?.take(300) else r.error?.substringBefore(':'), r.steps.size, r.installedAppCount, r.screenGrid, r.gridMatches,
                     perStep?.let { Math.round(it * 100) / 100.0 }, m.getOrNull(m.size / 2), r.loadMs, r.backends, r.enginePerStep,
                     r.modelFile, r.device, f.absolutePath,
                 )
@@ -437,8 +437,6 @@ class AgentController(
         private const val TAG = "MobileAgent"
         /** max_tokens of the benchmark harness. */
         const val MAX_OUTPUT_TOKENS = 512
-        /** One retry when the reply cannot be parsed (lfm_agent.py max_parse_retries). */
-        const val MAX_PARSE_RETRIES = 1
         /** lfm_agent.py wait_after_action. */
         const val WAIT_AFTER_ACTION_MS = 1_000L
         /** AndroidWorld's `wait` action: time.sleep(1.0). */
@@ -448,5 +446,7 @@ class AgentController(
         /** `adb shell input swipe` without a duration. */
         const val SWIPE_MS = 300L
         const val CONFIRM_TIMEOUT_MS = 120_000L
+        /** How long a run waits for the accessibility service to come back after Android rebinds it. */
+        const val RECONNECT_MS = 5_000L
     }
 }

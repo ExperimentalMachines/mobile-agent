@@ -1,0 +1,1057 @@
+{
+    "runId": "20261123-002021",
+    "goal": "Create a new contact named Alex Kim with the phone number 5550123",
+    "model": "MobileAgent v4 (int8, 1280x576, ctx 4096)",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm",
+    "imageGrid": "1280x576",
+    "promptVersion": "v4",
+    "backends": "text GPU, vision GPU",
+    "enginePerStep": false,
+    "enterAfterTyping": true,
+    "loadMs": 5622,
+    "maxSteps": 20,
+    "status": "max_steps",
+    "answer": null,
+    "error": null,
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "installedApps": [
+        "Ambient Service Sample",
+        "AONTest",
+        "APTMM_Camcorder2",
+        "APTMM_ExoPlayer",
+        "APTMM_MediaCodec",
+        "APTMM_MediaPlayer",
+        "APTMM_MediaRecorder",
+        "Calendar",
+        "Cam2test",
+        "CamExtension",
+        "Carrier Test",
+        "CarrierSwitch",
+        "ChannelSoundingTestApp",
+        "Chrome",
+        "Clock",
+        "Connection Manager Test App",
+        "Contacts",
+        "DC Test App",
+        "DcfNearbyClientApp",
+        "Episteme",
+        "FDA",
+        "Files",
+        "FM Radio",
+        "Gallery",
+        "Google",
+        "LibsocHelperTest",
+        "LifeLoggerRefApp",
+        "LocSDKFgServiceTest",
+        "LocSysTest",
+        "LPA Test Application",
+        "LTE Broadcast UI",
+        "LTM Tuning",
+        "MainActivity2",
+        "Messaging",
+        "Multiple PDP Test",
+        "Music",
+        "odp-demo",
+        "Play Store",
+        "Presence",
+        "Proximity Ranging",
+        "QAIOR Screen Understanding Sample App",
+        "QFP Calibration",
+        "QsensorStressAgingTest",
+        "QSensorTest",
+        "QTI Phone",
+        "QtiEmail",
+        "QtiTelephonySettings",
+        "Qualcomm DLT",
+        "Sample Location Attribution",
+        "Settings",
+        "Snapdragon Camera",
+        "SnapdragonSDKTest",
+        "Sound Recorder",
+        "SpectrAEye",
+        "Unified Sensor Test App",
+        "Videos",
+        "Voice Activation",
+        "VoiceAI Usecase",
+        "VTLoopback",
+        "Wfd Client"
+    ],
+    "installedAppCount": 60,
+    "screenGrid": "1280x576",
+    "gridMatches": true,
+    "steps": [
+        {
+            "step": 1,
+            "intent": "Open Contacts app",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Contacts\"}",
+            "outcome": "opened Contacts",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"open_app\",\"app_name\":\"Contacts\"}",
+                    "thought": "Open Contacts app",
+                    "modelMs": 4073,
+                    "firstPieceMs": 3381,
+                    "lastPieceMs": 4071,
+                    "bench": {
+                        "ttftMs": 1506,
+                        "prefillTokens": 1320,
+                        "prefillTokensPerS": 910.473680961101,
+                        "decodeTokens": 19,
+                        "decodeTokensPerS": 17.546600467000186,
+                        "marksMs": {
+                            "vision_executor": 1478
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 218,
+            "resizeMs": 59,
+            "pngMs": 265,
+            "engineMs": 5622,
+            "modelMs": 4073,
+            "ttftMs": 1506,
+            "prefillTokens": 1320,
+            "prefillTokensPerS": 910.473680961101,
+            "decodeTokens": 19,
+            "decodeTokensPerS": 17.546600467000186,
+            "actMs": 134,
+            "settleMs": 1102,
+            "stepMs": 9896,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Open Contacts app -> {\"action_type\":\"open_app\",\"app_name\":\"Contacts\"}"
+        },
+        {
+            "step": 2,
+            "intent": "Click on the Add icon at the bottom right corner of the screen",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[893,900]}",
+            "outcome": "tapped (1285,2879)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[893,900]}",
+                    "thought": "Click on the Add icon at the bottom right corner of the screen",
+                    "modelMs": 3981,
+                    "firstPieceMs": 2804,
+                    "lastPieceMs": 3979,
+                    "bench": {
+                        "ttftMs": 1368,
+                        "prefillTokens": 1338,
+                        "prefillTokensPerS": 1009.0616640938925,
+                        "decodeTokens": 30,
+                        "decodeTokensPerS": 23.38058119889858,
+                        "marksMs": {
+                            "vision_executor": 1322
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 265,
+            "resizeMs": 67,
+            "pngMs": 35,
+            "engineMs": null,
+            "modelMs": 3981,
+            "ttftMs": 1368,
+            "prefillTokens": 1338,
+            "prefillTokensPerS": 1009.0616640938925,
+            "decodeTokens": 30,
+            "decodeTokensPerS": 23.38058119889858,
+            "actMs": 164,
+            "settleMs": 1405,
+            "stepMs": 5994,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 1285,
+            "tapY": 2879,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Click on the Add icon at the bottom right corner of the screen -> {\"action_type\":\"click\",\"point_2d\":[893,900]}"
+        },
+        {
+            "step": 3,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 3912,
+                    "firstPieceMs": 2966,
+                    "lastPieceMs": 3910,
+                    "bench": {
+                        "ttftMs": 1536,
+                        "prefillTokens": 1369,
+                        "prefillTokensPerS": 914.6388573125059,
+                        "decodeTokens": 26,
+                        "decodeTokensPerS": 24.903197058645848,
+                        "marksMs": {
+                            "vision_executor": 1334
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 309,
+            "resizeMs": 75,
+            "pngMs": 40,
+            "engineMs": null,
+            "modelMs": 3912,
+            "ttftMs": 1536,
+            "prefillTokens": 1369,
+            "prefillTokensPerS": 914.6388573125059,
+            "decodeTokens": 26,
+            "decodeTokensPerS": 24.903197058645848,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8217,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 4,
+            "intent": "Click on the Device only option",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,330]}",
+            "outcome": "tapped (720,1056)",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,330]}",
+                    "thought": "Click on the Device only option",
+                    "modelMs": 3778,
+                    "firstPieceMs": 2952,
+                    "lastPieceMs": 3776,
+                    "bench": {
+                        "ttftMs": 1525,
+                        "prefillTokens": 1403,
+                        "prefillTokensPerS": 944.6233761384691,
+                        "decodeTokens": 23,
+                        "decodeTokensPerS": 24.96576959612699,
+                        "marksMs": {
+                            "vision_executor": 1325
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 266,
+            "resizeMs": 68,
+            "pngMs": 48,
+            "engineMs": null,
+            "modelMs": 3778,
+            "ttftMs": 1525,
+            "prefillTokens": 1403,
+            "prefillTokensPerS": 944.6233761384691,
+            "decodeTokens": 23,
+            "decodeTokensPerS": 24.96576959612699,
+            "actMs": 156,
+            "settleMs": 1002,
+            "stepMs": 5367,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 1056,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Click on the Device only option -> {\"action_type\":\"click\",\"point_2d\":[500,330]}"
+        },
+        {
+            "step": 5,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 3855,
+                    "firstPieceMs": 2896,
+                    "lastPieceMs": 3851,
+                    "bench": {
+                        "ttftMs": 1489,
+                        "prefillTokens": 1427,
+                        "prefillTokensPerS": 985.1063360815574,
+                        "decodeTokens": 26,
+                        "decodeTokensPerS": 24.68946765086431,
+                        "marksMs": {
+                            "vision_executor": 1313
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 267,
+            "resizeMs": 64,
+            "pngMs": 44,
+            "engineMs": null,
+            "modelMs": 3855,
+            "ttftMs": 1489,
+            "prefillTokens": 1427,
+            "prefillTokensPerS": 985.1063360815574,
+            "decodeTokens": 26,
+            "decodeTokensPerS": 24.68946765086431,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8233,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 6,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4133,
+                    "firstPieceMs": 2919,
+                    "lastPieceMs": 4129,
+                    "bench": {
+                        "ttftMs": 1511,
+                        "prefillTokens": 1461,
+                        "prefillTokensPerS": 992.6845643204676,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.44519964160606,
+                        "marksMs": {
+                            "vision_executor": 1323
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 299,
+            "resizeMs": 72,
+            "pngMs": 44,
+            "engineMs": null,
+            "modelMs": 4133,
+            "ttftMs": 1511,
+            "prefillTokens": 1461,
+            "prefillTokensPerS": 992.6845643204676,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.44519964160606,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8612,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 7,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4110,
+                    "firstPieceMs": 2898,
+                    "lastPieceMs": 4108,
+                    "bench": {
+                        "ttftMs": 1486,
+                        "prefillTokens": 1495,
+                        "prefillTokensPerS": 1033.4209282110462,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.27960073404729,
+                        "marksMs": {
+                            "vision_executor": 1315
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 299,
+            "resizeMs": 75,
+            "pngMs": 42,
+            "engineMs": null,
+            "modelMs": 4110,
+            "ttftMs": 1486,
+            "prefillTokens": 1495,
+            "prefillTokensPerS": 1033.4209282110462,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.27960073404729,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8577,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 8,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4130,
+                    "firstPieceMs": 2912,
+                    "lastPieceMs": 4127,
+                    "bench": {
+                        "ttftMs": 1503,
+                        "prefillTokens": 1529,
+                        "prefillTokensPerS": 1044.1415198002915,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.250886862604858,
+                        "marksMs": {
+                            "vision_executor": 1316
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 240,
+            "resizeMs": 70,
+            "pngMs": 42,
+            "engineMs": null,
+            "modelMs": 4130,
+            "ttftMs": 1503,
+            "prefillTokens": 1529,
+            "prefillTokensPerS": 1044.1415198002915,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.250886862604858,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8571,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 9,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4453,
+                    "firstPieceMs": 3231,
+                    "lastPieceMs": 4449,
+                    "bench": {
+                        "ttftMs": 1795,
+                        "prefillTokens": 1563,
+                        "prefillTokensPerS": 890.2577601568939,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 24.851585708857062,
+                        "marksMs": {
+                            "vision_executor": 1325
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 303,
+            "resizeMs": 70,
+            "pngMs": 56,
+            "engineMs": null,
+            "modelMs": 4453,
+            "ttftMs": 1795,
+            "prefillTokens": 1563,
+            "prefillTokensPerS": 890.2577601568939,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 24.851585708857062,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8579,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 10,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4427,
+                    "firstPieceMs": 3202,
+                    "lastPieceMs": 4423,
+                    "bench": {
+                        "ttftMs": 1776,
+                        "prefillTokens": 1577,
+                        "prefillTokensPerS": 908.1514620813257,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 24.86387362591752,
+                        "marksMs": {
+                            "vision_executor": 1319
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 249,
+            "resizeMs": 64,
+            "pngMs": 42,
+            "engineMs": null,
+            "modelMs": 4427,
+            "ttftMs": 1776,
+            "prefillTokens": 1577,
+            "prefillTokensPerS": 908.1514620813257,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 24.86387362591752,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8575,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 11,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4357,
+                    "firstPieceMs": 3141,
+                    "lastPieceMs": 4354,
+                    "bench": {
+                        "ttftMs": 1748,
+                        "prefillTokens": 1580,
+                        "prefillTokensPerS": 924.5255736310351,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.5215514061086,
+                        "marksMs": {
+                            "vision_executor": 1312
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 287,
+            "resizeMs": 72,
+            "pngMs": 50,
+            "engineMs": null,
+            "modelMs": 4357,
+            "ttftMs": 1748,
+            "prefillTokens": 1580,
+            "prefillTokensPerS": 924.5255736310351,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.5215514061086,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8541,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 12,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4416,
+                    "firstPieceMs": 3181,
+                    "lastPieceMs": 4413,
+                    "bench": {
+                        "ttftMs": 1775,
+                        "prefillTokens": 1580,
+                        "prefillTokensPerS": 910.4568017393717,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 24.848783630806857,
+                        "marksMs": {
+                            "vision_executor": 1309
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 271,
+            "resizeMs": 75,
+            "pngMs": 37,
+            "engineMs": null,
+            "modelMs": 4416,
+            "ttftMs": 1775,
+            "prefillTokens": 1580,
+            "prefillTokensPerS": 910.4568017393717,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 24.848783630806857,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8555,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 13,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4446,
+                    "firstPieceMs": 3224,
+                    "lastPieceMs": 4445,
+                    "bench": {
+                        "ttftMs": 1798,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 904.2362620944365,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 24.96155502609038,
+                        "marksMs": {
+                            "vision_executor": 1325
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 272,
+            "resizeMs": 66,
+            "pngMs": 54,
+            "engineMs": null,
+            "modelMs": 4446,
+            "ttftMs": 1798,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 904.2362620944365,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 24.96155502609038,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8558,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 14,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4418,
+                    "firstPieceMs": 3204,
+                    "lastPieceMs": 4415,
+                    "bench": {
+                        "ttftMs": 1790,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 907.9385466351533,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.141712807023712,
+                        "marksMs": {
+                            "vision_executor": 1309
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 242,
+            "resizeMs": 64,
+            "pngMs": 41,
+            "engineMs": null,
+            "modelMs": 4418,
+            "ttftMs": 1790,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 907.9385466351533,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.141712807023712,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8556,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 15,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4459,
+                    "firstPieceMs": 3224,
+                    "lastPieceMs": 4456,
+                    "bench": {
+                        "ttftMs": 1801,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 902.7205100654757,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 24.66797225173955,
+                        "marksMs": {
+                            "vision_executor": 1316
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 315,
+            "resizeMs": 71,
+            "pngMs": 36,
+            "engineMs": null,
+            "modelMs": 4459,
+            "ttftMs": 1801,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 902.7205100654757,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 24.66797225173955,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8592,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 16,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4394,
+                    "firstPieceMs": 3178,
+                    "lastPieceMs": 4392,
+                    "bench": {
+                        "ttftMs": 1788,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 909.1331970395152,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.29386554792523,
+                        "marksMs": {
+                            "vision_executor": 1306
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 225,
+            "resizeMs": 71,
+            "pngMs": 48,
+            "engineMs": null,
+            "modelMs": 4394,
+            "ttftMs": 1788,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 909.1331970395152,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.29386554792523,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8645,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 17,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4432,
+                    "firstPieceMs": 3208,
+                    "lastPieceMs": 4429,
+                    "bench": {
+                        "ttftMs": 1787,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 909.7916598613488,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.02904353146134,
+                        "marksMs": {
+                            "vision_executor": 1321
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 311,
+            "resizeMs": 65,
+            "pngMs": 37,
+            "engineMs": null,
+            "modelMs": 4432,
+            "ttftMs": 1787,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 909.7916598613488,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.02904353146134,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8615,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 18,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4423,
+                    "firstPieceMs": 3210,
+                    "lastPieceMs": 4420,
+                    "bench": {
+                        "ttftMs": 1793,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 906.7691440656059,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 25.080319571425555,
+                        "marksMs": {
+                            "vision_executor": 1309
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 232,
+            "resizeMs": 67,
+            "pngMs": 47,
+            "engineMs": null,
+            "modelMs": 4423,
+            "ttftMs": 1793,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 906.7691440656059,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 25.080319571425555,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8834,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 19,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4438,
+                    "firstPieceMs": 3194,
+                    "lastPieceMs": 4436,
+                    "bench": {
+                        "ttftMs": 1784,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 911.5434947799969,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 24.74158206638183,
+                        "marksMs": {
+                            "vision_executor": 1315
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 230,
+            "resizeMs": 67,
+            "pngMs": 44,
+            "engineMs": null,
+            "modelMs": 4438,
+            "ttftMs": 1784,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 911.5434947799969,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 24.74158206638183,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8878,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        },
+        {
+            "step": 20,
+            "intent": "Click on the Add an account to get started",
+            "action": "{\"action_type\":\"click\",\"point_2d\":[500,248]}",
+            "outcome": "skipped by the user",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]",
+                    "thought": "Click on the Add an account to get started",
+                    "modelMs": 4459,
+                    "firstPieceMs": 3230,
+                    "lastPieceMs": 4456,
+                    "bench": {
+                        "ttftMs": 1788,
+                        "prefillTokens": 1590,
+                        "prefillTokensPerS": 909.5318245339854,
+                        "decodeTokens": 33,
+                        "decodeTokensPerS": 24.67450949789314,
+                        "marksMs": {
+                            "vision_executor": 1329
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": false
+                }
+            ],
+            "screenshotMs": 315,
+            "resizeMs": 71,
+            "pngMs": 40,
+            "engineMs": null,
+            "modelMs": 4459,
+            "ttftMs": 1788,
+            "prefillTokens": 1590,
+            "prefillTokensPerS": 909.5318245339854,
+            "decodeTokens": 33,
+            "decodeTokensPerS": 24.67450949789314,
+            "actMs": 0,
+            "settleMs": 0,
+            "stepMs": 8575,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": 720,
+            "tapY": 793,
+            "guard": "tapping \"Add an account to get started\": skip",
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Click on the Add an account to get started -> {\"action_type\":\"click\",\"point_2d\":[500,248]} [skipped by the user]"
+        }
+    ],
+    "startedAtMs": 1795422021949,
+    "endedAtMs": 1795422194976
+}

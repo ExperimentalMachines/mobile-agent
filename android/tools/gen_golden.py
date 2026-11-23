@@ -5,7 +5,7 @@ byte. Run with the research repo's data venv (Python 3.12 + Pillow; agent_format
 
     <lfm3-android>/.venv-data/bin/python tools/gen_golden.py --train-dir <lfm3-android>/train
 
-Writes app/src/test/resources/golden/agent_format.json and golden/resize_{in,out}[_land].png.
+Writes app/src/test/resources/golden/agent_format.json, agent_loop.json and golden/resize_{in,out}[_land].png.
 """
 import argparse
 import hashlib
@@ -114,6 +114,66 @@ def history(af, n, empty_intent_at=(), invalid_at=()):
     return h
 
 
+def simulate_lfm_agent(af, goal, apps, replies, max_steps):
+    """The decision logic of eval/androidworld/lfm_agent.py `step()` (copied; no environment): per step up to 1 + 1
+    model calls until the reply parses, the invalid-output history entry, the intent rule, `status` and `answer` ending
+    the episode, and the step budget. Returns every prompt's user text, the executed actions and how it ended."""
+    history, calls, executed = [], [], []
+    replies = iter(replies)
+    status, answer = "max_steps", None
+    for _ in range(max_steps):
+        resp, action = None, None
+        for _ in range(1 + 1):  # 1 + max_parse_retries
+            calls.append(af.user_text(goal, history, apps=apps))
+            resp = next(replies)
+            action = af.parse_action(resp["content"])
+            if action is not None:
+                break
+        if action is None:
+            history.append(("(invalid output)", resp["content"][:80]))
+            continue
+        reasoning = resp["reasoning"] or ""
+        if not reasoning.strip() and "</think>" in resp["content"]:
+            reasoning = resp["content"].split("</think>", 1)[0].replace("<think>", "")
+        intent = reasoning.strip().splitlines()[0][:200] if reasoning.strip() else ""
+        history.append((intent, af.action_to_str(action)))
+        t = action["action_type"]
+        if t == "status":
+            status = action.get("goal_status", "complete")
+            break
+        executed.append(af.action_to_str(action))
+        if t == "answer":
+            status, answer = "answered", action["text"]
+            break
+    return {"calls": calls, "executed": executed, "status": status, "answer": answer, "history": [list(h) for h in history]}
+
+
+def loop_episodes(af):
+    apps = ["Chrome", "Clock", "Settings"]
+    tap = lambda x, y: {"reasoning": f"Tap at {x},{y}", "content": '{"action_type":"click","point_2d":[%d,%d]}' % (x, y)}
+    long = (
+        [{"reasoning": "Open Settings\nsecond line", "content": '{"action_type":"open_app","app_name":"Settings"}'},
+         {"reasoning": "", "content": "I am not sure"},                       # unparseable ...
+         {"reasoning": "", "content": "<think>still thinking"},              # ... and its retry: invalid-output step
+         {"reasoning": "", "content": "<think>Scroll down</think>{\"action_type\":\"scroll\",\"direction\":\"down\"}"},
+         {"reasoning": "Type it", "content": '{"action_type":"input_text","text":"caf\u00e9 \\"7\\""}'},
+         {"reasoning": "nonsense first", "content": "{}"},                   # retried, then parses
+         {"reasoning": "Press enter", "content": '{"action_type":"keyboard_enter"}'}]
+        + [tap(100 + 10 * i, 200 + 10 * i) for i in range(8)]
+        + [{"reasoning": "Wait for it", "content": '{"action_type":"wait"} trailing'},
+           {"reasoning": "The answer is on screen", "content": '{"action_type":"answer","text":"Android 17"}'}]
+    )
+    limit = [tap(500, 500), {"reasoning": "", "content": "??"}, {"reasoning": "", "content": "??"}, tap(1, 2)]
+    done = [{"reasoning": "Nothing to do", "content": '{"action_type":"status","goal_status":"infeasible"}'}]
+    out = []
+    for name, goal, replies, max_steps in [("long_answer", "What version is this?", long, 20),
+                                           ("step_limit", "Tap around", limit, 3),
+                                           ("infeasible", "Fly", done, 5)]:
+        sim = simulate_lfm_agent(af, goal, apps, replies, max_steps)
+        out.append({"name": name, "goal": goal, "apps": apps, "max_steps": max_steps, "replies": replies, **sim})
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--train-dir", required=True, help="research repo's train/ directory (holds agent_format.py)")
@@ -171,6 +231,7 @@ def main():
                        for x, y, w, h in POINTS],
     }
     OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "agent_loop.json").write_text(json.dumps(loop_episodes(af), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     (OUT / "agent_format.json").write_text(json.dumps(golden, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     # A synthetic 20:9 "screenshot" (gradients, thin lines, small text-like marks) and its BICUBIC resize, the way

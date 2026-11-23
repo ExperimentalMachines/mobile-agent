@@ -1,0 +1,30 @@
+PARITY hook ready (debug build installed on b3ba6e19, 2026-11-23 15:40 Manila; checked on 1 row: 2.56 s, open_app Clock).
+
+What it does: each row goes through the agent's exact model call: a fresh engine on GPU (text and vision), thinking on
+(enable_thinking true), greedy (top-k 1), at most 512 new tokens, filterChannelContentFromKvCache false, one new
+conversation per row, the row's PNG bytes unchanged (no resize). Output: one JSON line per row, written as it goes:
+{"id", "content", "reasoning", "seconds", "firstPieceSeconds", "prefillTokens", "decodeTokens", "error"}.
+
+Rows file: JSONL with "id", "system", "user", "image" (PNG file name, relative to the rows file's folder).
+
+1. Push (adb runs as root on this phone, so the files must be handed to the app's user afterwards):
+
+   adb -P 15037 -s b3ba6e19 shell mkdir -p /sdcard/Android/data/org.experimentalmachines.mobileagent/files/parity
+   adb -P 15037 -s b3ba6e19 push <dir with rows.jsonl and the PNGs>/. /sdcard/Android/data/org.experimentalmachines.mobileagent/files/parity/
+   adb -P 15037 -s b3ba6e19 shell 'chown -R $(stat -c %U /data/media/0/Android/data/org.experimentalmachines.mobileagent):ext_data_rw /data/media/0/Android/data/org.experimentalmachines.mobileagent/files/parity'
+
+2. Run (all 180 rows; ~2.5 s per row plus a ~6 s load; do not start an agent run or BENCH at the same time):
+
+   adb -P 15037 -s b3ba6e19 shell am broadcast -n org.experimentalmachines.mobileagent/.host.HostCommandReceiver \
+     -a org.experimentalmachines.mobileagent.PARITY --es rows parity/rows.jsonl --es out parity/litert_phone.jsonl
+
+   Options: --ei limit N (first N rows), --ez new_engine_per_row true (a fresh engine before every row: the #3165
+   control), --ei max_tokens 512.
+
+3. Watch / finish:
+
+   adb -P 15037 -s b3ba6e19 logcat -s MobileAgent | grep MOBILEAGENT_PARITY     # "n/180" every 10 rows; ends with
+                                                                              # MOBILEAGENT_PARITY_DONE {...} (or _ERROR)
+   adb -P 15037 -s b3ba6e19 pull /sdcard/Android/data/org.experimentalmachines.mobileagent/files/parity/litert_phone.jsonl .
+
+The DONE line has rows, errors, load ms, median seconds, thermal status at start and end (PowerManager, 0 = none).

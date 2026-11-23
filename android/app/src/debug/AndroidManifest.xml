@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- adb test hooks, debug builds only. DUMP is held by adb's shell (and by some privileged apps; it can be granted). -->
+        <receiver
+            android:name=".host.HostCommandReceiver"
+            android:exported="true"
+            android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="org.experimentalmachines.mobileagent.RUN_GOAL" />
+                <action android:name="org.experimentalmachines.mobileagent.STOP" />
+                <action android:name="org.experimentalmachines.mobileagent.ALLOW" />
+                <action android:name="org.experimentalmachines.mobileagent.SKIP" />
+                <action android:name="org.experimentalmachines.mobileagent.PAUSE" />
+                <action android:name="org.experimentalmachines.mobileagent.RESUME" />
+                <action android:name="org.experimentalmachines.mobileagent.LOAD" />
+                <action android:name="org.experimentalmachines.mobileagent.UNLOAD" />
+                <action android:name="org.experimentalmachines.mobileagent.BENCH" />
+                <action android:name="org.experimentalmachines.mobileagent.RENDER" />
+                <action android:name="org.experimentalmachines.mobileagent.WINDOWS" />
+                <action android:name="org.experimentalmachines.mobileagent.EXEC" />
+                <action android:name="org.experimentalmachines.mobileagent.LOGS" />
+                <action android:name="org.experimentalmachines.mobileagent.PARITY" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

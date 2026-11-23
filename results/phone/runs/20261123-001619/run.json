@@ -1,0 +1,571 @@
+{
+    "runId": "20261123-001619",
+    "goal": "Open Settings, then go back to the home screen",
+    "model": "MobileAgent v4 (int8, 1280x576, ctx 4096)",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm",
+    "imageGrid": "1280x576",
+    "promptVersion": "v4",
+    "backends": "text GPU, vision GPU",
+    "enginePerStep": false,
+    "enterAfterTyping": true,
+    "loadMs": 5000,
+    "maxSteps": 10,
+    "status": "max_steps",
+    "answer": null,
+    "error": null,
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "installedApps": [
+        "Ambient Service Sample",
+        "AONTest",
+        "APTMM_Camcorder2",
+        "APTMM_ExoPlayer",
+        "APTMM_MediaCodec",
+        "APTMM_MediaPlayer",
+        "APTMM_MediaRecorder",
+        "Calendar",
+        "Cam2test",
+        "CamExtension",
+        "Carrier Test",
+        "CarrierSwitch",
+        "ChannelSoundingTestApp",
+        "Chrome",
+        "Clock",
+        "Connection Manager Test App",
+        "Contacts",
+        "DC Test App",
+        "DcfNearbyClientApp",
+        "Episteme",
+        "FDA",
+        "Files",
+        "FM Radio",
+        "Gallery",
+        "Google",
+        "LibsocHelperTest",
+        "LifeLoggerRefApp",
+        "LocSDKFgServiceTest",
+        "LocSysTest",
+        "LPA Test Application",
+        "LTE Broadcast UI",
+        "LTM Tuning",
+        "MainActivity2",
+        "Messaging",
+        "Multiple PDP Test",
+        "Music",
+        "odp-demo",
+        "Play Store",
+        "Presence",
+        "Proximity Ranging",
+        "QAIOR Screen Understanding Sample App",
+        "QFP Calibration",
+        "QsensorStressAgingTest",
+        "QSensorTest",
+        "QTI Phone",
+        "QtiEmail",
+        "QtiTelephonySettings",
+        "Qualcomm DLT",
+        "Sample Location Attribution",
+        "Settings",
+        "Snapdragon Camera",
+        "SnapdragonSDKTest",
+        "Sound Recorder",
+        "SpectrAEye",
+        "Unified Sensor Test App",
+        "Videos",
+        "Voice Activation",
+        "VoiceAI Usecase",
+        "VTLoopback",
+        "Wfd Client"
+    ],
+    "installedAppCount": 60,
+    "screenGrid": "1280x576",
+    "gridMatches": true,
+    "steps": [
+        {
+            "step": 1,
+            "intent": "Open the Settings app",
+            "action": "{\"action_type\":\"open_app\",\"app_name\":\"Settings\"}",
+            "outcome": "opened Settings",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"open_app\",\"app_name\":\"Settings\"}",
+                    "thought": "Open the Settings app",
+                    "modelMs": 3803,
+                    "firstPieceMs": 3147,
+                    "lastPieceMs": 3799,
+                    "bench": {
+                        "ttftMs": 1415,
+                        "prefillTokens": 1315,
+                        "prefillTokensPerS": 967.5172782803965,
+                        "decodeTokens": 18,
+                        "decodeTokensPerS": 17.835970392455618,
+                        "marksMs": {
+                            "vision_executor": 1377
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 295,
+            "resizeMs": 64,
+            "pngMs": 267,
+            "engineMs": 5000,
+            "modelMs": 3803,
+            "ttftMs": 1415,
+            "prefillTokens": 1315,
+            "prefillTokensPerS": 967.5172782803965,
+            "decodeTokens": 18,
+            "decodeTokensPerS": 17.835970392455618,
+            "actMs": 163,
+            "settleMs": 1103,
+            "stepMs": 9400,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Open the Settings app -> {\"action_type\":\"open_app\",\"app_name\":\"Settings\"}"
+        },
+        {
+            "step": 2,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3392,
+                    "firstPieceMs": 2828,
+                    "lastPieceMs": 3390,
+                    "bench": {
+                        "ttftMs": 1389,
+                        "prefillTokens": 1332,
+                        "prefillTokensPerS": 988.7587388020929,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 23.830244881219834,
+                        "marksMs": {
+                            "vision_executor": 1325
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 239,
+            "resizeMs": 65,
+            "pngMs": 48,
+            "engineMs": null,
+            "modelMs": 3392,
+            "ttftMs": 1389,
+            "prefillTokens": 1332,
+            "prefillTokensPerS": 988.7587388020929,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 23.830244881219834,
+            "actMs": 97,
+            "settleMs": 1203,
+            "stepMs": 5117,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 3,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3829,
+                    "firstPieceMs": 3223,
+                    "lastPieceMs": 3825,
+                    "bench": {
+                        "ttftMs": 1784,
+                        "prefillTokens": 1349,
+                        "prefillTokensPerS": 774.4700456199599,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 23.315274138020616,
+                        "marksMs": {
+                            "vision_executor": 1341
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 281,
+            "resizeMs": 64,
+            "pngMs": 278,
+            "engineMs": null,
+            "modelMs": 3829,
+            "ttftMs": 1784,
+            "prefillTokens": 1349,
+            "prefillTokensPerS": 774.4700456199599,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 23.315274138020616,
+            "actMs": 119,
+            "settleMs": 1002,
+            "stepMs": 5630,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 4,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3559,
+                    "firstPieceMs": 2991,
+                    "lastPieceMs": 3556,
+                    "bench": {
+                        "ttftMs": 1562,
+                        "prefillTokens": 1366,
+                        "prefillTokensPerS": 898.0689116098921,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 24.036565661567508,
+                        "marksMs": {
+                            "vision_executor": 1314
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 270,
+            "resizeMs": 65,
+            "pngMs": 269,
+            "engineMs": null,
+            "modelMs": 3559,
+            "ttftMs": 1562,
+            "prefillTokens": 1366,
+            "prefillTokensPerS": 898.0689116098921,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 24.036565661567508,
+            "actMs": 122,
+            "settleMs": 1001,
+            "stepMs": 5345,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 5,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3503,
+                    "firstPieceMs": 2945,
+                    "lastPieceMs": 3501,
+                    "bench": {
+                        "ttftMs": 1501,
+                        "prefillTokens": 1383,
+                        "prefillTokensPerS": 946.1738214572791,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 24.836969009993247,
+                        "marksMs": {
+                            "vision_executor": 1327
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 246,
+            "resizeMs": 55,
+            "pngMs": 267,
+            "engineMs": null,
+            "modelMs": 3503,
+            "ttftMs": 1501,
+            "prefillTokens": 1383,
+            "prefillTokensPerS": 946.1738214572791,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 24.836969009993247,
+            "actMs": 140,
+            "settleMs": 1001,
+            "stepMs": 5260,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 6,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3505,
+                    "firstPieceMs": 2937,
+                    "lastPieceMs": 3502,
+                    "bench": {
+                        "ttftMs": 1505,
+                        "prefillTokens": 1400,
+                        "prefillTokensPerS": 955.9489616473161,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 24.368215184498915,
+                        "marksMs": {
+                            "vision_executor": 1313
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 281,
+            "resizeMs": 62,
+            "pngMs": 268,
+            "engineMs": null,
+            "modelMs": 3505,
+            "ttftMs": 1505,
+            "prefillTokens": 1400,
+            "prefillTokensPerS": 955.9489616473161,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 24.368215184498915,
+            "actMs": 123,
+            "settleMs": 1002,
+            "stepMs": 5302,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 7,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3498,
+                    "firstPieceMs": 2930,
+                    "lastPieceMs": 3495,
+                    "bench": {
+                        "ttftMs": 1504,
+                        "prefillTokens": 1417,
+                        "prefillTokensPerS": 968.5774817910715,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 24.22254846698049,
+                        "marksMs": {
+                            "vision_executor": 1301
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 262,
+            "resizeMs": 74,
+            "pngMs": 267,
+            "engineMs": null,
+            "modelMs": 3498,
+            "ttftMs": 1504,
+            "prefillTokens": 1417,
+            "prefillTokensPerS": 968.5774817910715,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 24.22254846698049,
+            "actMs": 117,
+            "settleMs": 1001,
+            "stepMs": 5273,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 8,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3522,
+                    "firstPieceMs": 2947,
+                    "lastPieceMs": 3519,
+                    "bench": {
+                        "ttftMs": 1508,
+                        "prefillTokens": 1434,
+                        "prefillTokensPerS": 977.4415727756332,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 24.014500651914148,
+                        "marksMs": {
+                            "vision_executor": 1316
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 271,
+            "resizeMs": 65,
+            "pngMs": 265,
+            "engineMs": null,
+            "modelMs": 3522,
+            "ttftMs": 1508,
+            "prefillTokens": 1434,
+            "prefillTokensPerS": 977.4415727756332,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 24.014500651914148,
+            "actMs": 122,
+            "settleMs": 1002,
+            "stepMs": 5305,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 9,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3518,
+                    "firstPieceMs": 2950,
+                    "lastPieceMs": 3515,
+                    "bench": {
+                        "ttftMs": 1511,
+                        "prefillTokens": 1451,
+                        "prefillTokensPerS": 987.3995554192333,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 23.963440811557028,
+                        "marksMs": {
+                            "vision_executor": 1308
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 238,
+            "resizeMs": 66,
+            "pngMs": 269,
+            "engineMs": null,
+            "modelMs": 3518,
+            "ttftMs": 1511,
+            "prefillTokens": 1451,
+            "prefillTokensPerS": 987.3995554192333,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 23.963440811557028,
+            "actMs": 116,
+            "settleMs": 1001,
+            "stepMs": 5261,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        },
+        {
+            "step": 10,
+            "intent": "Go back to the previous screen",
+            "action": "{\"action_type\":\"navigate_back\"}",
+            "outcome": "went back",
+            "attempts": [
+                {
+                    "text": "{\"action_type\":\"navigate_back\"}",
+                    "thought": "Go back to the previous screen",
+                    "modelMs": 3502,
+                    "firstPieceMs": 2944,
+                    "lastPieceMs": 3498,
+                    "bench": {
+                        "ttftMs": 1508,
+                        "prefillTokens": 1449,
+                        "prefillTokensPerS": 986.8787569960067,
+                        "decodeTokens": 16,
+                        "decodeTokensPerS": 25.05028406145366,
+                        "marksMs": {
+                            "vision_executor": 1335
+                        }
+                    },
+                    "lenientOk": true,
+                    "strictOk": true
+                }
+            ],
+            "screenshotMs": 262,
+            "resizeMs": 62,
+            "pngMs": 271,
+            "engineMs": null,
+            "modelMs": 3502,
+            "ttftMs": 1508,
+            "prefillTokens": 1449,
+            "prefillTokensPerS": 986.8787569960067,
+            "decodeTokens": 16,
+            "decodeTokensPerS": 25.05028406145366,
+            "actMs": 131,
+            "settleMs": 1001,
+            "stepMs": 5283,
+            "screenWidth": 1440,
+            "screenHeight": 3200,
+            "tapX": null,
+            "tapY": null,
+            "guard": null,
+            "loopRules": [
+                "G2"
+            ],
+            "historyEntry": "Go back to the previous screen -> {\"action_type\":\"navigate_back\"}"
+        }
+    ],
+    "startedAtMs": 1795421779545,
+    "endedAtMs": 1795421842139
+}

@@ -58,6 +58,15 @@ fun SettingsScreen(onBack: () -> Unit) {
                 set { it.copy(confirmRisky = v) }
             }
             Toggle("Show taps", "A short ring where each tap lands.", s.showTaps) { v -> set { it.copy(showTaps = v) } }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text("Runs kept", style = MaterialTheme.typography.bodyLarge)
+                    Text("Older run logs and their screenshots are deleted. Default ${Settings.DEFAULT_KEEP_RUNS}.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+                OutlinedButton(onClick = { set { it.copy(keepRuns = it.keepRuns - 10) } }, enabled = s.keepRuns > 10) { Text("−") }
+                Text("${s.keepRuns}", style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(horizontal = 12.dp))
+                OutlinedButton(onClick = { set { it.copy(keepRuns = it.keepRuns + 10) } }, enabled = s.keepRuns < Settings.KEEP_RUNS_CAP) { Text("+") }
+            }
             Toggle(
                 "Press Enter after typing",
                 "On: typing ends with Enter, as in the benchmarks the model was measured on. Off: Enter only when the model asks for it.",

@@ -7,6 +7,7 @@ episode's frozen installed-app list from data/v4work/app_pool.json). The screens
 in training and evaluation (agent_format.resize_screenshot, max 880*880 px -> 576 x 1280 for 20:9 screens).
 
   python build_set.py --out SET_DIR [--n_high 120 --n_low 60 --seed 0]
+  python build_set.py --out SET_DIR --terminal 60   # terminal rows only (the episode's last row: status complete)
 Writes SET_DIR/rows.jsonl (id, mode, episode_id, step_idx, system, user, gt_action, gt_bbox, image file, image size)
 and SET_DIR/img/<id>.png.
 """
@@ -22,6 +23,7 @@ import pandas as pd
 from huggingface_hub import snapshot_download
 from PIL import Image
 
+REVISION = "f88a843239b7e0b68ea8fcb6eb0c5539276d64eb"  # experimentalmachines/MobileAgent-SFT-v1, pinned 2026-11-23
 RESEARCH = os.environ.get("LFM3_REPO", os.path.expanduser("~/lfm3-android"))  # the research repo
 sys.path.insert(0, os.path.join(RESEARCH, "train"))
 import agent_format as af  # noqa: E402
@@ -33,9 +35,12 @@ def main():
   ap.add_argument("--n_high", type=int, default=120)
   ap.add_argument("--n_low", type=int, default=60)
   ap.add_argument("--seed", type=int, default=0)
+  ap.add_argument("--terminal", type=int, default=0, help="build a set of N terminal rows (high-level) instead")
+  ap.add_argument("--revision", default=REVISION)
   a = ap.parse_args()
   os.makedirs(os.path.join(a.out, "img"), exist_ok=True)
-  snap = snapshot_download("experimentalmachines/MobileAgent-SFT-v1", repo_type="dataset", allow_patterns=["data/test/*"])
+  snap = snapshot_download("experimentalmachines/MobileAgent-SFT-v1", repo_type="dataset", allow_patterns=["data/test/*"],
+                           revision=a.revision)
   files = sorted(glob.glob(os.path.join(snap, "data/test/*.parquet")))
   meta = pd.concat([pd.read_parquet(f, columns=["episode_id", "messages", "gt_action"]) for f in files])
   pool = json.load(open(os.path.join(RESEARCH, "data/v4work/app_pool.json")))
@@ -50,13 +55,18 @@ def main():
   for f in files:
     df = pd.read_parquet(f)
     for _, r in df.iterrows():
-      if bool(r["is_terminal"]):
+      if bool(r["is_terminal"]) != bool(a.terminal):
         continue
       mode = r["mode"]
+      if a.terminal:
+        if mode != "high":
+          continue
+        mode = "terminal"
       key = hashlib.sha256(f"{a.seed}:{r['episode_id']}:{r['step_idx']}:{mode}".encode()).hexdigest()
       rows.append((key, mode, r))
   out_rows = []
-  for mode, n in (("high", a.n_high), ("low", a.n_low)):
+  plan = (("terminal", a.terminal),) if a.terminal else (("high", a.n_high), ("low", a.n_low))
+  for mode, n in plan:
     pick = sorted((k, r) for k, m, r in rows if m == mode)[:n]
     for k, r in pick:
       msgs = [dict(x) for x in r["messages"]]

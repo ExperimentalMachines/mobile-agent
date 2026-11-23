@@ -1,0 +1,140 @@
+{
+    "device": "QUALCOMM Art for arm64",
+    "soc": "SM8975",
+    "android": "17 (API 37)",
+    "litertLm": "0.19.1",
+    "modelFile": "LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm",
+    "modelBytes": 2760755451,
+    "backends": "text GPU, vision GPU",
+    "loadMs": 3428,
+    "newEnginePerCall": false,
+    "image": "bench.png",
+    "imageSize": "1440x3200",
+    "modelInput": "576x1280",
+    "resizeMs": 144,
+    "pngEncodeMs": 264,
+    "pngBytes": 548295,
+    "goal": "Open the Clock app",
+    "historySteps": 8,
+    "calls": [
+        {
+            "i": 1,
+            "engineMs": null,
+            "totalMs": 3321,
+            "firstPieceMs": 2887,
+            "lastPieceMs": 3317,
+            "ttftMs": 1465,
+            "prefillTokens": 1480,
+            "prefillTokensPerS": 1037.815664212526,
+            "decodeTokens": 13,
+            "decodeTokensPerS": 25.325613211069506,
+            "pieces": 11,
+            "thought": "Click on the + button",
+            "text": "{\"action_type\":\"wait\"}",
+            "action": "{\"action_type\":\"wait\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 1322
+            }
+        },
+        {
+            "i": 2,
+            "engineMs": null,
+            "totalMs": 3450,
+            "firstPieceMs": 2997,
+            "lastPieceMs": 3443,
+            "ttftMs": 1521,
+            "prefillTokens": 1480,
+            "prefillTokensPerS": 1000.2760126484469,
+            "decodeTokens": 13,
+            "decodeTokensPerS": 23.884577770574598,
+            "pieces": 11,
+            "thought": "Click on the + button",
+            "text": "{\"action_type\":\"wait\"}",
+            "action": "{\"action_type\":\"wait\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 1331
+            }
+        },
+        {
+            "i": 3,
+            "engineMs": null,
+            "totalMs": 3478,
+            "firstPieceMs": 3012,
+            "lastPieceMs": 3474,
+            "ttftMs": 1523,
+            "prefillTokens": 1480,
+            "prefillTokensPerS": 1000.2822100254342,
+            "decodeTokens": 13,
+            "decodeTokensPerS": 22.869800804334062,
+            "pieces": 11,
+            "thought": "Click on the + button",
+            "text": "{\"action_type\":\"wait\"}",
+            "action": "{\"action_type\":\"wait\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 1331
+            }
+        },
+        {
+            "i": 4,
+            "engineMs": null,
+            "totalMs": 3454,
+            "firstPieceMs": 3007,
+            "lastPieceMs": 3450,
+            "ttftMs": 1516,
+            "prefillTokens": 1480,
+            "prefillTokensPerS": 1003.5692829843772,
+            "decodeTokens": 13,
+            "decodeTokensPerS": 24.142204582516165,
+            "pieces": 11,
+            "thought": "Click on the + button",
+            "text": "{\"action_type\":\"wait\"}",
+            "action": "{\"action_type\":\"wait\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 1347
+            }
+        },
+        {
+            "i": 5,
+            "engineMs": null,
+            "totalMs": 3647,
+            "firstPieceMs": 3211,
+            "lastPieceMs": 3643,
+            "ttftMs": 1530,
+            "prefillTokens": 1480,
+            "prefillTokensPerS": 993.5679625772035,
+            "decodeTokens": 13,
+            "decodeTokensPerS": 24.55409383125215,
+            "pieces": 11,
+            "thought": "Click on the + button",
+            "text": "{\"action_type\":\"wait\"}",
+            "action": "{\"action_type\":\"wait\"}",
+            "error": null,
+            "marksMs": {
+                "vision_executor": 1442
+            }
+        }
+    ],
+    "medianTotalMs": 3454,
+    "medianTtftMs": 1521,
+    "medianPrefillTokensPerS": 1000.2822100254342,
+    "medianDecodeTokensPerS": 24.142204582516165,
+    "medianEngineMs": null,
+    "thermalStart": 1,
+    "thermalEnd": 1,
+    "headroomStart": 0.9180214,
+    "headroomEnd": 0.9420733,
+    "freqStart": {
+        "cpu_policy0_khz": 480000,
+        "cpu_policy3_khz": 480000,
+        "cpu_policy6_khz": 2649600
+    },
+    "freqEnd": {
+        "cpu_policy0_khz": 480000,
+        "cpu_policy3_khz": 480000,
+        "cpu_policy6_khz": 921600
+    }
+}
