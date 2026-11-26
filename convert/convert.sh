@@ -18,6 +18,8 @@ CTX=${CTX:-4096}; FORMS=(${FORMS:-int4}); HW=${HW:-1280x576}
 NAME=LFM3-VL-2B-MobileAgent
 OUT=${OUT:-$ROOT/build/v4_g${HW}_ctx${CTX}}
 mkdir -p "$OUT/.done"; LOG=$OUT/recipe.log
+# 2026-11-26: outputs lost the version number (…-MobileAgent-v4_<form>_… -> …-MobileAgent_<form>_…); rename earlier builds in place
+for old in "$OUT"/LFM3-VL-2B-MobileAgent-v4_*.litertlm; do [ -e "$old" ] && mv "$old" "${old/MobileAgent-v4_/MobileAgent_}"; done
 export PYTHONHASHSEED=0; unset PYTHONPATH
 run() { echo "### $(date +%T) CMD: $*" | tee -a "$LOG"; /usr/bin/time -l "$@" 2>&1 | tee -a "$LOG"; return "${PIPESTATUS[0]}"; }
 STEPS=("$@"); [ ${#STEPS[@]} -gt 0 ] || STEPS=(src template vision float quant pack)
