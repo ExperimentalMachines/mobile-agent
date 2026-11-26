@@ -11,7 +11,7 @@ import java.security.MessageDigest
  * vision encoder takes (the app resizes every screenshot to exactly this size).
  *
  * ```json
- * {"file": "LFM3-VL-2B-MobileAgent-v4_int4_g1280x576_ctx4096.litertlm", "bytes": 2072561915, "sha256": "6008...",
+ * {"file": "LFM3-VL-2B-MobileAgent_int4_g1280x576_ctx4096.litertlm", "bytes": 2072561915, "sha256": "6008...",
  *  "image_height": 1280, "image_width": 576, "context_tokens": 4096, "display_name": "MobileAgent v4"}
  * ```
  */

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# convert_v4.sh [STEP...] - experimentalmachines/LFM3-VL-2B-MobileAgent-v4 (merged weights) -> one .litertlm for
+# convert.sh [STEP...] - experimentalmachines/LFM3-VL-2B-MobileAgent (merged weights) -> one .litertlm for
 # LiteRT-LM (model type fast_vlm), with the screenshot grid the model was trained on: 1280 x 576 px (720 image tokens;
 # what train/agent_format.smart_resize gives every 20:9 phone screen) instead of the 512 x 512 of litert-community's
 # base-model file. Recipe = hf-to-litertlm lfm3vl_work/convert_lfm3_vl.sh (Apache-2.0, third_party/hf-to-litertlm),
@@ -15,7 +15,7 @@ H2L=$ROOT/third_party/hf-to-litertlm; T=$ROOT/convert/lfm3vl
 LFM3_REPO=${LFM3_REPO:-$HOME/lfm3-android}   # the research repo (experimentalmachines/lfm3-mobile-agent)
 WEIGHTS=${WEIGHTS:-$LFM3_REPO/models/hf_local/LFM3-VL-2B-AndroidAgent-v4/model.safetensors}
 CTX=${CTX:-4096}; FORMS=(${FORMS:-int4}); HW=${HW:-1280x576}
-NAME=LFM3-VL-2B-MobileAgent-v4
+NAME=LFM3-VL-2B-MobileAgent
 OUT=${OUT:-$ROOT/build/v4_g${HW}_ctx${CTX}}
 mkdir -p "$OUT/.done"; LOG=$OUT/recipe.log
 export PYTHONHASHSEED=0; unset PYTHONPATH

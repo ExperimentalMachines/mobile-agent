@@ -1,6 +1,6 @@
 # Converting MobileAgent v4 to LiteRT-LM
 
-The model is [LFM3-VL-2B-MobileAgent-v4](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4) (merged
+The model is [LFM3-VL-2B-MobileAgent](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent) (merged
 weights). The output is one `.litertlm` file that runs on the CPU and GPU of any phone with LiteRT-LM. No per-chip
 builds are needed. Only an NPU build would need one file per chip, and none is made here.
 
@@ -11,9 +11,9 @@ text decoder's weights.
 
 | File | Decoder weights | Size | sha256 |
 |---|---|---|---|
-| `LFM3-VL-2B-MobileAgent-v4_int4_g1280x576_ctx4096.litertlm` | int4, blocks of 32 (output head int8) | 2,072,561,915 B | `6008eef76adab667bab7b5322e76d077a3ca8c430d7777427278bf33fc97a816` |
-| `LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm` | int8 per channel | 2,760,755,451 B | `8eba580944ec4627986698392fa235acca02dfc469bf1e00dc6d22288156870d` |
-| `LFM3-VL-2B-MobileAgent-v4_f16_g1280x576_ctx4096.litertlm` | fp16 | 4,440,934,651 B | `f7583612e45107c5b2da3793fa954687089e73bfc38f10a92ea63007499698c4` |
+| `LFM3-VL-2B-MobileAgent_int4_g1280x576_ctx4096.litertlm` | int4, blocks of 32 (output head int8) | 2,072,561,915 B | `6008eef76adab667bab7b5322e76d077a3ca8c430d7777427278bf33fc97a816` |
+| `LFM3-VL-2B-MobileAgent_int8_g1280x576_ctx4096.litertlm` | int8 per channel | 2,760,755,451 B | `8eba580944ec4627986698392fa235acca02dfc469bf1e00dc6d22288156870d` |
+| `LFM3-VL-2B-MobileAgent_f16_g1280x576_ctx4096.litertlm` | fp16 | 4,440,934,651 B | `f7583612e45107c5b2da3793fa954687089e73bfc38f10a92ea63007499698c4` |
 
 | Shared part | Value |
 |---|---|
@@ -24,11 +24,11 @@ text decoder's weights.
 | Context | 4,096 tokens. A step uses about 1,300 |
 | Thinking | On by default. The intent arrives in the `thought` channel, the action JSON in the text |
 | Runtime | Tested with LiteRT-LM 0.19.1 only (Python on the Mac, Kotlin on Android). Built with litert-lm-builder 0.18.1 |
-| Licence | The weights inherit the LFM Open License v1.0 from LiquidAI/LFM3-VL-2B. The int8 file is published at [LFM3-VL-2B-MobileAgent-v4-LiteRT](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT); int4 and fp16 are not |
+| Licence | The weights inherit the LFM Open License v1.0 from LiquidAI/LFM3-VL-2B. The int8 file is published at [LFM3-VL-2B-MobileAgent-LiteRT](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-LiteRT); int4 and fp16 are not |
 
 ## How it was made
 
-`convert/convert_v4.sh` runs the steps of hf-to-litertlm's LFM3-VL-2B recipe on our weights. Times and memory are
+`convert/convert.sh` runs the steps of hf-to-litertlm's LFM3-VL-2B recipe on our weights. Times and memory are
 from the int4 build on an Apple M5 Mac (24 GB), one run each:
 
 | Step | What | Time | Peak memory |
@@ -52,7 +52,7 @@ from the int4 build on an Apple M5 Mac (24 GB), one run each:
 ```bash
 bash convert/fetch_third_party.sh   # litert-torch @ f61d0b79, hf-to-litertlm @ a395b496 (full SHAs, checked)
 bash convert/setup_envs.sh          # .venv-dec / .venv-exp / .venv-run from convert/requirements-*.lock
-bash convert/convert_v4.sh          # src template vision float quant pack; FORMS="int4 int8 f16" for all three
+bash convert/convert.sh          # src template vision float quant pack; FORMS="int4 int8 f16" for all three
 ```
 
 - **Lock files:** frozen from the environments that built the files. They install and import cleanly in fresh
@@ -85,7 +85,7 @@ bash convert/convert_v4.sh          # src template vision float quant pack; FORM
 
 | | |
 |---|---|
-| Set | 120 high-level and 60 low-level steps from 165 official test episodes, chosen by a fixed hash from `experimentalmachines/MobileAgent-SFT-v1` @ `f88a8432`. Ground truth checked against the frozen benchmark file |
+| Set | 120 high-level and 60 low-level steps from 165 official test episodes, chosen by a fixed hash from `experimentalmachines/MobileAgent-SFT-AndroidControl` @ `f88a8432`. Ground truth checked against the frozen benchmark file |
 | Prompt and image | v4's prompt exactly as the offline benchmark built it, and the screenshot resized as in training (576 × 1280) |
 | Score | The offline benchmark's rule: click inside the target box or within 0.14 of the screen, text F1 ≥ 0.5 |
 | Runs | All on an Apple M5 Mac. **bf16** = the merged v4 model in Transformers (MPS), with the published AndroidControl run's prompt rules (that run used CUDA, batches of 32, 256 max tokens). **GGUF** = Q4_K_M + mmproj Q8_0 in llama.cpp `cd959bae9`, the file our AndroidWorld / MobileWorld runs and the earlier phone benchmark used. **LiteRT** = the files above, LiteRT-LM 0.19.1 Python, Mac GPU (WebGPU) |

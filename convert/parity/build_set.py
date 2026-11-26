@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fixed AndroidControl test sample for the runtime parity check (same rows for every runtime).
 
-Rows come from experimentalmachines/MobileAgent-SFT-v1 (data/test = AndroidControl official test episodes), with the
+Rows come from experimentalmachines/MobileAgent-SFT-AndroidControl (data/test = AndroidControl official test episodes), with the
 v4 prompt exactly as the offline benchmark built it (eval/androidcontrol/generate.py v4_msgs: SYSTEM_PROMPT_V4 + the
 episode's frozen installed-app list from data/v4work/app_pool.json). The screenshot is resized as the model saw it
 in training and evaluation (agent_format.resize_screenshot, max 880*880 px -> 576 x 1280 for 20:9 screens).
@@ -23,7 +23,7 @@ import pandas as pd
 from huggingface_hub import snapshot_download
 from PIL import Image
 
-REVISION = "f88a843239b7e0b68ea8fcb6eb0c5539276d64eb"  # experimentalmachines/MobileAgent-SFT-v1, pinned 2026-11-23
+REVISION = "f88a843239b7e0b68ea8fcb6eb0c5539276d64eb"  # experimentalmachines/MobileAgent-SFT-AndroidControl, pinned 2026-11-23
 RESEARCH = os.environ.get("LFM3_REPO", os.path.expanduser("~/lfm3-android"))  # the research repo
 sys.path.insert(0, os.path.join(RESEARCH, "train"))
 import agent_format as af  # noqa: E402
@@ -39,7 +39,7 @@ def main():
   ap.add_argument("--revision", default=REVISION)
   a = ap.parse_args()
   os.makedirs(os.path.join(a.out, "img"), exist_ok=True)
-  snap = snapshot_download("experimentalmachines/MobileAgent-SFT-v1", repo_type="dataset", allow_patterns=["data/test/*"],
+  snap = snapshot_download("experimentalmachines/MobileAgent-SFT-AndroidControl", repo_type="dataset", allow_patterns=["data/test/*"],
                            revision=a.revision)
   files = sorted(glob.glob(os.path.join(snap, "data/test/*.parquet")))
   meta = pd.concat([pd.read_parquet(f, columns=["episode_id", "messages", "gt_action"]) for f in files])

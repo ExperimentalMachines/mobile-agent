@@ -80,13 +80,15 @@ adb shell pm grant $P android.permission.POST_NOTIFICATIONS
 
 ## Model files
 
-Two files of the same model; **int8 is the default** and published at [LFM3-VL-2B-MobileAgent-v4-LiteRT](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT)
-(with its `model.json`); int4 is the smaller option, rebuilt with `convert/convert_v4.sh`:
+> **Renamed 2026-11-26:** the model repo and its files lost their version number (`…-MobileAgent-v4-LiteRT` → `…-MobileAgent-LiteRT`, `…-v4_int8_…litertlm` → `…_int8_…litertlm`); the bytes and hashes are unchanged, and a phone that already has the old file keeps working because `model.json`'s `file` field names whatever is in the folder. Naming scheme: [lfm3-mobile-agent/docs/naming.md](https://github.com/ExperimentalMachines/lfm3-mobile-agent/blob/main/docs/naming.md).
+
+Two files of the same model; **int8 is the default** and published at [LFM3-VL-2B-MobileAgent-LiteRT](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-LiteRT)
+(with its `model.json`); int4 is the smaller option, rebuilt with `convert/convert.sh`:
 
 | File | Bytes | sha256 | Same action as the bf16 model (180 parity rows, on the phone) | Click distance p90 | Per row (median) |
 |---|---|---|---|---|---|
-| `LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm` | 2,760,755,451 | `8eba5809…870d` | 90.6% | 2 units | 3.63 s |
-| `LFM3-VL-2B-MobileAgent-v4_int4_g1280x576_ctx4096.litertlm` | 2,072,561,915 | `6008eef7…a816` | 84.4% | 103 units | 4.07 s |
+| `LFM3-VL-2B-MobileAgent_int8_g1280x576_ctx4096.litertlm` | 2,760,755,451 | `8eba5809…870d` | 90.6% | 2 units | 3.63 s |
+| `LFM3-VL-2B-MobileAgent_int4_g1280x576_ctx4096.litertlm` | 2,072,561,915 | `6008eef7…a816` | 84.4% | 103 units | 4.07 s |
 
 Parity: the `PARITY` hook on `b3ba6e19` (below), scored on the Mac against the bf16 Hugging Face model; the phone was
 running hot (thermal status 3 at the end), so the per-row times are not the cold numbers in [Measured](#measured).
@@ -97,7 +99,7 @@ model card lists the others (Change).
 
 | Field | Example | Meaning |
 |---|---|---|
-| `file` | `LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm` | The model file in the same folder |
+| `file` | `LFM3-VL-2B-MobileAgent_int8_g1280x576_ctx4096.litertlm` | The model file in the same folder |
 | `bytes` | `2760755451` | Size check on the home screen |
 | `sha256` | `8eba5809…` | "Verify checksum" on the home screen |
 | `image_height`, `image_width` | `1280`, `576` | The fixed grid every screenshot is resized to |
@@ -110,9 +112,9 @@ Copy the file into the folder on the phone, then give it to the app's user id (a
 
 ```sh
 D=/sdcard/Android/data/org.experimentalmachines.mobileagent/files/models
-adb shell curl -L -o $D/model.json https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT/resolve/main/model.json
-adb shell curl -L -o $D/LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm \
-  https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-v4-LiteRT/resolve/main/LFM3-VL-2B-MobileAgent-v4_int8_g1280x576_ctx4096.litertlm
+adb shell curl -L -o $D/model.json https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-LiteRT/resolve/main/model.json
+adb shell curl -L -o $D/LFM3-VL-2B-MobileAgent_int8_g1280x576_ctx4096.litertlm \
+  https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-LiteRT/resolve/main/LFM3-VL-2B-MobileAgent_int8_g1280x576_ctx4096.litertlm
 # or copy a file you pushed: adb shell cp /data/local/tmp/<file>.litertlm $D/
 adb shell stat -c %U /data/media/0/Android/data/org.experimentalmachines.mobileagent      # e.g. u0_a252
 adb shell chown -R u0_a252:ext_data_rw /data/media/0/Android/data/org.experimentalmachines.mobileagent/files/models

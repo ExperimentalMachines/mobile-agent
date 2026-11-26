@@ -6,7 +6,7 @@ The raw outputs behind the numbers in [`../README.md`](../README.md) and [`../do
 
 | File | What |
 |---|---|
-| `set_rows.jsonl` | The 180 AndroidControl test steps (v4 prompt, ground truth). Screenshots are not included: `convert/parity/build_set.py` rebuilds them from `experimentalmachines/MobileAgent-SFT-v1` |
+| `set_rows.jsonl` | The 180 AndroidControl test steps (v4 prompt, ground truth). Screenshots are not included: `convert/parity/build_set.py` rebuilds them from `experimentalmachines/MobileAgent-SFT-AndroidControl` |
 | `gguf_v4.jsonl` | Reference: v4 Q4_K_M GGUF, llama.cpp `cd959bae9` with the evaluation flags (Mac M5, Metal) |
 | `litert_v4_int4_shared.jsonl` | The `.litertlm` file, LiteRT-LM 0.19.1 Python, Mac GPU, one engine for all rows |
 | `litert_v4_int4_perrow30.jsonl` | The same file with a new engine per row, first 30 rows (LiteRT-LM issue #3165 check) |
