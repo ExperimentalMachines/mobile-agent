@@ -30,6 +30,7 @@ class AgentLoopTest {
         var live: Guard.Live = Guard.Live(windowPackages = listOf("app"), foregroundPackage = "app", targetPackage = "app"),
         var liveAtAct: Guard.Live? = null,
         var decision: Decision? = Decision.ALLOW,
+        val homes: Set<String> = emptySet(),
     ) : AgentLoop.Env {
         val calls = mutableListOf<String>()
         val executed = mutableListOf<String>()
@@ -42,6 +43,7 @@ class AgentLoopTest {
         override fun update(change: (RunState.Running) -> RunState.Running) = Unit
         override suspend fun observe(step: Int) = AgentLoop.Screen(ByteArray(1), 1440, 3200, FloatArray(72 * 160), 1, 1, 1)
         override fun foreground(): String? = live.foregroundPackage
+        override fun isHome(pkg: String?): Boolean = pkg in homes
         override fun live(x: Int?, y: Int?): Guard.Live = if (acting) liveAtAct ?: live else live
         override suspend fun newEngine(): Long = 0
         override suspend fun reply(png: ByteArray, system: String, user: String, step: Int, onThought: (String) -> Unit): LlmRuntime.Reply {
@@ -92,6 +94,42 @@ class AgentLoopTest {
     }
 
     private fun JsonObject.strings(k: String) = this[k]!!.jsonArray.map { it.jsonPrimitive.content }
+
+    private val openSettingsByTap = "Open the Settings app" to """{"action_type":"click","point_2d":[123,222]}"""
+
+    @Test
+    fun aTapOnTheLauncherForANamedAppOpensItByName() = runBlocking {
+        val launcher = Guard.Live(listOf("launcher"), emptyList(), "launcher", foregroundPackage = "launcher")
+        val env = FakeEnv(listOf(openSettingsByTap, done), live = launcher, homes = setOf("launcher"))
+        val out = AgentLoop.Outcome()
+        AgentLoop(env) { 0L }.run(config("Turn on airplane mode", listOf("Clock", "Settings"), 5), out)
+        val open = """{"action_type":"open_app","app_name":"Settings"}"""
+        assertThat(env.executed).containsExactly(open)
+        assertThat(out.history[0]).isEqualTo(AgentFormat.Step("Open the Settings app", open))
+        assertThat(out.steps[0].action).isEqualTo(open)
+        assertThat(out.steps[0].modelAction).isEqualTo("""{"action_type":"click","point_2d":[123,222]}""")
+        assertThat(out.steps[0].tapX).isNull()
+    }
+
+    @Test
+    fun theOpenIsHeldBackWhenTheLauncherLeftBeforeActing() = runBlocking {
+        val launcher = Guard.Live(listOf("launcher"), emptyList(), "launcher", foregroundPackage = "launcher")
+        val other = Guard.Live(listOf("chat"), emptyList(), "chat", foregroundPackage = "chat")
+        val env = FakeEnv(listOf(openSettingsByTap, done), live = launcher, liveAtAct = other, homes = setOf("launcher"))
+        val out = AgentLoop.Outcome()
+        AgentLoop(env) { 0L }.run(config("Turn on airplane mode", listOf("Clock", "Settings"), 5), out)
+        assertThat(env.executed).isEmpty()
+        assertThat(out.steps[0].outcome).startsWith("not executed: the launcher is no longer in front")
+    }
+
+    @Test
+    fun theSameTapInsideAnAppRunsAsChosen() = runBlocking {
+        val env = FakeEnv(listOf(openSettingsByTap, done), homes = setOf("launcher")) // "app" is in front
+        val out = AgentLoop.Outcome()
+        AgentLoop(env) { 0L }.run(config("Turn on airplane mode", listOf("Clock", "Settings"), 5), out)
+        assertThat(env.executed).containsExactly("""{"action_type":"click","point_2d":[123,222]}""")
+        assertThat(out.steps[0].modelAction).isNull()
+    }
 
     private val tapReply = "Tap Delete" to """{"action_type":"click","point_2d":[500,500]}"""
     private val done = "Done" to """{"action_type":"status","goal_status":"complete"}"""

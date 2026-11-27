@@ -54,6 +54,8 @@ data class StepRecord(
     val loopRules: List<String> = emptyList(),
     /** This step as later prompts show it ("intent -> action", with a [skipped ...] / [not executed ...] note). */
     val historyEntry: String? = null,
+    /** The model's own action when it was a tap or scroll on the launcher for a named app, opened by name instead. */
+    val modelAction: String? = null,
 )
 
 @Serializable
@@ -82,6 +84,8 @@ data class RunRecord(
     /** smart_resize of this screen (height x width) and whether it equals the model file's grid ([imageGrid]). */
     val screenGrid: String? = null,
     val gridMatches: Boolean? = null,
+    /** Where step 1 began: "home: <launcher>", "app: <package>" or "as is: <package>" (null: older runs). */
+    val startedFrom: String? = null,
     val steps: List<StepRecord>,
     val startedAtMs: Long,
     val endedAtMs: Long,

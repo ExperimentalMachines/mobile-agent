@@ -12,7 +12,7 @@ object AppResolver {
     fun tokens(s: String): List<String> =
         s.lowercase().replace(Regex("[^a-z0-9]+"), " ").split(' ').filter { it.isNotEmpty() && it !in GENERIC }
 
-    private fun tokMatch(a: String, b: String): Boolean {
+    fun tokMatch(a: String, b: String): Boolean {
         if (a == b) return true
         if (minOf(a.length, b.length) >= 4 && (a.startsWith(b) || b.startsWith(a))) return true
         return minOf(a.length, b.length) >= 5 && ratio(a, b) >= 0.8

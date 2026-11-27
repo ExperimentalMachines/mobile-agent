@@ -24,41 +24,41 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-/** Placeholder palette: warm greys and one quiet indigo accent (branding comes later). */
+/** Soft paper surfaces and a forest-green accent, shared by the app and floating controls. */
 private val Light = lightColorScheme(
-    primary = Color(0xFF4257C9),
+    primary = Color(0xFF146454),
     onPrimary = Color.White,
-    primaryContainer = Color(0xFFE3E7FB),
-    onPrimaryContainer = Color(0xFF1A2463),
-    secondary = Color(0xFF5E6068),
+    primaryContainer = Color(0xFFDFEEE6),
+    onPrimaryContainer = Color(0xFF134F43),
+    secondary = Color(0xFF69766D),
     onSecondary = Color.White,
-    secondaryContainer = Color(0xFFE5E8F4),
-    onSecondaryContainer = Color(0xFF1F2747),
-    background = Color(0xFFFAFAF8),
-    onBackground = Color(0xFF1B1C1F),
-    surface = Color(0xFFFAFAF8),
-    onSurface = Color(0xFF1B1C1F),
+    secondaryContainer = Color(0xFFDFEEE6),
+    onSecondaryContainer = Color(0xFF134F43),
+    background = Color(0xFFF7F8F2),
+    onBackground = Color(0xFF202B26),
+    surface = Color(0xFFFFFFFF),
+    onSurface = Color(0xFF202B26),
     surfaceVariant = Color(0xFFEDEDEA),
-    onSurfaceVariant = Color(0xFF5E6068),
+    onSurfaceVariant = Color(0xFF69766D),
     surfaceContainerLowest = Color.White,
-    surfaceContainerLow = Color(0xFFF4F4F1),
+    surfaceContainerLow = Color(0xFFEFF1E9),
     surfaceContainer = Color(0xFFF0F0ED),
     surfaceContainerHigh = Color(0xFFEAEAE6),
     surfaceContainerHighest = Color(0xFFE4E4E0),
-    outline = Color(0xFFC6C7C3),
-    outlineVariant = Color(0xFFE1E1DD),
+    outline = Color(0xFFB4C0B5),
+    outlineVariant = Color(0xFFE1E5DB),
     error = Color(0xFFB3261E),
 )
 
 private val Dark = darkColorScheme(
-    primary = Color(0xFFAEBBFF),
-    onPrimary = Color(0xFF14206B),
-    primaryContainer = Color(0xFF2B3672),
-    onPrimaryContainer = Color(0xFFDDE2FF),
+    primary = Color(0xFFA3DAC4),
+    onPrimary = Color(0xFF09392C),
+    primaryContainer = Color(0xFF224F40),
+    onPrimaryContainer = Color(0xFFC0EBDC),
     secondary = Color(0xFFA3A6AD),
-    onSecondary = Color(0xFF1B1C1F),
-    secondaryContainer = Color(0xFF2B3045),
-    onSecondaryContainer = Color(0xFFDDE1F2),
+    onSecondary = Color(0xFF202B26),
+    secondaryContainer = Color(0xFF224F40),
+    onSecondaryContainer = Color(0xFFC0EBDC),
     background = Color(0xFF131518),
     onBackground = Color(0xFFE6E6E3),
     surface = Color(0xFF131518),
@@ -66,7 +66,7 @@ private val Dark = darkColorScheme(
     surfaceVariant = Color(0xFF2A2D32),
     onSurfaceVariant = Color(0xFFA3A6AD),
     surfaceContainerLowest = Color(0xFF0E1013),
-    surfaceContainerLow = Color(0xFF181A1E),
+    surfaceContainerLow = Color(0xFF1B2520),
     surfaceContainer = Color(0xFF1C1F23),
     surfaceContainerHigh = Color(0xFF24272C),
     surfaceContainerHighest = Color(0xFF2C3035),
@@ -86,13 +86,13 @@ val Mono = TextStyle(fontFamily = FontFamily.Monospace, fontSize = 12.sp, lineHe
 fun MobileAgentTheme(dark: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val scheme: ColorScheme = if (dark) Dark else Light
     val status = if (dark) {
-        StatusColors(ok = Color(0xFF7FCF9B), warn = Color(0xFFF2B45A), mark = Color(0xFFE6E6E3), markAccent = Color(0xFF8FA6FF))
+        StatusColors(ok = Color(0xFF7FCF9B), warn = Color(0xFFF2B45A), mark = Color(0xFFE6E6E3), markAccent = Color(0xFFA3DAC4))
     } else {
-        StatusColors(ok = Color(0xFF2F7D4F), warn = Color(0xFFB26A00), mark = Color(0xFF1D2127), markAccent = Color(0xFF4257C9))
+        StatusColors(ok = Color(0xFF2F7D4F), warn = Color(0xFFB26A00), mark = Color(0xFF1D2127), markAccent = Color(0xFF146454))
     }
     val base = Typography()
     val type = base.copy(
-        titleLarge = base.titleLarge.copy(fontWeight = FontWeight.SemiBold, fontSize = 20.sp),
+        titleLarge = base.titleLarge.copy(fontWeight = FontWeight.SemiBold, fontSize = 22.sp, letterSpacing = (-.5).sp),
         titleMedium = base.titleMedium.copy(fontWeight = FontWeight.SemiBold),
         labelLarge = base.labelLarge.copy(fontWeight = FontWeight.Medium),
     )

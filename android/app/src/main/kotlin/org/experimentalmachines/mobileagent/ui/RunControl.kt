@@ -35,6 +35,11 @@ object Glyphs {
     private fun icon(name: String, block: androidx.compose.ui.graphics.vector.PathBuilder.() -> Unit) =
         ImageVector.Builder(name, 24.dp, 24.dp, 24f, 24f).path(fill = SolidColor(Color.Black), pathBuilder = block).build()
 
+    val Spark = icon("agent") { moveTo(12f, 2f); lineTo(14.7f, 9.3f); lineTo(22f, 12f); lineTo(14.7f, 14.7f); lineTo(12f, 22f); lineTo(9.3f, 14.7f); lineTo(2f, 12f); lineTo(9.3f, 9.3f); close() }
+    val Download = icon("download") { moveTo(11f, 3f); horizontalLineTo(13f); verticalLineTo(13f); lineTo(17f, 9f); lineTo(18.4f, 10.4f); lineTo(12f, 16.8f); lineTo(5.6f, 10.4f); lineTo(7f, 9f); lineTo(11f, 13f); close(); moveTo(4f, 17f); horizontalLineTo(6f); verticalLineTo(20f); horizontalLineTo(18f); verticalLineTo(17f); horizontalLineTo(20f); verticalLineTo(22f); horizontalLineTo(4f); close() }
+    val Check = icon("check") { moveTo(4f, 11f); lineTo(9f, 16f); lineTo(20f, 5f); lineTo(21.5f, 6.5f); lineTo(9f, 19f); lineTo(2.5f, 12.5f); close() }
+    val Clock = icon("activity") { moveTo(12f, 2f); arcTo(10f,10f,0f,true,true,11.99f,2f); close(); moveTo(12f, 4f); arcTo(8f,8f,0f,true,false,12.01f,4f); close(); moveTo(11f,6f); horizontalLineTo(13f); verticalLineTo(11.5f); lineTo(17f,14f); lineTo(16f,15.6f); lineTo(11f,12.5f); close() }
+    val Settings = icon("settings") { moveTo(4f,6f); horizontalLineTo(20f); verticalLineTo(8f); horizontalLineTo(4f); close(); moveTo(4f,16f); horizontalLineTo(20f); verticalLineTo(18f); horizontalLineTo(4f); close(); moveTo(8f,3f); horizontalLineTo(10f); verticalLineTo(11f); horizontalLineTo(8f); close(); moveTo(14f,13f); horizontalLineTo(16f); verticalLineTo(21f); horizontalLineTo(14f); close() }
     val Pause = icon("pause") { moveTo(7f, 5f); horizontalLineTo(10f); verticalLineTo(19f); horizontalLineTo(7f); close(); moveTo(14f, 5f); horizontalLineTo(17f); verticalLineTo(19f); horizontalLineTo(14f); close() }
     val Play = icon("play") { moveTo(8f, 5f); lineTo(19f, 12f); lineTo(8f, 19f); close() }
     val Stop = icon("stop") { moveTo(6.5f, 6.5f); horizontalLineTo(17.5f); verticalLineTo(17.5f); horizontalLineTo(6.5f); close() }

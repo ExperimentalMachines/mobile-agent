@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -39,10 +40,13 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-fun TopBar(title: String, onBack: () -> Unit, trailing: (@Composable () -> Unit)? = null) {
-    Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = onBack) { Icon(Glyphs.Back, "Back", Modifier.size(22.dp)) }
-        Spacer(Modifier.width(4.dp))
+/** Tabs (Activity, Settings) pass no [onBack]: the bottom bar and the system back gesture navigate. */
+fun TopBar(title: String, onBack: (() -> Unit)?, trailing: (@Composable () -> Unit)? = null) {
+    Row(Modifier.fillMaxWidth().padding(top = 8.dp).heightIn(min = 48.dp), verticalAlignment = Alignment.CenterVertically) {
+        if (onBack != null) {
+            IconButton(onClick = onBack) { Icon(Glyphs.Back, "Back", Modifier.size(22.dp)) }
+            Spacer(Modifier.width(4.dp))
+        }
         Text(title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
         trailing?.invoke()
     }
@@ -51,7 +55,7 @@ fun TopBar(title: String, onBack: () -> Unit, trailing: (@Composable () -> Unit)
 private fun secs(ms: Long?) = ms?.let { String.format(Locale.US, "%.1f s", it / 1000.0) } ?: "–"
 
 @Composable
-fun LogScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
+fun LogScreen(onOpen: (String) -> Unit) {
     val app = MobileAgentApp.get(LocalContext.current)
     val state by app.controller.state.collectAsState()
     var version by remember { mutableIntStateOf(0) }
@@ -73,15 +77,17 @@ fun LogScreen(onBack: () -> Unit, onOpen: (String) -> Unit) {
         )
     }
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        TopBar("Run log", onBack, trailing = {
+        TopBar("Activity", null, trailing = {
             TextButton(onClick = { confirmDelete = true }, enabled = runs.isNotEmpty() && !app.controller.running) { Text("Delete all") }
         })
         Text(
-            "Each run keeps its log (model replies, actions, timings) and a small screenshot per step in this app's storage; " +
-                "the last ${app.settings.current.keepRuns} runs are kept. Typed passwords are redacted.",
+            "Your last ${app.settings.current.keepRuns} tasks, with step screenshots, are saved on this phone. Delete them anytime.",
             style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        if (runs.isEmpty()) Text("No runs yet.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        if (runs.isEmpty()) Section("A fresh start") {
+            Text("Your tasks will appear here.", style = MaterialTheme.typography.titleLarge)
+            Text("After a run, see what your agent did, step by step. Everything stays on this phone.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
         runs.forEach { r ->
             Column(Modifier.fillMaxWidth().clickable { onOpen(r.runId) }.padding(vertical = 6.dp)) {
                 Text(r.goal, style = MaterialTheme.typography.bodyLarge, maxLines = 2, overflow = TextOverflow.Ellipsis)

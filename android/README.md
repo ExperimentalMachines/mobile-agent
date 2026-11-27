@@ -1,9 +1,8 @@
 # Mobile Agent (Android app)
 
 An on-device phone agent. You type a goal; the app takes a screenshot, asks the fine-tuned LFM3-VL-2B
-("MobileAgent v4") for one action, performs it, and repeats until the model says it is done. The model runs
-with Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) on the phone's GPU. Nothing leaves the phone
-(the app has no INTERNET permission).
+([LFM3-VL-2B-MobileAgent](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent)) for one action, performs it, and repeats until the model says it is done. The model runs
+with Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) on the phone's GPU. Tasks and screenshots stay on the phone. The INTERNET permission is used for the optional model download from Hugging Face.
 
 - Working name and placeholder mark (a screen outline with a tap point); branding comes later.
 - Package `org.experimentalmachines.mobileagent`, minSdk 31, arm64, LiteRT-LM 0.19.1 (the only version tested).
@@ -78,6 +77,20 @@ adb shell appops set $P SYSTEM_ALERT_WINDOW allow
 adb shell pm grant $P android.permission.POST_NOTIFICATIONS
 ```
 
+## In-app model installation
+
+Home → setup card → **Download model**. Confirm the 2.76 GB Wi-Fi download from
+[`experimentalmachines/LFM3-VL-2B-MobileAgent-LiteRT`](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent-LiteRT).
+The release is pinned to `671cbb92502fc6621d8cad9f4392e5aa004b5638`, with the known size and SHA-256 embedded in
+`RecommendedModel`. Android DownloadManager owns the background transfer and its retries. The app remembers the transfer ID
+and reconnects on restart. Cancel removes the partial transfer; retry starts a fresh download. Verification completes when
+the app is running again. Failed, partial or unverified downloads never get a model sidecar. The verified file and
+`recommended.json` are installed in app storage and selected automatically. A task loads it on demand.
+
+At least 3.1 GB free is required. Model download is the only added network operation; goals, screens and model inference
+remain local. The consent dialog links the model source/license. Existing manually installed models remain supported under
+setup → Details, including selection, loading and checksum verification.
+
 ## Model files
 
 > **Renamed 2026-11-26:** the model repo and its files lost their version number (`…-MobileAgent-v4-LiteRT` → `…-MobileAgent-LiteRT`, `…-v4_int8_…litertlm` → `…_int8_…litertlm`); the bytes and hashes are unchanged, and a phone that already has the old file keeps working because `model.json`'s `file` field names whatever is in the folder. Naming scheme: [lfm3-mobile-agent/docs/naming.md](https://github.com/ExperimentalMachines/lfm3-mobile-agent/blob/main/docs/naming.md).
@@ -104,7 +117,7 @@ model card lists the others (Change).
 | `sha256` | `8eba5809…` | "Verify checksum" on the home screen |
 | `image_height`, `image_width` | `1280`, `576` | The fixed grid every screenshot is resized to |
 | `context_tokens` | `4096` | Shown on the model card |
-| `display_name` | `MobileAgent v4 (int8, 1280x576, ctx 4096)` | Shown on the model card |
+| `display_name` | `MobileAgent (int8, 1280x576, ctx 4096)` | Shown on the model card |
 | `prompt_version` | `v4` (default) | `v4`: system prompt v4 + installed apps; `v1`: models v1–v3 |
 | `enable_thinking` | `true` (default) | Passed to the chat template |
 
@@ -214,10 +227,47 @@ Where the app differs from the harness, and records it:
 - **Guarded steps** (below): a step the user skips, or one held back because the screen changed, enters the history
   with a suffix in the style of the harness's opt-in runtime feedback (`[failed to execute]`):
   `... [skipped by the user]` / `... [not executed: the screen changed]`. `run.json` has each step's `historyEntry`.
+- **Start and launchers** ([below](#where-a-task-starts-and-any-launcher)): a run started from the app begins on the
+  home screen, as harness episodes do. On a launcher, a tap or scroll whose intent names an installed app runs as
+  `open_app` and enters the history as `open_app`; `run.json` keeps the model's own action in `modelAction`.
 
 The runtime's rendered prompt (`RENDER`) equals the fine-tuned model's Hugging Face chat template output, apart from
 the runtime's image placeholder and the BOS token. Regenerate the goldens with
 `tools/gen_golden.py --train-dir <research repo>/train` (Python 3.12 + Pillow).
+
+## Where a task starts, and any launcher
+
+The model was trained and benchmarked on episodes that start on the home screen. It has never seen Mobile Agent's own
+screen; on it, step 1 tapped where Start sits for 11 of 12 goals (during a run, Pause and Stop are there).
+
+| Started from | Step 1 begins on | run.json `startedFrom` |
+|---|---|---|
+| Mobile Agent, **Home screen** (default) | The default launcher, via the system Home action (waits until it is in front, up to 3 s) | `home: <launcher package>` |
+| Mobile Agent, **Continue in &lt;app&gt;** | The app you came from, as you left it (its existing task) | `app: <package>` |
+| Anywhere else (debug hook) | Whatever is on screen | `as is: <package>` |
+
+"Continue in" appears when another app was in front before Mobile Agent (not after the home screen). Use it for tasks
+about that app ("delete this alarm", "reply to this message"); unrelated apps cost a step (the model pressed Back first
+for 5 of 12 goals with Settings in front).
+
+**Launchers do not matter much:** the model opens apps by name (`open_app`, a launch intent), so icons need not be
+visible. One rule covers the rest: on a launcher, a tap or scroll whose intent names an installed app ("Open the
+Settings app", "find the file manager app") opens that app by name; `modelAction` in run.json keeps the model's own
+action. Matching is strict ("Click on the search bar" is not an app launch). Everything else runs as chosen.
+
+| Step 1 on (v4, Q4_K_M GGUF, 12 goals each) | `open_app` | Tap or scroll for a named app | Other |
+|---|---|---|---|
+| Pixel Launcher, no Clock icon on the page | 12 | 0 | 0 |
+| Pixel app drawer | 8 | 4 (icons were there) | 0 |
+| Lawnchair | 11 | 1 (no icon there; now opened by name) | 0 |
+| KISS (search box) | 11 | 0 | 1 (its menu) |
+| Olauncher (text list, no icons) | 11 | 0 | 1 (wrong answer) |
+| AndroidWorld, 342 sealed episodes | 323 | 7 (all now opened by name) | 12 unnamed scrolls |
+
+On the emulator (CPU, about 45–115 s per step), runs started from Mobile Agent began on Olauncher's and KISS's home
+screens and opened Clock / Contacts by name; one started with "Continue in Clock" began on the Clock screen as left.
+After step 1 they showed the model's own limits: 3:30 PM set for "30 minutes from now" and reported complete, a missed
+Delete, and a wait loop until the step limit.
 
 ## Safety guard
 

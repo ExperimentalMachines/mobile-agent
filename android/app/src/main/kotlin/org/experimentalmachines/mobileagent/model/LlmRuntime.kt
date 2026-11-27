@@ -24,8 +24,8 @@ import java.io.File
  *
  * Decoding is greedy (top-k 1), as the benchmarks ran the model (temperature 0).
  */
-class LlmRuntime(private val cacheDir: File) {
-    data class Loaded(val spec: ModelSpec, val file: File, val textBackend: String, val visionBackend: String, val loadMs: Long) {
+class LlmRuntime(private val cacheDir: File, val totalMemBytes: Long = 0) {
+    data class Loaded(val spec: ModelSpec, val file: File, val textBackend: String, val visionBackend: String, val loadMs: Long, val weightCache: Boolean = true) {
         val backends: String get() = "text ${textBackend.uppercase()}, vision ${visionBackend.uppercase()}"
     }
 
@@ -88,26 +88,30 @@ class LlmRuntime(private val cacheDir: File) {
         _state.value = State.Loading("${spec.name} (text ${textBackend.uppercase()}, vision ${visionBackend.uppercase()})")
         ExperimentalFlags.enableBenchmark = benchmark // read when an Engine is created; gives TTFT and token rates
         val t0 = SystemClock.elapsedRealtime()
+        var cache = cacheDir.absolutePath
         try {
+            memoryProblem(totalMemBytes, file.length())?.let { throw IllegalStateException(it) }
+            cache = weightCacheDir(cacheDir, file, textBackend == "cpu" || visionBackend == "cpu", cacheDir.usableSpace)
+            if (cache == NO_CACHE) Log.w(TAG, "weight cache off: ${cacheDir.usableSpace / 1_000_000} MB free in $cacheDir")
             val e = Engine(
                 EngineConfig(
                     modelPath = file.absolutePath,
                     backend = backend(textBackend),
                     visionBackend = backend(visionBackend),
                     maxNumImages = 1,
-                    cacheDir = cacheDir.absolutePath,
+                    cacheDir = cache,
                 ),
             )
             e.initialize()
             engine = e
             requestsSinceLoad = 0
         } catch (t: Throwable) {
-            val msg = "${t.javaClass.simpleName}: ${t.message}"
+            val msg = describe(t)
             Log.e(TAG, "engine load failed ($textBackend/$visionBackend): $msg", t)
             _state.value = State.Failed(msg)
             throw t
         }
-        val l = Loaded(spec, file, textBackend, visionBackend, SystemClock.elapsedRealtime() - t0)
+        val l = Loaded(spec, file, textBackend, visionBackend, SystemClock.elapsedRealtime() - t0, weightCache = cache != NO_CACHE)
         loaded = l
         _state.value = State.Ready(l)
         Log.i(TAG, "engine loaded: ${spec.name}, ${l.backends}, ${l.loadMs} ms")
@@ -204,5 +208,39 @@ class LlmRuntime(private val cacheDir: File) {
 
     companion object {
         const val TAG = "MobileAgent"
+
+        /** LiteRT-LM's sentinel (engine_settings.cc, v0.19.1): no weight or program cache files. */
+        const val NO_CACHE = ":nocache"
+        /** Room kept for the CPU (XNNPack) weight packs beyond the model's own size: the vision pack alone is ~0.4 GB. */
+        const val PACK_HEADROOM = 1_000_000_000L
+        /** Memory beyond the model file that Android, the app and the KV cache need at the least. */
+        const val RAM_HEADROOM = 1_500_000_000L
+
+        /**
+         * On CPU, XNNPack writes repacked weights next to [cacheDir] on first use, and LiteRT aborts the whole process
+         * (SIGABRT, "cannot append buffer to cache file") when the disk fills up mid-write. Without room for the packs
+         * still missing, run uncached (slower load, more RAM) and drop this model's packs: they may be half-written.
+         */
+        fun weightCacheDir(cacheDir: File, model: File, cpu: Boolean, freeBytes: Long): String {
+            if (!cpu) return cacheDir.absolutePath // GPU-only: compiled programs, small
+            // LiteRT names them "<file>_<mtime>_<bytes>.<section>.xnnpack_cache": match this file's name and size exactly.
+            val mine = Regex("^" + Regex.escape(model.name) + "_\\d+_" + model.length() + "\\.")
+            val packs = cacheDir.listFiles { f -> mine.containsMatchIn(f.name) }.orEmpty()
+            val missing = model.length() + PACK_HEADROOM - packs.sumOf { it.length() }
+            if (freeBytes >= missing) return cacheDir.absolutePath
+            packs.forEach { it.delete() }
+            return NO_CACHE
+        }
+
+        /** Our own checks throw IllegalStateException with a sentence for people; anything else keeps its class name. */
+        fun describe(t: Throwable): String =
+            if (t is IllegalStateException && !t.message.isNullOrBlank()) t.message!! else "${t.javaClass.simpleName}: ${t.message}"
+
+        /** A device that cannot hold the weights at all gets a message instead of being killed mid-load. */
+        fun memoryProblem(totalMemBytes: Long, modelBytes: Long): String? {
+            val need = modelBytes + RAM_HEADROOM
+            if (totalMemBytes <= 0 || totalMemBytes >= need) return null
+            return String.format(java.util.Locale.US, "Not enough memory: this device has %.1f GB, the model needs at least %.1f GB.", totalMemBytes / 1e9, need / 1e9)
+        }
     }
 }

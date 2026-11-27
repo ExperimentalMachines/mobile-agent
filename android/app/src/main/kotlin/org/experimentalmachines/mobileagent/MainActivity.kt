@@ -1,49 +1,46 @@
 package org.experimentalmachines.mobileagent
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.BackHandler
-import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.getValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import org.experimentalmachines.mobileagent.ui.HomeScreen
-import org.experimentalmachines.mobileagent.ui.LogScreen
-import org.experimentalmachines.mobileagent.ui.MobileAgentTheme
-import org.experimentalmachines.mobileagent.ui.RunDetailScreen
-import org.experimentalmachines.mobileagent.ui.SettingsScreen
+import androidx.compose.ui.unit.dp
+import org.experimentalmachines.mobileagent.ui.*
 
-/** One activity, four screens: home, settings, run log, one run. */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             MobileAgentTheme {
-                Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    // "home", "settings", "log", or "run:<id>"
-                    var screen by rememberSaveable { mutableStateOf("home") }
-                    BackHandler(enabled = screen != "home") { screen = if (screen.startsWith("run:")) "log" else "home" }
-                    Box(Modifier.fillMaxSize().safeDrawingPadding().imePadding().verticalScroll(rememberScrollState(), enabled = true)) {
-                        when {
-                            screen == "settings" -> SettingsScreen(onBack = { screen = "home" })
-                            screen == "log" -> LogScreen(onBack = { screen = "home" }, onOpen = { screen = "run:$it" })
-                            screen.startsWith("run:") -> RunDetailScreen(screen.removePrefix("run:"), onBack = { screen = "log" })
-                            else -> HomeScreen(
-                                onOpenSettings = { screen = "settings" },
-                                onOpenLog = { id -> screen = if (id == null) "log" else "run:$id" },
-                            )
+                var screen by rememberSaveable { mutableStateOf("home") }
+                BackHandler(enabled = screen != "home") { screen = if (screen.startsWith("run:")) "log" else "home" }
+                Scaffold(containerColor = MaterialTheme.colorScheme.background,
+                    bottomBar = {
+                        NavigationBar(containerColor = MaterialTheme.colorScheme.surface, tonalElevation = 0.dp) {
+                            listOf(Triple("home", "Agent", Glyphs.Spark), Triple("log", "Activity", Glyphs.Clock), Triple("settings", "Settings", Glyphs.Settings)).forEach { (route, label, glyph) ->
+                                NavigationBarItem(selected = screen == route || (route == "home" && screen == "setup") || (route == "log" && screen.startsWith("run:")),
+                                    onClick = { screen = route }, icon = { Icon(glyph, label, Modifier.size(22.dp)) }, label = { Text(label) })
+                            }
+                        }
+                    }) { padding ->
+                    // Each screen owns its scroll position. System/keyboard insets keep controls reachable.
+                    key(screen) {
+                        Box(Modifier.fillMaxSize().padding(padding).consumeWindowInsets(padding).imePadding().verticalScroll(rememberScrollState())) {
+                            when {
+                                screen == "setup" -> SetupScreen(onBack = { screen = "home" })
+                                screen == "settings" -> SettingsScreen(onSetup = { screen = "setup" })
+                                screen == "log" -> LogScreen(onOpen = { screen = "run:$it" })
+                                screen.startsWith("run:") -> RunDetailScreen(screen.removePrefix("run:"), onBack = { screen = "log" })
+                                else -> HomeScreen(onOpenLog = { id -> screen = if (id == null) "log" else "run:$id" }, onSetup = { screen = "setup" })
+                            }
                         }
                     }
                 }

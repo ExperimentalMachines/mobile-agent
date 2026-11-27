@@ -3,9 +3,10 @@
 An on-device phone agent: [LFM3-VL-2B-MobileAgent](https://huggingface.co/experimentalmachines/LFM3-VL-2B-MobileAgent)
 running with Google's [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM) on the phone's GPU. You type a goal. The
 app screenshots the screen, asks the model for one action, performs it, and repeats until the model says the task is
-done. Nothing leaves the phone: the app has no internet permission.
+done. Tasks and screenshots stay on the phone. Internet access is used only when you choose to download the model from Hugging Face.
 
-- **Name and logo:** working name and placeholder mark. Branding comes once the model has proven fast and good enough.
+- **Setup:** open Your agent and tap **Download model**. Android downloads the published int8 model over Wi-Fi; the app checks its size and SHA-256 before installing it. Then enable phone access.
+- **Design:** a task-focused home screen, separate setup, and Activity / Settings navigation. The model remains experimental.
 - **Research:** the model and every benchmark result:
   [experimentalmachines/lfm3-mobile-agent](https://github.com/experimentalmachines/lfm3-mobile-agent).
 

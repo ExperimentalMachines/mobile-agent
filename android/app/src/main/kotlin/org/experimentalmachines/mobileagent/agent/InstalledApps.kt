@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.os.Build
 
 /**
  * The launcher's apps (visible through the manifest's `<queries>` for MAIN/LAUNCHER; no QUERY_ALL_PACKAGES).
@@ -15,10 +16,13 @@ object InstalledApps {
 
     fun list(context: Context): List<App> {
         val pm = context.packageManager
-        val infos: List<ResolveInfo> = pm.queryIntentActivities(
-            Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER),
-            PackageManager.ResolveInfoFlags.of(0),
-        )
+        val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
+        val infos: List<ResolveInfo> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            pm.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(0))
+        } else {
+            @Suppress("DEPRECATION")
+            pm.queryIntentActivities(intent, 0)
+        }
         return infos.map { App(it.loadLabel(pm).toString().trim(), it.activityInfo.packageName, it.activityInfo.name) }
             .filter { it.packageName != context.packageName && it.label.isNotEmpty() }
     }

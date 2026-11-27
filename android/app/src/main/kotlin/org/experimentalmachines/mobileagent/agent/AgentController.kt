@@ -97,7 +97,15 @@ class AgentController(
         val script: List<String>? = null,
     )
 
-    fun start(goal: String, options: Options? = null): Boolean {
+    /** Where step 1 begins when the run is started from Mobile Agent's own screen. */
+    sealed interface StartFrom {
+        /** The default launcher: what every training and benchmark episode starts on. */
+        data object Home : StartFrom
+        /** The app the user came from, as they left it ("Continue in ..."). */
+        data class App(val packageName: String, val label: String) : StartFrom
+    }
+
+    fun start(goal: String, options: Options? = null, from: StartFrom = StartFrom.Home): Boolean {
         val g = goal.trim()
         if (g.isEmpty() || running) return false
         val s = settings.current
@@ -106,8 +114,51 @@ class AgentController(
         _state.value = RunState.Running(g, 0, o.maxSteps, "Starting", null, null, false, null)
         RunService.start(context)
         overlay.show()
-        job = models.exclusive { run(g, o) }
+        job = models.exclusive { run(g, o, from) }
         return true
+    }
+
+    /**
+     * Leaves Mobile Agent's own screen before step 1: the model has never seen it, and on it the model taps our
+     * buttons (11 of 12 goals tapped where Start sits; during a run, Pause and Stop are there). A run started while
+     * another app is in front (notification, debug hook) begins on that app. Returns what happened, for run.json.
+     */
+    private suspend fun prepareStart(service: AgentService, from: StartFrom): String {
+        val front = service.frontPackage()
+        if (from is StartFrom.App) {
+            if (front == from.packageName) return "app: ${from.packageName}"
+            if (service.resumeApp(from.packageName) && awaitFront(service) { it == from.packageName }) {
+                service.awaitQuiet()
+                return "app: ${from.packageName}"
+            }
+            Log.w(TAG, "could not return to ${from.packageName}; starting from the home screen")
+        } else if (front != null && front != context.packageName) {
+            return "as is: $front"
+        }
+        val homes = Launchers.homePackages(context)
+        repeat(2) {
+            (AgentService.instance ?: service).home()
+            if (awaitFront(service) { it in homes }) {
+                (AgentService.instance ?: service).awaitQuiet()
+                return "home: ${(AgentService.instance ?: service).frontPackage()}"
+            }
+        }
+        val now = (AgentService.instance ?: service).frontPackage()
+        // The model must never start on our own controls (it taps them; Stop is among them).
+        if (now == null || now == context.packageName) {
+            throw IllegalStateException("Could not leave Mobile Agent for the home screen. Go to your home screen and start the task from the notification, or try again.")
+        }
+        return "home (not confirmed; in front: $now)"
+    }
+
+    /** Polls the active window until [ok] holds for its package, up to [START_WAIT_MS] (survives a service rebind). */
+    private suspend fun awaitFront(service: AgentService, ok: (String) -> Boolean): Boolean {
+        val end = SystemClock.elapsedRealtime() + START_WAIT_MS
+        while (SystemClock.elapsedRealtime() < end) {
+            (AgentService.instance ?: service).frontPackage()?.let { if (ok(it)) return true }
+            delay(100)
+        }
+        return false
     }
 
     fun stop() {
@@ -139,7 +190,7 @@ class AgentController(
         }
     }
 
-    private suspend fun run(goal: String, o: Options) {
+    private suspend fun run(goal: String, o: Options, from: StartFrom = StartFrom.Home) {
         val started = System.currentTimeMillis()
         val runId = SimpleDateFormat("yyyyMMdd-HHmmss", Locale.ROOT).format(Date(started))
         val s = settings.current
@@ -148,6 +199,7 @@ class AgentController(
         var loaded: LlmRuntime.Loaded? = null
         var firstLoadMs: Long? = null
         var appNames = emptyList<String>()
+        var startedFrom: String? = null
         try {
             val service = AgentService.instance ?: throw IllegalStateException("Turn on Mobile Agent in Accessibility settings first.")
             update { it.copy(phase = "Loading the model") }
@@ -163,7 +215,10 @@ class AgentController(
             val spec = loaded.spec
             appNames = InstalledApps.promptNames(InstalledApps.list(context))
             Log.i(TAG, "run $runId: ${appNames.size} installed apps in the prompt")
-            val env = Env(service, o, runId, spec)
+            update { it.copy(phase = if (from is StartFrom.App) "Opening ${from.label}" else "Going to the home screen") }
+            startedFrom = prepareStart(AgentService.instance ?: service, from)
+            Log.i(TAG, "run $runId starts from $startedFrom")
+            val env = Env(service, o, runId, spec, Launchers.homePackages(context))
             val config = AgentLoop.Config(
                 goal = goal, promptVersion = spec.promptVersion, apps = if (spec.promptVersion == "v4") appNames else null,
                 grid = spec.imageHeight to spec.imageWidth, maxSteps = o.maxSteps, enginePerStep = o.enginePerStep && o.script == null,
@@ -177,7 +232,7 @@ class AgentController(
                 out.status = "stopped"
             } else {
                 out.status = "error"
-                error = "${t.javaClass.simpleName}: ${t.message}"
+                error = LlmRuntime.describe(t)
                 Log.e(TAG, "run failed", t)
             }
         } finally {
@@ -194,6 +249,7 @@ class AgentController(
             loadMs = firstLoadMs, maxSteps = o.maxSteps, status = out.status, answer = red.scrub(out.answer), error = red.scrub(error),
             device = "${Build.MANUFACTURER} ${Build.MODEL}", soc = Build.SOC_MODEL, android = "${Build.VERSION.RELEASE} (API ${Build.VERSION.SDK_INT})",
             litertLm = BuildConfig.LITERT_LM_VERSION, installedApps = appNames, screenGrid = out.screenGrid, gridMatches = out.gridMatches,
+            startedFrom = startedFrom,
             // Scrubbed again: a secret typed late in the run may appear in earlier steps' intents and replies.
             steps = out.steps.map { AgentLoop.scrub(it, red) }, startedAtMs = started, endedAtMs = System.currentTimeMillis(),
         )
@@ -210,6 +266,7 @@ class AgentController(
         private val o: Options,
         private val runId: String,
         private val spec: org.experimentalmachines.mobileagent.model.ModelSpec,
+        private val homes: Set<String>,
     ) : AgentLoop.Env {
         /**
          * The current accessibility service. Android can rebind it in the middle of a run (seen when another app's
@@ -240,6 +297,7 @@ class AgentController(
         }
 
         override fun foreground(): String? = service.foreground()
+        override fun isHome(pkg: String?): Boolean = pkg != null && pkg in homes
         override fun live(x: Int?, y: Int?): Guard.Live = service.live(x, y)
 
         override suspend fun newEngine(): Long {
@@ -448,5 +506,7 @@ class AgentController(
         const val CONFIRM_TIMEOUT_MS = 120_000L
         /** How long a run waits for the accessibility service to come back after Android rebinds it. */
         const val RECONNECT_MS = 5_000L
+        /** How long the start (home screen or the previous app) may take to come to the front. */
+        const val START_WAIT_MS = 3_000L
     }
 }

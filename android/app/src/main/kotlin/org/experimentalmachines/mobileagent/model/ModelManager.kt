@@ -1,5 +1,6 @@
 package org.experimentalmachines.mobileagent.model
 
+import android.app.ActivityManager
 import android.content.Context
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
@@ -23,7 +24,10 @@ import java.util.concurrent.Executors
 class ModelManager(private val context: Context, private val settings: Settings) {
     val dispatcher = Executors.newSingleThreadExecutor { r -> Thread(r, "mobileagent-inference") }.asCoroutineDispatcher()
     val scope = CoroutineScope(SupervisorJob() + dispatcher)
-    val runtime = LlmRuntime(File(context.cacheDir, "litertlm").apply { mkdirs() })
+    val runtime = LlmRuntime(
+        File(context.cacheDir, "litertlm").apply { mkdirs() },
+        ActivityManager.MemoryInfo().also { context.getSystemService(ActivityManager::class.java).getMemoryInfo(it) }.totalMem,
+    )
 
     /**
      * One user of the model at a time (agent run, benchmark, parity, load): their coroutines share the inference thread
@@ -59,6 +63,10 @@ class ModelManager(private val context: Context, private val settings: Settings)
         val want = settings.current.modelSidecar
         return list.firstOrNull { it.sidecar.name == want } ?: list.firstOrNull()
     }
+
+    /** Why this device cannot run [entry] at all (too little memory), or null. */
+    fun memoryProblem(entry: ModelEntry?): String? =
+        entry?.modelFile?.takeIf { it.isFile }?.let { LlmRuntime.memoryProblem(runtime.totalMemBytes, it.length()) }
 
     /** Loads the selected model with the settings' backends unless it is already loaded that way. Inference thread only. */
     fun ensureLoaded(): LlmRuntime.Loaded {

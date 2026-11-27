@@ -23,6 +23,7 @@ import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityWindowInfo
+import android.view.inputmethod.InputMethodManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withTimeout
@@ -51,8 +52,35 @@ class AgentService : AccessibilityService() {
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-        if (event == null || event.packageName?.toString() == packageName) return
+        if (event == null) return
+        val pkg = event.packageName?.toString()
+        if (event.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && pkg != null) noteWindow(pkg)
+        if (pkg == packageName) return
         lastUiEventAt = SystemClock.uptimeMillis()
+    }
+
+    /** The launchable app that was in front before Mobile Agent (null after the home screen): "Continue in ...". */
+    @Volatile var previousApp: String? = null
+        private set
+    private var homes: Set<String> = emptySet()
+    private var keyboards: Set<String> = emptySet()
+    private val launchable = HashMap<String, Boolean>()
+
+    /**
+     * Window changes tell which app the user came from. The home screen clears it (they left that app); our own
+     * windows, the system UI, keyboards and other non-launchable windows (dialogs, permission prompts) leave it.
+     */
+    private fun noteWindow(pkg: String) {
+        if (pkg == packageName) return
+        if (homes.isEmpty()) homes = Launchers.homePackages(this)
+        if (pkg in homes) {
+            previousApp = null
+            return
+        }
+        if (keyboards.isEmpty()) keyboards = getSystemService(InputMethodManager::class.java).inputMethodList.map { it.packageName }.toSet()
+        if (pkg in keyboards) return // a keyboard window, even one whose app has a launcher icon
+        val isApp = launchable.getOrPut(pkg) { packageManager.getLaunchIntentForPackage(pkg) != null }
+        if (isApp) previousApp = pkg
     }
 
     override fun onInterrupt() = Unit
@@ -171,6 +199,20 @@ class AgentService : AccessibilityService() {
     }
 
     /** The app in front: the active app window (not this app's), "protected: <title>" if its content is hidden. */
+    /** The package of the active app window, Mobile Agent's own included (null: none, or not readable). */
+    fun frontPackage(): String? =
+        windows.firstOrNull { it.type == AccessibilityWindowInfo.TYPE_APPLICATION && it.isActive }?.root?.packageName?.toString()
+
+    /**
+     * Brings [pkg]'s task to the front as the user left it (the launcher's own intent: an existing task is resumed,
+     * not restarted). False if it has no launcher entry or Android refused.
+     */
+    fun resumeApp(pkg: String): Boolean {
+        val intent = packageManager.getLaunchIntentForPackage(pkg)
+            ?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED) ?: return false
+        return runCatching { startActivity(intent) }.isSuccess
+    }
+
     fun foreground(): String? {
         val w = windows.filter { it.type == AccessibilityWindowInfo.TYPE_APPLICATION }
             .filter { it.root?.packageName?.toString() != packageName }

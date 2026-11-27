@@ -27,20 +27,24 @@ import org.experimentalmachines.mobileagent.MobileAgentApp
 import org.experimentalmachines.mobileagent.Settings
 
 @Composable
-fun SettingsScreen(onBack: () -> Unit) {
+fun SettingsScreen(onSetup: () -> Unit) {
     val app = MobileAgentApp.get(LocalContext.current)
     val s by app.settings.values.collectAsState()
     val set: ((Settings.Values) -> Settings.Values) -> Unit = { app.settings.update(it) }
 
     Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        TopBar("Settings", onBack)
-        Section("Model") {
+        TopBar("Settings", null)
+        Section("Your agent") {
+            Text("Model downloads and phone permissions, all in one place.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            OutlinedButton(onClick = onSetup) { Text("Manage setup  ↗") }
+        }
+        Section("Processing") {
             Choice("Text decoder", s.textBackend) { v -> set { it.copy(textBackend = v) } }
             Choice("Vision encoder", s.visionBackend) { v -> set { it.copy(visionBackend = v) } }
             Text("A change applies at the next load.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Toggle(
                 "New engine every step",
-                "Off: one engine for the whole run. On: a fresh engine per step (slower; avoids LiteRT-LM issue #3165, where a new conversation can carry state over from the previous one).",
+                "Reload the model before each step. Slower, but can help with model state issues.",
                 s.enginePerStep,
             ) { v -> set { it.copy(enginePerStep = v) } }
         }
@@ -73,8 +77,12 @@ fun SettingsScreen(onBack: () -> Unit) {
                 s.enterAfterTyping,
             ) { v -> set { it.copy(enterAfterTyping = v) } }
         }
+        Section("Privacy") {
+            Text("Your model runs on this phone. Tasks, screenshots and run history stay on the device. The model download connects to Hugging Face; no task data is uploaded.", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("Experimental software. Review the agent’s actions and the result of each task.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
         Text(
-            "LiteRT-LM ${BuildConfig.LITERT_LM_VERSION} · app ${BuildConfig.VERSION_NAME}\nModels: ${app.models.modelsDir.absolutePath}",
+            "Mobile Agent ${BuildConfig.VERSION_NAME} · LiteRT-LM ${BuildConfig.LITERT_LM_VERSION}",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )

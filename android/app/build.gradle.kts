@@ -1,5 +1,5 @@
 /*
- * Mobile Agent: an on-device phone agent. The fine-tuned LFM3-VL-2B ("MobileAgent v4") runs through Google's LiteRT-LM
+ * Mobile Agent: an on-device phone agent. The fine-tuned LFM3-VL-2B (LFM3-VL-2B-MobileAgent) runs through Google's LiteRT-LM
  * on the phone's GPU, looks at the screen, picks one action, and an accessibility service performs it.
  */
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget

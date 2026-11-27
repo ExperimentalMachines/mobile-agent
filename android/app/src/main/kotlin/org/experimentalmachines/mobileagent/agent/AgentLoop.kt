@@ -28,6 +28,8 @@ class AgentLoop(private val env: Env, private val clock: () -> Long) {
         fun update(change: (RunState.Running) -> RunState.Running)
         suspend fun observe(step: Int): Screen
         fun foreground(): String?
+        /** Whether [pkg] is a home screen app (a launcher): see [LauncherShortcut]. */
+        fun isHome(pkg: String?): Boolean = false
         fun live(x: Int?, y: Int?): Guard.Live
         /** A new engine (engine-per-step mode); returns its creation time in ms. */
         suspend fun newEngine(): Long
@@ -132,6 +134,7 @@ class AgentLoop(private val env: Env, private val clock: () -> Long) {
             val b0 = attempts.first().bench
             val r = reply!!
 
+            var modelAction: String? = null
             fun record(intent: String, actionStr: String?, outcome: String, actMs: Long, settleMs: Long, tap: Pair<Int, Int>? = null, guard: String? = null, rules: List<String> = emptyList()) {
                 val rec = StepRecord(
                     step = step, intent = intent, action = actionStr, outcome = outcome, attempts = attempts.toList(),
@@ -140,6 +143,7 @@ class AgentLoop(private val env: Env, private val clock: () -> Long) {
                     decodeTokens = b0?.decodeTokens, decodeTokensPerS = b0?.decodeTokensPerS, actMs = actMs, settleMs = settleMs,
                     stepMs = clock() - s0, screenWidth = w, screenHeight = h, tapX = tap?.first, tapY = tap?.second,
                     guard = guard, loopRules = rules, historyEntry = history.lastOrNull()?.let { "${it.intent} -> ${it.action}" },
+                    modelAction = modelAction,
                 )
                 val clean = scrub(rec, out.redactor)
                 out.steps += clean
@@ -153,25 +157,34 @@ class AgentLoop(private val env: Env, private val clock: () -> Long) {
                 continue
             }
             val intent = AgentFormat.intent(r.thought, r.text)
-            val actionStr = AgentFormat.actionToStr(action)
+            // On a launcher, a tap or scroll meant to reach a named app opens that app by name: icons sit on other
+            // pages, in drawers or nowhere, depending on the launcher. The history then shows what really happened.
+            val chosen: AgentFormat.Action = action
+            val byName = if (env.isHome(foregroundAtShot) && c.apps != null) LauncherShortcut.appFor(chosen.type, intent, c.apps) else null
+            if (byName != null) {
+                modelAction = AgentFormat.actionToStr(chosen)
+                env.log("step $step: ${chosen.type} on the launcher for \"$byName\"; opening it by name")
+            }
+            val act = if (byName != null) AgentFormat.Action("open_app", appName = byName) else chosen
+            val actionStr = AgentFormat.actionToStr(act)
             history += AgentFormat.Step(intent, actionStr)
-            val rules = loopGuard.check(action, intent, screen.thumb)
-            loopGuard.record(action, screen.thumb)
+            val rules = loopGuard.check(act, intent, screen.thumb)
+            loopGuard.record(act, screen.thumb)
             env.update { it.copy(intent = intent.ifEmpty { null }, action = actionStr) }
 
-            if (action.type == "status") {
-                out.status = action.goalStatus ?: "complete"
+            if (act.type == "status") {
+                out.status = act.goalStatus ?: "complete"
                 record(intent, actionStr, "finished: ${out.status}", 0, 0, rules = rules)
                 return
             }
 
             // 3. The safety guard, on the live screen.
             env.awaitResumed()
-            val tap = if (action.type in AgentFormat.POINT_TYPES) AgentFormat.normToPx(action.x!!, action.y!!, w, h) else null
+            val tap = if (act.type in AgentFormat.POINT_TYPES) AgentFormat.normToPx(act.x!!, act.y!!, w, h) else null
             var guardNote: String? = null
             val decided = env.live(tap?.first, tap?.second)
-            val risk = Guard.risk(action.type, decided, c.enterAfterTyping)
-            if (action.type == "input_text" && (risk != null || decided.focusedIsPassword)) out.redactor.add(action.text)
+            val risk = Guard.risk(act.type, decided, c.enterAfterTyping)
+            if (act.type == "input_text" && (risk != null || decided.focusedIsPassword)) out.redactor.add(act.text)
             if (risk != null) {
                 env.log("MOBILEAGENT_GUARD step $step")
                 if (c.confirmRisky) {
@@ -201,17 +214,21 @@ class AgentLoop(private val env: Env, private val clock: () -> Long) {
             val a0 = clock()
             val outcome = env.hidden {
                 val now = env.live(tap?.first, tap?.second)
-                if (action.type == "input_text" && now.focusedIsPassword) out.redactor.add(action.text)
-                val changed = Guard.changed(action.type, foregroundAtShot, decided, now, guarded = risk != null, enterAfterTyping = c.enterAfterTyping)
-                if (changed != null) "not executed: $changed" else env.execute(action, w, h, tap, c.enterAfterTyping)
+                if (act.type == "input_text" && now.focusedIsPassword) out.redactor.add(act.text)
+                val changed = if (byName != null && !env.isHome(now.foregroundPackage)) {
+                    "the launcher is no longer in front (${now.foregroundPackage})"
+                } else {
+                    Guard.changed(act.type, foregroundAtShot, decided, now, guarded = risk != null, enterAfterTyping = c.enterAfterTyping)
+                }
+                if (changed != null) "not executed: $changed" else env.execute(act, w, h, tap, c.enterAfterTyping)
             }
             val executed = !outcome.startsWith("not executed")
             if (!executed) history[history.size - 1] = AgentFormat.Step(intent, "$actionStr [not executed: the screen changed]")
             if (executed && tap != null) env.showTap(tap.first, tap.second)
             val actMs = clock() - a0
-            if (action.type == "answer") {
+            if (act.type == "answer") {
                 out.status = "answered"
-                out.answer = out.redactor.scrub(action.text)
+                out.answer = out.redactor.scrub(act.text)
                 record(intent, actionStr, outcome, actMs, 0, tap, guardNote, rules)
                 return
             }
